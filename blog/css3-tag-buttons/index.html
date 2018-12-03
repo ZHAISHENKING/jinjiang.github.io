@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 用CSS3制作尖角标签按钮样式 · 囧克斯</title><meta name="description" content="用CSS3制作尖角标签按钮样式 - 勾三股四"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://jinjiang.github.io/atom.xml" title="囧克斯"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">用CSS3制作尖角标签按钮样式</h1><div class="post-info">2012年3月30日</div><div class="post-content"><p>演示地址：<a href="http://jiongks.name/demos/css3-tag/" target="_blank" rel="noopener">http://jiongks.name/demos/css3-tag/</a></p>
+<p><img src="http://jiongks-typecho.stor.sinaapp.com/usr/uploads/2012/03/527861101.png" alt="CSS 3 tag demo"></p>
+<p>如图的效果。标签有背景色，且左侧有一个三角形，三角形中间有个白色的圆圈。</p>
+<ul>
+<li>你一定在想这个效果是背景图切出来的吧——答案是没有用到任何图片</li>
+<li><p>那你会不会在想这个效果的html结构很复杂呢——答案是最简单的html结构</p>
+<p>  &lt;p&gt;  </p>
+<pre><code>&amp;lt;a href=&quot;#&quot;&gt;Tag1&amp;lt;/a&gt;  
+&amp;lt;a href=&quot;#&quot;&gt;Tag2&amp;lt;/a&gt;  
+&amp;lt;a href=&quot;#&quot;&gt;Tag3&amp;lt;/a&gt;  
+&amp;lt;a href=&quot;#&quot;&gt;Tag4&amp;lt;/a&gt;  
+&amp;lt;a href=&quot;#&quot;&gt;Tag5&amp;lt;/a&gt;  
+</code></pre><p>  &lt;/p&gt;</p>
+</li>
+</ul>
+<p>之所以可以达到这样的效果，是因为我们运用了一些比较巧妙的技术。接下来告诉你实现方式：</p>
+<a id="more"></a>
+<h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p>我们通过<code>a:before</code>和<code>a:after</code>这两个伪元素，通过绝对定位的方式，为<code>&lt;a&gt;</code>标签做了扩展：首先把一个伪元素<code>a:before</code>当做最左侧的三角形，然后再把另外一个伪元素<code>a:after</code>作为中间的小圆点显示到界面中。</p>
+<pre><code>a {
+    display: inline-block;
+    position: relative;
+}
+
+a:before,
+a:after {
+    position: absulote;
+    content: &quot; &quot;;
+}
+</code></pre><h3 id="左侧的三角形"><a href="#左侧的三角形" class="headerlink" title="左侧的三角形"></a>左侧的三角形</h3><p>三角形的实现方式略带技巧性，其实就是把宽高都设为0，边框宽度设为文本高度的一半。然后将其右边框上色<code>border-right-color</code>，其余三面边框颜色全部设为透明<code>tranaparent</code>，就可以了。当然，在设定边框宽度之前，我们需要确定文本的高度，这里有一个非常合适的单位：<code>em</code>。我们将链接的行高设置为<code>1.5em</code>，然后将伪元素的边框设置为<code>0.75em</code>即可。</p>
+<pre><code>a {
+    background: #ccc;
+    color: green;
+    line-height: 1.5;
+}
+
+a:before {
+    border: transparent 0.75em solid;
+    border-right-color: #ccc;
+    top: 0;
+    left: -1.5em;
+    height: 0;
+    width: 0;
+}
+</code></pre><h3 id="左侧三角形中间的小圆点"><a href="#左侧三角形中间的小圆点" class="headerlink" title="左侧三角形中间的小圆点"></a>左侧三角形中间的小圆点</h3><p>这个小圆点同样需要用css3实现，相比之下，它的实现略简单，设置背景为白色、宽高均为<code>0.5em</code>、上下边距均为<code>0.5em</code>、圆角半径是<code>0.25em</code>的矩形。这需要合理的坐标计算和尺寸计算。我们同样选择了通过<code>em</code>这个单位来计算。</p>
+<pre><code>a:after {
+    background: white;
+    width: 0.5em;
+    height: 0.5em;
+    top: 0.5em;
+    left: -0.125em;
+    border-radius: 0.25em;
+}
+</code></pre><p>把这些内容凑在一起，会发现横向的距离会有些不合适，那我们再做一点微调：</p>
+<pre><code>a {
+    padding: 0px 10px;
+    margin-left: 1em;
+}
+</code></pre><p>这样看起来样子比较协调了。</p>
+<h3 id="鼠标悬停效果"><a href="#鼠标悬停效果" class="headerlink" title="鼠标悬停效果"></a>鼠标悬停效果</h3><p>最后，加入<code>:hover</code>效果：</p>
+<pre><code>a:hover {
+    background: gray;
+    color: white;
+}
+
+a:hover:before {
+    border-right-color: gray;
+}
+</code></pre><p>这样，就大功告成了！<br>demo: <a href="http://jiongks.name/demos/css3-tag/" target="_blank" rel="noopener">http://jiongks.name/demos/css3-tag/</a></p>
+</div></article></div></main><footer><div class="paginator"><a href="/blog/website-building-diary-20120331/" class="prev">PREV</a><a href="/blog/plugin-markdown/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2018 <a href="https://jinjiang.github.io">勾三股四</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>

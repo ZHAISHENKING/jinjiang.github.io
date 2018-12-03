@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 囧克斯</title><meta name="description" content="这里是勾三股四的新家"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://jinjiang.github.io/atom.xml" title="囧克斯"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><ul class="home post-list"><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/blog/color-matrix-filters-using-the-html5-canvas/" class="post-title-link">通过HTML5 Canvas API调节图像的亮度和颜色</a></h2><div class="post-info">2013年10月11日</div><div class="post-content"><p>译自：<a href="http://www.storminthecastle.com/2013/10/06/color-matrix-filters-using-the-html5-canvas/" target="_blank" rel="noopener">Adjusting Image Brightness and Color Using the HTML5 Canvas API</a></p>
+<p>你曾否需要调节一张图片的亮度？或者增强红色通道让它变得温暖一些？</p>
+<p><img src="http://www.storminthecastle.com/wp-content/uploads/2013/04/filtered.jpg" alt=""></p>
+<p>这是我之前两篇文章“<a href="http://www.storminthecastle.com/2013/04/06/how-you-can-do-cool-image-effects-using-html5-canvas/" target="_blank" rel="noopener">如何通过HTML5 Canvas处理图片酷效</a>”和“<a href="http://www.storminthecastle.com/2013/10/06/color-matrix-filters-using-the-html5-canvas/how-you-can-build-an-html5-photobooth-app/" target="_blank" rel="noopener">如何创建一个HTML5的大头贴应用</a>”的后续。在之前的那些文章里，我提供了一些可分离的颜色滤镜代码：灰度、灰褐色、红色、变亮、变暗等。这些滤镜都是经典的颜色滤镜，每个像素点的颜色都是独立运算的，互不影响。我们的可以将其建模成一个单独数据驱动的称为颜色矩阵滤镜(Color Matrix Filter)的东西。这一概念将会遍布本文。这种滤镜将会以一个包含权重(即系数)的颜色矩阵作为输入，并决定输出的颜色组件(color component)如何和输入的颜色组建相对应。</p></div><a href="/blog/color-matrix-filters-using-the-html5-canvas/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/blog/v8-javascript-performance-tips/" class="post-title-link">JavaScript V8性能小贴士</a></h2><div class="post-info">2013年9月29日</div><div class="post-content"><p>译自：<a href="http://www.html5rocks.com/en/tutorials/speed/v8/" target="_blank" rel="noopener">Performance Tips for JavaScript in V8</a></p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>关于如何巧妙提高V8 JavaScript性能的话题，Daniel Clifford在Google I/O上做了<a href="http://www.youtube.com/watch?v=UJPdhx5zTaw" target="_blank" rel="noopener">一次非常精彩的分享</a>。Daniel鼓励我们“追求更快”，认真的分析C++和JavaScript之间的性能差距，根据JavaScript的工作原理撰写代码。在Daniel的分享中，有一个核心要点的归纳，我们也会根据性能指导的变化保持对这篇文章的更新。</p>
+<h3 id="最重要的建议"><a href="#最重要的建议" class="headerlink" title="最重要的建议"></a>最重要的建议</h3><p>最重要的是要把任何性能建议放在特定的情境当中。性能建议是附加的东西，有时一开始就特别注意深层的建议反而会对我们造成干扰。你需要从一个综合的角度看待你的Web应用的性能——在关注这些性能建议之前，你应该找<a href="https://developers.google.com/speed/pagespeed/" target="_blank" rel="noopener">PageSpeed</a>之类的工具大概分析一下你的代码，也算是跑个分先。这会防止你过度优化。</p>
+<p>对Web应用的性能优化，几个原则性的建议是：</p>
+<ul>
+<li>首先，未雨绸缪</li>
+<li>然后，找到症结</li>
+<li>最后，修复它</li>
+</ul>
+<p>为了完成这几个步骤，理解V8如何优化JS是一件很重要的事情，这样你就可以根据其对JS运行时的设计撰写代码。同样重要的是掌握一些帮得上忙的工具。Daniel也交代了一些开发者工具的用法，它们刚好抓住了一些V8引擎设计上最重要的部分。</p>
+<p>OK。开始V8小贴士。</p></div><a href="/blog/v8-javascript-performance-tips/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/blog/parallax/" class="post-title-link">视觉差，走起！</a></h2><div class="post-info">2013年9月22日</div><div class="post-content"><p>翻译自：<a href="http://www.html5rocks.com/en/tutorials/speed/parallax/" target="_blank" rel="noopener">http://www.html5rocks.com/en/tutorials/speed/parallax/</a></p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>现在满大街都是视觉差(parallax)网站了，我们随便看几个：</p>
+<ul>
+<li><a href="http://www.rowtothepole.com/" target="_blank" rel="noopener">Old Pulteney Row to the Pole</a></li>
+<li><a href="http://www.adidas.com/com/apps/snowboarding/" target="_blank" rel="noopener">Adidas Snowboarding</a></li>
+<li><a href="http://www.bbc.co.uk/news/entertainment-arts-20026367" target="_blank" rel="noopener">BBC News - James Bond: Cars, catchphrases and kisses</a></li>
+</ul>
+<p>也许你对这玩意儿还不太熟，视觉差其实就是它的视觉结构会随着页面的滚动而变化。通常情况下页面里的元素会根据页面的滚动位置而缩放、旋转或移动。</p>
+<p><img src="http://www.html5rocks.com/static/demos/parallax/parallax.jpg" alt="一个视觉差页面的demo"><br>我们的视觉差demo的完整效果</p>
+<p>不管你喜不喜欢视觉差网站，有一件事毫无疑问，它是一个性能的黑洞。因为当页面滚动时，浏览器的优化都倾向于新内容随滚动而出现于屏幕的最上方或最下方的情况。一般来说，内容改变得越少浏览器性能越高。而对于一个视觉差网站来说，在页面滚动时，好多元素都在发生改变，大多数情况下整个页面的大块可视元素都在发生变化，所以浏览器不得不重绘整个页面。</p>
+<p>我们有理由这样归纳一个视觉差的网站：</p>
+<ul>
+<li>背景元素会在你向上或向下滚动页面时改变位置、旋转或缩放。</li>
+<li>页面内容，如文字或小的图片，在页面滚动时会按照传统的方式进行上下移动。</li>
+</ul>
+<p>建议大家先阅读我们之前介绍过的<a href="http://www.html5rocks.com/en/tutorials/speed/scrolling/" target="_blank" rel="noopener">滚动性能</a>来改进你的app的响应速度。本篇文章是基于那篇文章所写的。</p>
+<p>所以文字是如果你在建立一个视觉差网站，那么你是否受困于高昂的重绘开销？有没有别的改进建议使得性能最大化？让我们看看这几个方案：</p></div><a href="/blog/parallax/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/blog/devtools-five-performance-features/" class="post-title-link">Chrome开发者工具中评估性能的五大新特性</a></h2><div class="post-info">2013年9月18日</div><div class="post-content"><p>摘自：<a href="http://www.html5rocks.com/en/tutorials/developertools/revolutions2013/" target="_blank" rel="noopener">Chrome DevTools Revolutions 2013</a></p>
+<p>本次开发者工具的改进中有几项新特性是针对性能的：</p>
+<ul>
+<li>持续绘制模式</li>
+<li>显示绘制矩形及其层的边框</li>
+<li>每秒帧数的测量仪</li>
+<li>找到强制同步布局(layout thrashing)</li>
+<li>对象分配跟踪</li>
+</ul></div><a href="/blog/devtools-five-performance-features/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/blog/i-am-working-hard/" class="post-title-link">精气神儿</a></h2><div class="post-info">2013年7月23日</div><div class="post-content"></div><a href="/blog/i-am-working-hard/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/blog/nokia-1050-vs-1202-report/" class="post-title-link">细节无微不至，彩屏让人又爱又恨——新老“神机”大对决：Nokia 1050 vs Nokia 1202</a></h2><div class="post-info">2013年6月15日</div><div class="post-content"><h3 id="吐在前面的槽……"><a href="#吐在前面的槽……" class="headerlink" title="吐在前面的槽……"></a>吐在前面的槽……</h3><p>今年，在老罗锤子手机一路跳票、累不死手机活蹦乱跳、魅族手机版本号即将输给小米、iOS被拍扁、Windows Phone在卖萌、安卓在卖身等诸多鸟事相继雷到众生之后，人们无不感叹，手机这个行业还有救吗？站在智能和愚蠢的十字路口，我们该何去何从？囧rz</p>
+<p>就在大家迷茫之时，Nokia发布了它的又一力作——1050！整个业界犹如刮来了一股春风，无不感到清新舒畅。大家纷纷感叹，那个曾经的科技巨人就要王者归来鸟！这个夏天，This summer，最受瞩目的大事件，big event！就是：</p>
+<p><img src="http://jiongks-typecho.stor.sinaapp.com/usr/uploads/2013/06/1458120974.jpg" alt=""></p>
+<p>Nokia 1050 的发布！！！</p>
+<p>作为一个反智能化手机操作系统的支持者，我很自豪的宣布，经历了前两轮的预定失败之后，我终于在上周成功订到了这款神机——要不要卖得这么好啊 - -</p>
+<p>我之前用的手机是<a href="http://baike.baidu.com/view/1969934.htm" target="_blank" rel="noopener">Nokia 1202</a>，2008年的神机，其实也不算太老，要不是1050发布，它也其实已经是一个非常现代化、非常新款的愚蠢手机了，无奈在这个1050的时代趋势下也不得不接受停产的命运。</p>
+<p><img src="http://jiongks-typecho.stor.sinaapp.com/usr/uploads/2013/06/2984211007.jpg" alt=""></p>
+<p>1050基本上继承了1202所有的成员函数和成员变量，小巧大方，简单易用，低碳环保，超长待机，便宜实惠，这已经足以吊起广大消费者的胃口了。然而真正的1050到底表现如何？它能否在1202的光环之下更进一步再创辉煌？带着这些疑问，记者走访了不少xxx，挖掘出了很多珍贵的xxxx，也听到了各种xxxxxxxx……</p>
+<p>OK 马上开始</p>
+<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ol>
+<li>开箱/外观</li>
+<li>屏幕</li>
+<li>主界面</li>
+<li>基本功能 (电话/短信/通讯录)</li>
+<li>特色功能</li>
+<li>实用工具</li>
+<li>性能/续航能力</li>
+<li>综述</li>
+</ol></div><a href="/blog/nokia-1050-vs-1202-report/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/blog/qin-sheng-effect-in-the-national-team/" class="post-title-link">秦升拿到红牌之后……</a></h2><div class="post-info">2013年6月11日</div><div class="post-content"><p><img src="http://jiongks-typecho.stor.sinaapp.com/usr/uploads/2013/06/3893919286.jpg" alt=""></p>
+<ul>
+<li>工体上空飘扬着“傻X”的洪亮口号，晚上天津牌照的车又被砸了不少</li>
+<li>比赛收视率直线下降——比赛才开始了13分钟，还有80分钟呢</li>
+<li>赞助商的脸全都绿了，下次国足的比赛就没有再打广告了，不过无非是又有别的厂商挨宰了</li>
+<li>谭晶从此霉运不断</li>
+<li>看台上两国外交部长正在谈一个上百亿的项目，荷兰大爷若有所思的说：这个我们回去再考虑考虑…… 对面：恩，下次我们还是改一起看乒乓球吧</li>
+<li>刘建宏紧紧攥着双拳：完了完了，今天这场球大Boss都在看啊，这种球我该肿么说比较得体呢？肿么办肿么办……</li>
+<li>小区里：还是很安静的，现在大家看球都不是看彩电了，要么是笔记本电脑，不舍得扔下去，要么是大平板电视，扔不动</li>
+</ul></div><a href="/blog/qin-sheng-effect-in-the-national-team/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/blog/write-my-theme-with-sass/" class="post-title-link">用Sass重新整理自己的博客主题样式</a></h2><div class="post-info">2013年6月5日</div><div class="post-content"><p><img src="http://sass-lang.com/images/sass.gif" alt="Sass"></p>
+<p>远远关注<a href="http://sass-lang.com" target="_blank" rel="noopener">Sass</a>很久了，今天终于鼓起勇气写了<a href="http://jiongks.sinaapp.com/usr/themes/iambig-3d/style.sass" target="_blank" rel="noopener">我的第一个Sass文件</a></p>
+<h3 id="Sass简介"><a href="#Sass简介" class="headerlink" title="Sass简介"></a>Sass简介</h3><p>一种CSS的预处理程序，基于Ruby运行。安装过程和相关的准备工作非常简单：</p>
+<ol start="0">
+<li>当然首先要安装<a href="http://www.ruby-lang.org/" target="_blank" rel="noopener">Ruby</a></li>
+<li><code>gem install ruby</code>，必要的环境下需要在命令前加上<code>sudo</code></li>
+<li>进入我的博客主题文件夹，运行<code>sass-convert style.css style.sass</code>，把我的css文件先转换成sass文件</li>
+<li>运行<code>sass --watch style.sass:style.css</code>，使得程序自动把<code>style.sass</code>文件接下来的任何改动自动同步转换到<code>style.css</code></li>
+</ol>
+<p>这时，新的Sass文件就创建完毕了！^_^ 去碎觉……</p>
+<p>呵呵，开个玩笑。其实这样的Sass文件虽然格式上没有任何问题，但和直接撰写CSS几乎没区别。而Sass除了可以让我们少写几个花括号和分号之外，其实还有很多实用的特性是我们真正需要的。</p>
+<p>无论如何，现在的这个Sass文件是一个整理的基础，接下来，我们就来一步一步整理这个文件，同时也一步一步熟悉Sass的特性。</p></div><a href="/blog/write-my-theme-with-sass/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/blog/connect-middleware-manual/" class="post-title-link">Connect中间件使用手册</a></h2><div class="post-info">2013年6月2日</div><div class="post-content"><p>以下内容大多译自<a href="http://www.senchalabs.org/connect/" target="_blank" rel="noopener">Connect官网</a> 2013-06-02</p>
+<p>Connect是基于Node的中间件框架(middleware framework)，提供超过18种官方中间件以及更多的第三方中间件。</p>
+<p>示例：</p>
+<pre><code>var app = connect()
+  .use(connect.logger(&apos;dev&apos;))
+  .use(connect.static(&apos;public&apos;))
+  .use(function(req, res){
+    res.end(&apos;hello world\n&apos;);
+  })
+ .listen(3000);
+</code></pre><p>安装方式：</p>
+<pre><code>$ npm install connect
+</code></pre><p>依次介绍官方中间件</p></div><a href="/blog/connect-middleware-manual/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/blog/do-practice/" class="post-title-link">实践</a></h2><div class="post-info">2013年5月22日</div><div class="post-content"></div><a href="/blog/do-practice/" class="read-more">...more</a></article></li></ul></main><footer><div class="paginator"><a href="/page/3/" class="prev">PREV</a><a href="/page/5/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2018 <a href="https://jinjiang.github.io">勾三股四</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>

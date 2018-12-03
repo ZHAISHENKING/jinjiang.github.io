@@ -1,0 +1,238 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 如何撰写 Git 提交信息 · 囧克斯</title><meta name="description" content="如何撰写 Git 提交信息 - 勾三股四"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://jinjiang.github.io/atom.xml" title="囧克斯"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">如何撰写 Git 提交信息</h1><div class="post-info">2017年3月20日</div><div class="post-content"><p>译自：<a href="https://chris.beams.io/posts/git-commit/" target="_blank" rel="noopener">https://chris.beams.io/posts/git-commit/</a></p>
+<hr>
+<p><img src="https://imgs.xkcd.com/comics/git_commit.png" alt=""></p>
+<h3 id="介绍：为什么好的提交信息非常重要"><a href="#介绍：为什么好的提交信息非常重要" class="headerlink" title="介绍：为什么好的提交信息非常重要"></a>介绍：为什么好的提交信息非常重要</h3><p>如果你浏览任何 Git 仓库的日志，你可能会发现那些提交信息多少有些<a href="http://dict.cn/mess" target="_blank" rel="noopener">混乱</a>。比如，看看这些我早年提交给 Spring 的<a href="https://github.com/spring-projects/spring-framework/commits/e5f4b49?author=cbeams" target="_blank" rel="noopener">精品</a>：</p>
+<pre><code>$ git log --oneline -5 --author cbeams --before &quot;Fri Mar 26 2009&quot;
+
+e5f4b49 Re-adding ConfigurationPostProcessorTests after its brief removal in r814. @Ignore-ing the testCglibClassesAreLoadedJustInTimeForEnhancement() method as it turns out this was one of the culprits in the recent build breakage. The classloader hacking causes subtle downstream effects, breaking unrelated tests. The test method is still useful, but should only be run on a manual basis to ensure CGLIB is not prematurely classloaded, and should not be run as part of the automated build.
+2db0f12 fixed two build-breaking issues: + reverted ClassMetadataReadingVisitor to revision 794 + eliminated ConfigurationPostProcessorTests until further investigation determines why it causes downstream tests to fail (such as the seemingly unrelated ClassPathXmlApplicationContextTests)
+147709f Tweaks to package-info.java files
+22b25e0 Consolidated Util and MutableAnnotationUtils classes into existing AsmUtils
+7f96f57 polishing
+</code></pre><p><a href="http://dict.cn/Yikes" target="_blank" rel="noopener">呀</a>，比较一下这个仓库<a href="https://github.com/spring-projects/spring-framework/commits/5ba3db?author=philwebb" target="_blank" rel="noopener">最近的提交</a>：</p>
+<pre><code>$ git log --oneline -5 --author pwebb --before &quot;Sat Aug 30 2014&quot;
+
+5ba3db6 Fix failing CompositePropertySourceTests
+84564a0 Rework @PropertySource early parsing logic
+e142fd1 Add tests for ImportSelector meta-data
+887815f Update docbook dependency and generate epub
+ac8326d Polish mockito usage
+</code></pre><p>你更喜欢读哪个呢？</p>
+<a id="more"></a>
+<p>过去的信息从长度到形式都很多样；最近的信息比较简洁且一致。过去的信息是一般情况下会发生的；最近的信息绝不是<a href="http://dict.cn/by%20accident" target="_blank" rel="noopener">偶然</a>发生。</p>
+<p>虽然很多仓库的日志看起来像是过去的，但也有例外。Linux 内核和 Git 自身就是伟大的例子。再比如 Spring Boot 或其它由 Tim Pope 管理的仓库。</p>
+<p>这些仓库的贡献者知道，对于一个开发同事来说 (其实对未来的<a href="http://dict.cn/selves" target="_blank" rel="noopener">自己</a>也是一样)，一条用心撰写的 Git 提交信息是用来沟通这则改动最好的上下文。一个 diff 会告诉你<em>什么</em>改变了，但是只有提交信息能<a href="http://dict.cn/properly" target="_blank" rel="noopener">正确的</a>告诉你<em>为什么</em>。Peter Hutterer 阐述得非常好：</p>
+<blockquote>
+<p>重建一段代码的上下文是非常费时费力的，这是无法完全避免的。所以我们应该努力尽可能的<a href="http://www.osnews.com/story/19266/WTFs_m" target="_blank" rel="noopener">减少它</a>。提交信息可以帮上这个忙，也正因为此，一个提交信息反应了一名开发者是不是个好的协作者。</p>
+</blockquote>
+<p>如果你对于创建一个伟大的提交信息还没有想过太多，那说明你可能还没有在 <code>git log</code> 及相关的工具上花费太多的时间。这里有一个<a href="http://dict.cn/vicious" target="_blank" rel="noopener">恶性</a>循环：因为提交历史不成体系且不一致，我们就不会花更多的时间使用和关心它。因为它得不到使用和关注，所以它就一直不成体系且不一致。</p>
+<p>但是用心写出来的日志是美丽且实用的。<code>git blame</code>、<code>revert</code>、<code>rebase</code>、<code>log</code>、<code>shortlog</code> 以及其它子命令就是生命的一部分。回顾其他人的提交和 pull requests 变成了值得去做的事情，并且可以快速独立完成。理解最近几个月或几年为什么发生了这些事情不止是可能的并且是<a href="http://dict.cn/efficient" target="_blank" rel="noopener">高效的</a>。</p>
+<p>一个项目的长期成功<a href="http://dict.cn/rest%20on" target="_blank" rel="noopener">靠的是</a>其可维护性，以及一个拥有比项目的日志更强大的工具的维护者。这里值得花时间学习一下如何<a href="http://dict.cn/properly" target="_blank" rel="noopener">正确的</a>考虑它。一开始可能是个<a href="http://dict.cn/hassle" target="_blank" rel="noopener">麻烦</a>的东西很快会变成习惯，并且最终变成一切<a href="http://dict.cn/involved" target="_blank" rel="noopener">投入</a>的自豪和<a href="http://dict.cn/productivity" target="_blank" rel="noopener">产能</a>的源泉。</p>
+<p>在这篇文章中，我只会<a href="http://dict.cn/addressing" target="_blank" rel="noopener">致力于</a>保障一个健康的提交历史的最基本要素：如何撰写一份个人提交信息。这里还有其它重要的实践比如<a href="http://dict.cn/squashing" target="_blank" rel="noopener">压缩</a>提交 (commit squashing) 就不是我在这里想说的。可能会为此<a href="http://dict.cn/subsequent" target="_blank" rel="noopener">再</a>写一篇吧。</p>
+<p>大多数编程语言都建立了良好的编码规约，以<a href="http://dict.cn/constitutes" target="_blank" rel="noopener">形成</a><a href="http://dict.cn/idiomatic" target="_blank" rel="noopener">惯用</a>的风格，比如命名、格式化等。当然在这些编码规约中有一些<a href="http://dict.cn/variations" target="_blank" rel="noopener">差异</a>，但是大多数开发者赞同取其一并养成习惯好过每个人都选择自己的风格而<a href="http://dict.cn/ensues" target="_blank" rel="noopener">发生</a>混乱。</p>
+<p>一个团队的提交日志方法应该是一致的。为了建立一个有用的<a href="http://dict.cn/revision" target="_blank" rel="noopener">修订</a>历史，团队应该首先约定一个提交信息的规约，该规约至少定义以下三方面：</p>
+<p><strong>样式。</strong>标记<a href="http://dict.cn/syntax" target="_blank" rel="noopener">句法</a>、缠绕边距、<a href="http://dict.cn/grammar" target="_blank" rel="noopener">语法</a>、<a href="http://dict.cn/capitalization" target="_blank" rel="noopener">大小写</a>、<a href="http://dict.cn/punctuation" target="_blank" rel="noopener">标点符号</a>。把这些东西都找出来，去除猜测，把规则定的尽量简单可行。最终的产出将会是<a href="http://dict.cn/remarkably" target="_blank" rel="noopener">不同寻常的</a>一致的日志，不只是乐于阅读，实际上也让阅读变成了一种<a href="http://dict.cn/on%20a%20regular%20basis" target="_blank" rel="noopener">习惯</a>。</p>
+<p><strong>内容。</strong>提交信息的正文 (body) (如有) 应该包含什么样的信息？不应该包含什么？</p>
+<p><strong>元数据。</strong>Issue 追踪 ID、pull request 号等信息如何放进来？</p>
+<p>幸运的是，这里有一些已经被良好建立的规约，用来创建<a href="http://dict.cn/idiomatic" target="_blank" rel="noopener">惯用的</a> Git 提交信息。<a href="http://dict.cn/indeed" target="_blank" rel="noopener">事实上</a>，有些规约中很多都是以某种 Git 命令的方式工作的。不需要你重新发明任何东西。只需遵循下面七大法则，你就可以像专家一样进行提交：</p>
+<h3 id="伟大的-Git-提交信息七大法则"><a href="#伟大的-Git-提交信息七大法则" class="headerlink" title="伟大的 Git 提交信息七大法则"></a>伟大的 Git 提交信息七大法则</h3><blockquote>
+<p>注意：<a href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html" target="_blank" rel="noopener">这些</a> <a href="http://www.git-scm.com/book/en/Distributed-Git-Contributing-to-a-Project#Commit-Guidelines" target="_blank" rel="noopener">法则</a> <a href="https://github.com/torvalds/subsurface/blob/master/README#L82-109" target="_blank" rel="noopener">之前</a> <a href="http://who-t.blogspot.co.at/2009/12/on-commit-messages.html" target="_blank" rel="noopener">在别的地方</a> <a href="https://github.com/erlang/otp/wiki/writing-good-commit-messages" target="_blank" rel="noopener">也</a> <a href="https://github.com/spring-projects/spring-framework/blob/30bce7/CONTRIBUTING.md#format-commit-messages" target="_blank" rel="noopener">提到过</a>。</p>
+</blockquote>
+<ol>
+<li>用一个空行把主题和主题隔离开</li>
+<li>把主题行限制在 50 个字符以内</li>
+<li>主题行大写开头</li>
+<li>主题行不必以句号结尾</li>
+<li>在主题行中使用<a href="http://dict.cn/imperative" target="_blank" rel="noopener">祈使句</a></li>
+<li>正文在 72 个字符处折行</li>
+<li>使用正文解释<em>是什么</em>和<em>为什么</em>而不是<em>怎么样</em></li>
+</ol>
+<p>比如：</p>
+<pre><code>Summarize changes in around 50 characters or less
+
+More detailed explanatory text, if necessary. Wrap it to about 72
+characters or so. In some contexts, the first line is treated as the
+subject of the commit and the rest of the text as the body. The
+blank line separating the summary from the body is critical (unless
+you omit the body entirely); various tools like `log`, `shortlog`
+and `rebase` can get confused if you run the two together.
+
+Explain the problem that this commit is solving. Focus on why you
+are making this change as opposed to how (the code explains that).
+Are there side effects or other unintuitive consequences of this
+change? Here&apos;s the place to explain them.
+
+Further paragraphs come after blank lines.
+
+ - Bullet points are okay, too
+
+ - Typically a hyphen or asterisk is used for the bullet, preceded
+   by a single space, with blank lines in between, but conventions
+   vary here
+
+If you use an issue tracker, put references to them at the bottom,
+like this:
+
+Resolves: #123
+See also: #456, #789
+</code></pre><h4 id="1-用一个空行把主题和正文隔离开"><a href="#1-用一个空行把主题和正文隔离开" class="headerlink" title="1. 用一个空行把主题和正文隔离开"></a>1. 用一个空行把主题和正文隔离开</h4><p>在 <code>git commit</code> 的 manpage 手册中写到：</p>
+<blockquote>
+<p>虽然不是必须的，但是你最好以一句少于 50 个字符的话简短概括你的改动，然后空一行，再深入描述。提交信息中空行之上的文本会被当作提交的标题，该标题在 Git 中到处都会用到。比如 Git-format-patch(1) 会把一个提交转换为一封电子邮件，它会把这个标题作为邮件的主题，其余的部分会作为邮件的正文。</p>
+</blockquote>
+<p>首先，不是每一次提交都同时需要一个主题和一段正文。有的时候单独一行就可以了，尤其是当改动很简单没有更多必要的上下文的时候。比如：</p>
+<pre><code>Fix typo in introduction to user guide
+</code></pre><p>无需说更多；如果读者好奇到底修复了什么 typo，她可以通过诸如 <code>git show</code> 或 <code>git diff</code> 或 <code>git log -p</code> 简单看看改动的内容就可以了。</p>
+<p>如果你是在命令行中提交，则很容易使用 <code>git commit</code> 的 <code>-m</code> 选项：</p>
+<pre><code>$ git commit -m&quot;Fix typo in introduction to user guide&quot;
+</code></pre><p>然而，当一个提交<a href="http://dict.cn/merits" target="_blank" rel="noopener">值得</a>一些解释和上下文的时候，你需要撰写正文。比如：</p>
+<pre><code>Derezz the master control program
+
+MCP turned out to be evil and had become intent on world domination.
+This commit throws Tron&apos;s disc into MCP (causing its deresolution)
+and turns it back into a chess game.
+</code></pre><p>带正文的提交信息并不便于通过 <code>-m</code> 选项来撰写。你最好找一个合适的文本编辑器撰写信息。如果你并没有在命令行中为 Git 设置过编辑器，那么请移步阅读 <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration" target="_blank" rel="noopener">Pro Git 的这个章节</a>。</p>
+<p>当你在任何情况下浏览日志的时候，都会觉得把主题从正文中分离出来是<a href="http://dict.cn/pay%20off" target="_blank" rel="noopener">值得的</a>。这里有一整段日志：</p>
+<pre><code>$ git log
+commit 42e769bdf4894310333942ffc5a15151222a87be
+Author: Kevin Flynn &lt;kevin@flynnsarcade.com&gt;
+Date:   Fri Jan 01 00:00:00 1982 -0200
+
+ Derezz the master control program
+
+ MCP turned out to be evil and had become intent on world domination.
+ This commit throws Tron&apos;s disc into MCP (causing its deresolution)
+ and turns it back into a chess game.
+</code></pre><p>现在运行 <code>git log --oneline</code>，这个命令只会打印主题行：</p>
+<pre><code>$ git log --oneline
+42e769 Derezz the master control program
+</code></pre><p>或者，<code>git shortlog</code>，这个命令会把提交按照用户分组，同样出于<a href="http://dict.cn/concision" target="_blank" rel="noopener">简洁</a>的考虑只会打印主题行：</p>
+<pre><code>$ git shortlog
+Kevin Flynn (1):
+      Derezz the master control program
+
+Alan Bradley (1):
+      Introduce security program &quot;Tron&quot;
+
+Ed Dillinger (3):
+      Rename chess program to &quot;MCP&quot;
+      Modify chess program
+      Upgrade chess program
+
+Walter Gibbs (1):
+      Introduce protoype chess program
+</code></pre><p>在 Git 里还有一些其它的情况下，会<a href="http://dict.cn/distinction" target="_blank" rel="noopener">区分</a>主题行和正文——但是如果没有它们中间的空行的话是不会<a href="http://dict.cn/properly" target="_blank" rel="noopener">正常</a>工作的。</p>
+<h4 id="2-把主题行限制在-50-个字符以内"><a href="#2-把主题行限制在-50-个字符以内" class="headerlink" title="2. 把主题行限制在 50 个字符以内"></a>2. 把主题行限制在 50 个字符以内</h4><p>50 个字符并不是一个严格的限制，只是个<a href="http://dict.cn/rule%20of%20thumb" target="_blank" rel="noopener">经验之谈</a>。保持主题行的长度以确保它可读且促使作者考虑一下最<a href="http://dict.cn/concise" target="_blank" rel="noopener">简略</a>的表达方式足矣。</p>
+<blockquote>
+<p>提示：如果你做总结很艰难，你可能是一次性提交太多东西了。把原子提交从中剥离出来吧 (每个主题是一个独立的提交)。</p>
+</blockquote>
+<p>GitHub 的 UI 都会提醒这些规约。如果你输入超过 50 个字符的限制，它会警告：</p>
+<p><img src="https://i.imgur.com/zyBU2l6.png" alt="gh1"></p>
+<p>而且会主题行超过 75 个字符的部分会被截断，留下一个省略号：</p>
+<p><img src="https://i.imgur.com/27n9O8y.png" alt="gh2"></p>
+<p>所以奔着 50 个字符去写，但是 72 个字符是底线。</p>
+<h4 id="3-主题行大写开头"><a href="#3-主题行大写开头" class="headerlink" title="3. 主题行大写开头"></a>3. 主题行大写开头</h4><p>如题。比如：</p>
+<ul>
+<li>Accelerate to 88 miles per hour</li>
+</ul>
+<p>而不是：</p>
+<ul>
+<li>accelerate to 88 miles per hour</li>
+</ul>
+<h4 id="4-主题行不必以句号结尾"><a href="#4-主题行不必以句号结尾" class="headerlink" title="4. 主题行不必以句号结尾"></a>4. 主题行不必以句号结尾</h4><p>主题行结尾的标点<a href="http://dict.cn/punctuation" target="_blank" rel="noopener">符号用法</a>不是必要的。而且，当你打算控制在 50 个字符以内时，连空格都是<a href="http://dict.cn/precious" target="_blank" rel="noopener">很宝贵的</a>。比如：</p>
+<ul>
+<li>Open the pod bay doors</li>
+</ul>
+<p>而不是：</p>
+<ul>
+<li>Open the pod bay doors.</li>
+</ul>
+<h4 id="5-在主题行中使用祈使句"><a href="#5-在主题行中使用祈使句" class="headerlink" title="5. 在主题行中使用祈使句"></a>5. 在主题行中使用<a href="http://dict.cn/imperative" target="_blank" rel="noopener">祈使句</a></h4><p><em><a href="http://dict.cn/imperative" target="_blank" rel="noopener">祈使句</a></em>就是指“说起来或写起来像是在发号施令”。举几个例子：</p>
+<ul>
+<li>Clean your room</li>
+<li>Close the door</li>
+<li>Take out the trash</li>
+</ul>
+<p>其实这七大法则的每一条读起来都是<a href="http://dict.cn/imperative" target="_blank" rel="noopener">祈使句</a>的 (“正文在 72 个字符处折行”等)。</p>
+<p><a href="http://dict.cn/imperative" target="_blank" rel="noopener">祈使句</a>听起来有一点粗鲁；这也是我们为什么不常用它的原因。但是这非常适合写在 Git 提交的主题行中。其中一个的原因就是 <strong>Git 本身就是根据你的意志<a href="http://dict.cn/imperative" target="_blank" rel="noopener">命令式</a>的创建一个提交的</strong>。</p>
+<p>例如，使用 <code>git merge</code> 的默认信息读起来是这样的：</p>
+<pre><code>Merge branch &apos;myfeature&apos;
+</code></pre><p>而用 <code>git revert</code> 的时候是：</p>
+<pre><code>Revert &quot;Add the thing with the stuff&quot;
+
+This reverts commit cc87791524aedd593cff5a74532befe7ab69ce9d.
+</code></pre><p>再或者在一个 GitHub pull request 上点击“Merge”按钮时：</p>
+<pre><code>Merge pull request #123 from someuser/somebranch
+</code></pre><p>所以当你以<a href="http://dict.cn/imperative" target="_blank" rel="noopener">祈使句</a>撰写你的提交信息时，你遵循了 Git 自己内建的规约。比如：</p>
+<ul>
+<li>Refactor subsystem X for readability</li>
+<li>Update getting started documentation</li>
+<li>Remove deprecated methods</li>
+<li>Release version 1.0.0</li>
+</ul>
+<p>这样撰写一开始会觉得有点<a href="http://dict.cn/awkward" target="_blank" rel="noopener">怪怪的</a>。我们更多的在说话的时候使用<a href="http://dict.cn/indicative" target="_blank" rel="noopener">陈述句</a>来陈述事实。这是为什么提交信息经常读起来像：</p>
+<ul>
+<li>Fixed bug with Y</li>
+<li>Changing behavior of X</li>
+</ul>
+<p>有的时候提交信息写起来像是对于其内容的描述：</p>
+<ul>
+<li>More fixes for broken stuff</li>
+<li>Sweet new API methods</li>
+</ul>
+<p>为了避免混淆，这里有一个简单原则，可以用在每一个地方。</p>
+<p><strong>一个 Git 提交的主题行的准确的格式应该始终完全遵循下面的句式：</strong></p>
+<ul>
+<li>If applied, this commit will <em>这里是你的主题行</em></li>
+</ul>
+<p>比如：</p>
+<ul>
+<li>If applied, this commit will <em>refactor subsystem X for readability</em></li>
+<li>If applied, this commit will <em>update getting started documentation</em></li>
+<li>If applied, this commit will <em>remove deprecated methods</em></li>
+<li>If applied, this commit will <em>release version 1.0.0</em></li>
+<li>If applied, this commit will <em>merge pull request #123 from user/branch</em></li>
+</ul>
+<p>注意<a href="http://dict.cn/imperative" target="_blank" rel="noopener">非祈使句</a>在这里别扭的地方：</p>
+<ul>
+<li>If applied, this commit will <em>fixed bug with Y</em></li>
+<li>If applied, this commit will <em>changing behavior of X</em></li>
+<li>If applied, this commit will <em>more fixes for broken stuff</em></li>
+<li>If applied, this commit will <em>sweet new API methods</em></li>
+</ul>
+<blockquote>
+<p>注意：使用祈使句只在主题行中至关重要。当你撰写正文的时候就可以放下这些限制了。</p>
+</blockquote>
+<h4 id="6-正文在-72-个字符处折行"><a href="#6-正文在-72-个字符处折行" class="headerlink" title="6. 正文在 72 个字符处折行"></a>6. 正文在 72 个字符处折行</h4><p>Git 不会自动给文本折行。当你为一个提交撰写消息正文的时候，你必须意识到它正确的边距，并且手动折行。</p>
+<p>这里推荐在 72 个字符处折行，这样 Git 有足够的空间，即便缩进文本也可以保证所有东西在 80 个字符以内。</p>
+<p>一个好的文本编辑器是可以帮上忙的。比如在 Vim 中配置在 Git 提交的 72 个字符处折行非常容易。然而传统的 IDE 在给提交信息文本折行方面提供的智能支持<a href="http://dict.cn/terrible" target="_blank" rel="noopener">很糟糕</a> (尽管 IntelliJ IDEA 在最近的版本中终于在这方面做得好一些了)。</p>
+<h4 id="7-使用正文解释是什么和为什么而不是怎么样"><a href="#7-使用正文解释是什么和为什么而不是怎么样" class="headerlink" title="7. 使用正文解释是什么和为什么而不是怎么样"></a>7. 使用正文解释是什么和为什么而不是怎么样</h4><p>这个<a href="https://github.com/bitcoin/bitcoin/commit/eb0b56b19017ab5c16c745e6da39c53126924ed6" target="_blank" rel="noopener">来自比特币核心的提交</a>是一个非常好的解释改动是什么和为什么的例子：</p>
+<pre><code>commit eb0b56b19017ab5c16c745e6da39c53126924ed6
+Author: Pieter Wuille &lt;pieter.wuille@gmail.com&gt;
+Date:   Fri Aug 1 22:57:55 2014 +0200
+
+   Simplify serialize.h&apos;s exception handling
+
+   Remove the &apos;state&apos; and &apos;exceptmask&apos; from serialize.h&apos;s stream
+   implementations, as well as related methods.
+
+   As exceptmask always included &apos;failbit&apos;, and setstate was always
+   called with bits = failbit, all it did was immediately raise an
+   exception. Get rid of those variables, and replace the setstate
+   with direct exception throwing (which also removes some dead
+   code).
+
+   As a result, good() is never reached after a failure (there are
+   only 2 calls, one of which is in tests), and can just be replaced
+   by !eof().
+
+   fail(), clear(n) and exceptions() are just never called. Delete
+   them.
+</code></pre><p>看一眼<a href="https://github.com/bitcoin/bitcoin/commit/eb0b56b19017ab5c16c745e6da39c53126924ed6" target="_blank" rel="noopener">完整的 diff</a>，想一下作者此时此刻通过提供这样的上下文为同事以及未来的提交者节省了多少时间。如果他不这样做，这些信息可能永远找不回来了。</p>
+<p>在很多情况下，你可以<a href="http://dict.cn/leave%20out" target="_blank" rel="noopener">忽略</a>这个改动发生时的各种细节。从这个角度看，代码自己会说话 (如果代码很复杂以至于需要长篇大论的解释，那也是代码注释该做的事情)。请首先专注于弄清你产生这个改动的理由——改动前的工作方式，改动后的工作方式 (以及这样做哪里不对)，以及为什么你决定以这样的方式解决问题。</p>
+<p>你将来某一天维护它的时候也许会感激今天的你！</p>
+<h3 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h3><h4 id="学着爱上命令行。远离-IDE。"><a href="#学着爱上命令行。远离-IDE。" class="headerlink" title="学着爱上命令行。远离 IDE。"></a>学着爱上命令行。远离 IDE。</h4><p>[和 Git 子命令同样多的原因][For-as-many-reasons-at-there-are-Git-subcommands]，拥抱命令行是<a href="http://dict.cn/wise" target="_blank" rel="noopener">明智</a>的。Git 是<a href="http://dict.cn/insanely" target="_blank" rel="noopener">超级</a>强大的；IDE 也一样，但是套路不同。我每天都使用 IDE (IntelliJ IDEA) 也用过<a href="http://dict.cn/extensively" target="_blank" rel="noopener">很多</a>其它的 (Eclipse)，但是我从未见到 IDE 对 Git 的集成能够配得上命令行的易用和强大 (一旦你意识到这一点)。</p>
+<p>某些 Git 相关的 IDE 功能是<a href="http://dict.cn/invaluable" target="_blank" rel="noopener">非常宝贵的</a>，比如当你删除一个文件时调用 <code>git rm</code>、当你重命名一个文件时完成相应的 <code>git</code> 命令。但是当你尝试提交、合并、rebase、或通过 IDE 做<a href="http://dict.cn/sophisticated" target="_blank" rel="noopener">复杂的</a>历史分析时，事情就<a href="http://dict.cn/fall%20apart" target="_blank" rel="noopener">分崩离析</a>了。</p>
+<p>当你想<a href="http://dict.cn/wielding" target="_blank" rel="noopener">发挥出</a> Git 全部的能量的时候，命令行始终是不二之选。</p>
+<p>记住不论你是用的是 Bash 还是 Z shell，都有 <a href="http://git-scm.com/book/en/Git-Basics-Tips-and-Tricks" target="_blank" rel="noopener">tab 补全脚本</a>减轻忘记子命令和开关的痛苦。</p>
+<h4 id="阅读-Pro-Git"><a href="#阅读-Pro-Git" class="headerlink" title="阅读 Pro Git"></a>阅读 Pro Git</h4><p><a href="http://git-scm.com/book" target="_blank" rel="noopener">Pro Git</a> 这本书已经可以免费在线阅读，这本书非常棒。<a href="http://dict.cn/take%20advantage" target="_blank" rel="noopener">用好它吧</a>！</p>
+</div></article></div></main><footer><div class="paginator"><a href="/blog/if-management-is-the-only-way-up-we-are-all-fd/" class="prev">PREV</a><a href="/blog/principles-for-c-programming/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2018 <a href="https://jinjiang.github.io">勾三股四</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>

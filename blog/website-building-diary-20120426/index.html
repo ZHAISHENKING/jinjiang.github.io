@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 网站装修笔记20120426 · 囧克斯</title><meta name="description" content="网站装修笔记20120426 - 勾三股四"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://jinjiang.github.io/atom.xml" title="囧克斯"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">网站装修笔记20120426</h1><div class="post-info">2012年4月26日</div><div class="post-content"><p>按照严计划，给我的网站加上了投票功能。他已经出现在了网站的侧边栏中。当然在<a href="/blog/website-building-diary-20120406/">某些media queries</a>条件下，这些内容不在侧边，而在网页的最下面。</p>
+<p>这从没有花太多时间在编码上。我直接引入了三方的问卷调查工具：<a href="http://wufoo.com/" target="_blank" rel="noopener">Wufoo</a>。等于嵌入了一个iframe。我会定期更换这里的投票内容，有些投票可能是为了我更了解大家，更好的优化我的网站为大家服务的，我会根据大家的反馈默默做出改变；而方便公开的统计数据和分析结果，我也会公布在这里跟大家分享。</p>
+<p>第一期的投票内容比较“肤浅” 囧</p>
+<p><img src="http://jiongks-typecho.stor.sinaapp.com/usr/uploads/2012/04/4080396881.png" alt="您觉得现在囧克斯的皮肤好看吗？"></p>
+<p>在添加投票功能的时候，我注意到Typecho的一个不足，就是在创建新的侧边栏面板的时候，不免需要修改主题模板的sidebar.php文件，因为Typecho本身并没有给侧边栏预留插件接口，所以不可以生成自定义的侧边栏面板。我觉得改进的方式可以是这样的：</p>
+<ol>
+<li>创建新的配置项，注明要显示的侧边栏面板和排序；</li>
+<li>同时封装面板的html结构，不允许自定义面板结构，只允许自定义内容；</li>
+<li>然后在Plugin一边加入自定义面板的接口。</li>
+</ol>
+<p>这样主题模板和插件就进一步解耦，开发者就可以在不改动主题模板的情况下调整侧边栏的内容了。</p>
+<p>一点个人心得，不知Typecho是否愿意接纳这个意见。</p>
+<p>以上</p>
+</div></article></div></main><footer><div class="paginator"><a href="/blog/how-to-learn/" class="prev">PREV</a><a href="/blog/website-building-diary-20120414/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2018 <a href="https://jinjiang.github.io">勾三股四</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>

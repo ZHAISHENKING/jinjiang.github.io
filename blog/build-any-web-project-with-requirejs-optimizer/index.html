@@ -1,0 +1,125 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 巧用 RequireJS Optimizer 给传统的前端项目打包 · 囧克斯</title><meta name="description" content="巧用 RequireJS Optimizer 给传统的前端项目打包 - 勾三股四"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://jinjiang.github.io/atom.xml" title="囧克斯"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">巧用 RequireJS Optimizer 给传统的前端项目打包</h1><div class="post-info">2013年3月30日</div><div class="post-content"><p><a href="https://github.com/jrburke/r.js" target="_blank" rel="noopener">r.js</a> 本是 <a href="http://requirejs.org/" target="_blank" rel="noopener">RequireJS</a> 的一个附属产品，支持在 NodeJS、Rhino 等环境下运行 <a href="http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition" target="_blank" rel="noopener">AMD</a> 程序，并且其包含了一个名为 RequireJS Optimizer 的工具，可以为项目完成合并脚本等优化操作。</p>
+<p>r.js 的介绍中明确写道它是 RequireJS 项目的一部分，和 RequireJS 协同工作。但我发现，RequireJS Optimizer 提供了丰富的配置参数，可以让我们完全跳出 AMD 和 RequireJS 程序的束缚，为我们的前端程序服务。</p>
+<a id="more"></a>
+<h3 id="RequireJS-Optimizer-常规用法"><a href="#RequireJS-Optimizer-常规用法" class="headerlink" title="RequireJS Optimizer 常规用法"></a>RequireJS Optimizer 常规用法</h3><p>首先，简单介绍一下 RequireJS Optimizer 的“正派”用法 (以 NodeJS 环境为例)：</p>
+<p>事先写好一个配置文件，比如 <code>config.js</code>，它是 JSON 格式的，常用属性有：</p>
+<pre><code>{
+    // 程序的根路径
+    appDir: &quot;some/path/trunk&quot;,
+    // 脚本的根路径
+    // 相对于程序的根路径
+    baseUrl: &quot;./js&quot;,
+    // 打包输出到的路径
+    dir: &quot;../some/path/release&quot;,
+    // 需要打包合并的js模块，数组形式，可以有多个
+    // name 以 baseUrl 为相对路径，无需写 .js 后缀
+    // 比如 main 依赖 a 和 b，a 又依赖 c，则 {name: &apos;main&apos;} 会把 c.js a.js b.js main.js 合并成一个 main.js
+    modules: [
+        {name: &apos;main&apos;}
+        ...
+    ]
+    // 通过正则以文件名排除文件/文件夹
+    // 比如当前的正则表示排除 .svn、.git 这类的隐藏文件
+    fileExclusionRegExp: /^\./
+}
+</code></pre><p>然后运行：</p>
+<pre><code>node r.js -o config.js
+</code></pre><p>这时 RequireJS Optimizer 就会：</p>
+<ol>
+<li>把配置信息的 <code>modules</code> 下的所有模块建立好完整的依赖关系，再把相应的文件打包合并到 <code>dir</code> 目录</li>
+<li>把所有的 <code>css</code> 文件中，使用 <code>@import</code> 语法的文件自动打包合并到 <code>dir</code> 目录</li>
+<li>把其它文件复制到 <code>dir</code> 目录，比如图片、附件等等</li>
+</ol>
+<p>我已经把 RequireJS 和 r.js 整套东西用到了 <a href="http://github.com/jinjiang/h5slides/" target="_blank" rel="noopener">H5Slides</a> 上。觉得蛮方便的。</p>
+<p>不过工作中的前端开发工作并不是绝对理想化的，有些旧的项目，并不是 AMD 的模块化开发方式，而是传统的 js 程序，开发一个页面时可能需要一口气引入三到五个 css 文件、十来个 js 文件…… 上线的时候为了减少流量及 HTTP 请求数又需要把代码尽可能重用和合并。这个时候就需要一个方便快捷的打包工具帮助我们了，下面就介绍一下 RequireJS Optimizer 是如何完成这项工作的。</p>
+<h3 id="用到的几个关键参数"><a href="#用到的几个关键参数" class="headerlink" title="用到的几个关键参数"></a>用到的几个关键参数</h3><p>说到这里，必须要额外介绍几个 RequireJS Optimizer 的参数了：</p>
+<h4 id="modules-i-include"><a href="#modules-i-include" class="headerlink" title="modules[i].include"></a>modules[i].include</h4><pre><code>modules: [
+    {
+        name: &quot;main&quot;,
+        include: [&quot;d&quot;, &quot;e&quot;]
+    }
+]
+</code></pre><p>这里的 include 字段提供了“强制建立依赖关系”的功能，也就是说，即使在 main.js 的代码里没有依赖 d.js 和 e.js，它们也会在合并代码的时候插入到 main.js 的前面</p>
+<h4 id="skipModuleInsertion"><a href="#skipModuleInsertion" class="headerlink" title="skipModuleInsertion"></a>skipModuleInsertion</h4><p>在介绍这个参数之前需要说明的是，RequireJS Optimizer 有一个很智能的功能，就是为没有写明 define(…) 函数的模块代码自动将其放入 define(…) 之中。如果我们写明：</p>
+<pre><code>skipModuleInsertion: true
+</code></pre><p>则这种处理将会被取消。</p>
+<h4 id="onBuildRead"><a href="#onBuildRead" class="headerlink" title="onBuildRead"></a>onBuildRead</h4><p>这个参数可以定义一个函数，在处理每个 js 文件之前，会先对文件的文本内容进行预处理。比如下面这个例子里，我会把 main.js 里的代码全部清除：</p>
+<pre><code>onBuildRead: function (moduleName, path, contents) {
+    if (moduleName === &apos;main&apos;) {
+        contents = &apos;/* empty code */&apos;;
+    }
+    return contents;
+}
+</code></pre><h3 id="巧妙应用到传统项目"><a href="#巧妙应用到传统项目" class="headerlink" title="巧妙应用到传统项目"></a>巧妙应用到传统项目</h3><p>这时，我们的资源已经足够了。比如我现在的项目有：</p>
+<p><strong>1 个 html</strong></p>
+<ul>
+<li>index.html</li>
+</ul>
+<p>代码：</p>
+<pre><code>&lt;!doctype html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;Index&lt;/title&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;css/a.css&quot;&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;css/b.css&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+
+        ...
+
+        &lt;script src=&quot;js/a.js&quot;&gt;&lt;/script&gt;
+        &lt;script src=&quot;js/b.js&quot;&gt;&lt;/script&gt;
+        &lt;script src=&quot;js/c.js&quot;&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p><strong>2 个 css</strong></p>
+<ul>
+<li>css/a.css</li>
+<li>css/b.css</li>
+</ul>
+<p><strong>3 个 js</strong></p>
+<ul>
+<li>js/a.js</li>
+<li>js/b.js</li>
+<li>js/c.js</li>
+</ul>
+<p><strong>1 个图片文件夹</strong></p>
+<ul>
+<li>images</li>
+</ul>
+<h4 id="合并-css-文件"><a href="#合并-css-文件" class="headerlink" title="合并 css 文件"></a>合并 css 文件</h4><p>新建一个 css 文件，叫 css/main.css，内容为：</p>
+<pre><code>@import url(a.css);
+@import url(b.css);
+</code></pre><p>然后把 index.html 中的 2 个 &lt;link&gt; 标签改成一个</p>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;css/main.css&quot;&gt;
+</code></pre><h4 id="合并-js-文件"><a href="#合并-js-文件" class="headerlink" title="合并 js 文件"></a>合并 js 文件</h4><p>合并 js 文件的步骤略复杂些。首先也是新建一个 js 文件，叫 js/main.js：</p>
+<pre><code>document.write(&apos;&lt;script src=&quot;js/a.js&quot;&gt;&lt;/script&gt;&apos;);
+document.write(&apos;&lt;script src=&quot;js/b.js&quot;&gt;&lt;/script&gt;&apos;);
+document.write(&apos;&lt;script src=&quot;js/c.js&quot;&gt;&lt;/script&gt;&apos;);
+</code></pre><p>然后把 index.html 中的 3 个 &lt;script&gt; 标签改成一个</p>
+<pre><code>&lt;script src=&quot;js/main.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>接下来就是配置打包工具的时间了。</p>
+<h4 id="禁止自动补齐-define-…-的头尾"><a href="#禁止自动补齐-define-…-的头尾" class="headerlink" title="禁止自动补齐 define(…) 的头尾"></a>禁止自动补齐 define(…) 的头尾</h4><pre><code>skipModuleInsertion: true
+</code></pre><h4 id="强制建立依赖"><a href="#强制建立依赖" class="headerlink" title="强制建立依赖"></a>强制建立依赖</h4><pre><code>modules: [{name: &apos;main&apos;, include: [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]}]
+</code></pre><p>这样打包出来的 main.js 是这样的：</p>
+<pre><code>// code from a.js
+// code from b.js
+// code from c.js
+document.write(&apos;&lt;script src=&quot;js/a.js&quot;&gt;&lt;/script&gt;&apos;);
+document.write(&apos;&lt;script src=&quot;js/b.js&quot;&gt;&lt;/script&gt;&apos;);
+document.write(&apos;&lt;script src=&quot;js/c.js&quot;&gt;&lt;/script&gt;&apos;);
+</code></pre><h4 id="打包时去掉多余的-js-main-js-的代码"><a href="#打包时去掉多余的-js-main-js-的代码" class="headerlink" title="打包时去掉多余的 js/main.js 的代码"></a>打包时去掉多余的 js/main.js 的代码</h4><pre><code>onBuildRead: function (moduleName, path, contents) {
+    if (moduleName === &apos;main&apos;) {
+        contents = &apos;/* empty code */&apos;;
+    }
+    return contents;
+}
+</code></pre><p>这样的话，打包工具就会把 <code>document.write(...)</code> 的代码去掉，得到干净的</p>
+<pre><code>// code from a.js
+// code from b.js
+// code from c.js
+/* empty code */
+</code></pre><p>运行 <code>node r.js -o config.js</code> 就可以得到一个打包成功的项目了，并且打包前后的代码都可以正常运行</p>
+<p>附件是这个项目例子的源代码：<a href="http://jiongks-typecho.stor.sinaapp.com/usr/uploads/2013/03/1894338901.zip" target="_blank" rel="noopener">project.zip</a></p>
+</div></article></div></main><footer><div class="paginator"><a href="/blog/do-practice/" class="prev">PREV</a><a href="/blog/code-editor-survay/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2018 <a href="https://jinjiang.github.io">勾三股四</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>

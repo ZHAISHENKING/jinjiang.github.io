@@ -1,0 +1,76 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 【整理】Vue 2.0 自 beta 1 到 beta 4 以来的主要更新 · 囧克斯</title><meta name="description" content="【整理】Vue 2.0 自 beta 1 到 beta 4 以来的主要更新 - 勾三股四"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://jinjiang.github.io/atom.xml" title="囧克斯"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">【整理】Vue 2.0 自 beta 1 到 beta 4 以来的主要更新</h1><div class="post-info">2016年7月28日</div><div class="post-content"><p>主要内容来自 <a href="https://github.com/vuejs/vue/releases" target="_blank" rel="noopener">https://github.com/vuejs/vue/releases</a></p>
+<p>之前 <a href="http://jiongks.name/blog/announcing-vue-2/" target="_blank" rel="noopener">Vue 2.0 发布技术预览版</a> 到现在差不多三个月了，之前写过一篇简单的 <a href="http://jiongks.name/blog/code-review-for-vue-next/" target="_blank" rel="noopener">code review</a>，如今三个月过去了，Vue 2.0 在这个<a href="http://jiongks.name/blog/a-big-map-to-intro-vue-next/" target="_blank" rel="noopener">基础</a>之上又带来了不少更新，这里汇总 beta 以来 (最新的版本是 beta 4) 的主要更新，大家随意学习感受一下</p>
+<h3 id="alpha-和-beta-版本的侧重点会有所不同"><a href="#alpha-和-beta-版本的侧重点会有所不同" class="headerlink" title="alpha 和 beta 版本的侧重点会有所不同"></a>alpha 和 beta 版本的侧重点会有所不同</h3><p>首先 Vue 2.0 对 alpha、beta 有自己的理解和设定：alpha 版本旨在完善 API、考虑所需的特性；而来到 beta 版则会对未来的正式发布进行充分的“消化”，比如提前进行一些必要的 breaking change，增强框架的稳定性、完善文档和周边工具 (如 vue-router 2.0 等)</p>
+<h3 id="最后的几个-alpha-版本主要更新"><a href="#最后的几个-alpha-版本主要更新" class="headerlink" title="最后的几个 alpha 版本主要更新"></a>最后的几个 alpha 版本主要更新</h3><p>Vue 本身的语法基础这里就不多赘述了，网上有很多资料可以查阅，我们已经假定你比较熟悉 Vue 并对 2.0 的理念和技术预览版的状态有一定的了解。</p>
+<a id="more"></a>
+<h4 id="alpha-5"><a href="#alpha-5" class="headerlink" title="alpha 5"></a>alpha 5</h4><ol>
+<li>ref 的写法由 <code>&lt;comp v-ref:foo&gt;</code> 变成了 <code>&lt;comp ref=&quot;foo&quot;&gt;</code>，更加简单，同时动态数据的写法是 <code>&lt;comp :ref=&quot;x&quot;&gt;</code></li>
+<li><p>支持 functional components，这个特性蛮酷的，可以把一个组件的生成过程完全变成一个高度自定义的函数执行过程，比如：</p>
+<p> Vue.component(‘name’, {</p>
+<pre><code>functional: true,
+props: [&apos;x&apos;],
+render: (h, props, children) {
+    return h(props.tag, null, children)
+}
+</code></pre><p> })</p>
+</li>
+</ol>
+<p>你可以在 <code>render()</code> 函数里写各种特殊的逻辑，这样标签的含义和能力都得到了非常大的扩展，在后续的几次更新中，你马上会感受到一些 functional components 的威力</p>
+<p>另外剧透一下，<code>h</code> 方法里的第二个参数如果是 <code>null</code> 就可以省略，这个改动出现在了 beta 1</p>
+<h4 id="alpha-6"><a href="#alpha-6" class="headerlink" title="alpha 6"></a>alpha 6</h4><p>可以设置特殊的 keyCode，比如 <code>Vue.config.keyCodes.a = 65</code>，然后你就可以写 <code>&lt;input @keyup.a=&quot;aPressed&quot;&gt;</code> 了</p>
+<h4 id="alpha7"><a href="#alpha7" class="headerlink" title="alpha7"></a>alpha7</h4><ol>
+<li>一个组件的生命周期名由 <code>init</code> 改成了 <code>beforeCreated</code> (大家可以在 Vuex 的源码里看到对应的改变哦)</li>
+<li><code>Vue.transition</code> 的 hook 支持第二个参数，把 vm 传递进去</li>
+</ol>
+<p>如：</p>
+<pre><code>Vue.transition(&apos;name&apos;, {
+    onEnter (el, vm) {
+        ...
+    }
+})
+</code></pre><h3 id="Beta-1-Beta-4"><a href="#Beta-1-Beta-4" class="headerlink" title="Beta 1 ~ Beta 4"></a>Beta 1 ~ Beta 4</h3><h4 id="beta-1"><a href="#beta-1" class="headerlink" title="beta 1"></a>beta 1</h4><ol>
+<li>自定义 directive 里 <code>update</code> 的触发时机发生了变化，由于 functional component 等概念的引入，一个 directive 的变更的颗粒度也不完全是 directive 本身引起的，所以这里做了一个更具有通用性的调整；同时 hook 名 <code>postupdate</code> 也相应的更名为 <code>componentUpdated</code>——如果你想让 <code>update</code> 保持原有的触发时机，可以加入一句 <code>binding.value !== binding.oldValue</code> 即可。</li>
+<li><code>Vue.traisition</code> 的 hook 名做了简化<ul>
+<li><code>onEnter</code> -&gt; <code>enter</code></li>
+<li><code>onLeave</code> -&gt; <code>leave</code></li>
+</ul>
+</li>
+<li>server-side rendering<ul>
+<li><code>server.getCacheKey</code> 更名为 <code>serverCacheKey</code>，避免多一层结构嵌套</li>
+<li><code>createRenderer</code>/<code>createBundleRenderer</code> 方法不会强制应用 <code>lru-cache</code>，而是开发者手动选择</li>
+</ul>
+</li>
+</ol>
+<h4 id="beta-2"><a href="#beta-2" class="headerlink" title="beta 2"></a>beta 2</h4><p><code>&lt;transition&gt;</code> 标签来了！</p>
+<p>其实这个玩意儿我之前在 polymer 等其他框架里也见到过，不过看到 Vue 的语法设计，还是觉得巧妙而简洁：</p>
+<pre><code>&lt;transition&gt;
+    &lt;div v-if=&quot;...&quot;&gt;...&lt;/div&gt;
+&lt;/traisition&gt;
+
+&lt;transition-group tag=&quot;ul&quot;&gt;
+    &lt;li v-for=&quot;...&quot;&gt;...&lt;/li&gt;
+&lt;/traisition-group&gt;
+</code></pre><p>更牛掰的在这里，还记得 functional components 吧，你今天可以这样抽象一个动画效果的标签：</p>
+<pre><code>Vue.component(&apos;fade&apos;, {
+    functional: true,
+    render (h, children) {
+        return h(&apos;transition&apos;, {
+            props: {...},
+            on: {
+                beforeEnter,
+                afterEnter
+            }
+        }, children)
+    }
+})
+</code></pre><p>然后</p>
+<pre><code>&lt;fade&gt;...&lt;/fade&gt;
+</code></pre><p>就可以实现高度自定义的动画效果了，这个我个人觉得是非常赞的设计和实现！</p>
+<h4 id="beta-3"><a href="#beta-3" class="headerlink" title="beta 3"></a>beta 3</h4><ol>
+<li>支持在自定义组件中使用原生事件。因为在 Vue 2.0 的设计中，自定义组件上是不能绑定原生事件的，自定义组件上的事件绑定被默认理解为组件的自定义事件，而不是原生事件。针对这个问题我很早就提了 <a href="https://github.com/vuejs/vue/issues/2942" target="_blank" rel="noopener">issue</a> 当时小右提出了一个新的语法设计，就是 <code>&lt;comp @click.native=&quot;...&quot;&gt;&lt;/comp&gt;</code>，beta 3 的时候终于看到它被实现了，嘿嘿，有点小激动</li>
+<li>支持两种语法 <code>&lt;div :xxx.prop=&quot;x&quot;&gt;</code> 和 <code>&lt;div v-bind:prop=&quot;{ xxx: x }&quot;&gt;</code> 来对 DOM 的 property 进行绑定，最近我自己也在思考一些在 virtual-DOM 上支持 properties 而不只是 attributes 的想法，这个设计让我也多了一些新的思路。</li>
+</ol>
+<h4 id="beta-4"><a href="#beta-4" class="headerlink" title="beta 4"></a>beta 4</h4><p>2 天前发布的，其实这个版本以 bugfix 为主</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>以上是近期 Vue 2.0 的一些更新，让我自己比较兴奋的主要是 functional component 以及基于这个设计的 <code>&lt;transition&gt;</code> 和 <code>&lt;transition-group&gt;</code> 标签和自定义 transition 标签的能力拓展，还有就是久违的 <code>&lt;comp @click.native=&quot;...&quot;&gt;&lt;/comp&gt;</code></p>
+<p>最后希望大家可以多多试用，有更大兴趣的可以多多学习 Vue 的源码！</p>
+</div></article></div></main><footer><div class="paginator"><a href="/blog/vue-2-is-here/" class="prev">PREV</a><a href="/blog/a-big-map-to-intro-vue-next/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2018 <a href="https://jinjiang.github.io">勾三股四</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>

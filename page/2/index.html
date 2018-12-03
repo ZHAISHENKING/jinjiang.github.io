@@ -1,0 +1,107 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 囧克斯</title><meta name="description" content="这里是勾三股四的新家"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://jinjiang.github.io/atom.xml" title="囧克斯"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><ul class="home post-list"><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/blog/a-big-map-to-intro-vue-next/" class="post-title-link">通过一张图走进 Vue 2.0</a></h2><div class="post-info">2016年5月12日</div><div class="post-content"></div><a href="/blog/a-big-map-to-intro-vue-next/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/blog/code-review-for-vue-next/" class="post-title-link">Code Review for Vue 2.0 Preview</a></h2><div class="post-info">2016年4月28日</div><div class="post-content"><p>是的！<a href="http://jiongks.name/blog/announcing-vue-2/" target="_blank" rel="noopener">Vue 2.0 发布了！</a> 源代码仓库<a href="https://github.com/vuejs/vue/tree/next" target="_blank" rel="noopener">在此</a></p>
+<p>首先，当我第一次看到 Vue 2.0 的真面目的时候，我的内心是非常激动的</p>
+<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><p>来个简单的 demo，首先把 <code>dist/vue.js</code> 导入到一个空白的网页里，然后写：</p>
+<p><strong>当然，在大家阅读下面所有的内容之前，先想象一下，这是一个运行时 min+gzip 后只有 12kb 大小的库</strong></p>
+<pre><code>&lt;script src=&quot;./dist/vue.js&quot;&gt;&lt;/script&gt;
+
+&lt;div id=&quot;app&quot;&gt;
+  Hello {{who}}
+&lt;/div&gt;
+&lt;script&gt;
+  new Vue({
+    el: &apos;#app&apos;,
+    data: {who: &apos;Vue&apos;}
+  })
+&lt;/script&gt;
+</code></pre><p>你将看到 “Hello Vue”</p>
+<p>然后再看一个神奇的：</p>
+<pre><code>&lt;script src=&quot;./dist/vue.js&quot;&gt;&lt;/script&gt;
+
+&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+&lt;script&gt;
+  new Vue({
+    el: &apos;#app&apos;,
+    render: function () {
+      with (this) {
+        __h__(&apos;div&apos;,
+          {staticAttrs:{&quot;id&quot;:&quot;app&quot;}},
+          [(&quot;\n  Hello &quot;+__toString__(who)+&quot;\n&quot;)],
+          &apos;&apos;
+        )
+      }
+    }
+    data: {who: &apos;Vue&apos;}
+  })
+&lt;/script&gt;
+</code></pre><p>这个是 compile 过后的格式，大家会发现首先 <code>#app</code> 下不需要写模板了，然后 <code>&lt;script&gt;</code> 里多了一个 <code>render</code> 字段，Vue 在运行时其实是会把模板内容先转换成渲染方法存入 <code>render</code> 字段，然后再执行，如果发现 <code>render</code> 已经存在，就跳过模板解析过程直接渲染。所以在 Vue 2.0 中写一段模板和写一个 <code>render</code> option 是等价的。为什么要这样设计，稍后会我们会涉及到。</p></div><a href="/blog/code-review-for-vue-next/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/blog/announcing-vue-2/" class="post-title-link">Vue 2.0 发布啦！</a></h2><div class="post-info">2016年4月27日</div><div class="post-content"><p>原文：<a href="https://medium.com/the-vue-point/announcing-vue-js-2-0-8af1bde7ab9#.cyoou0ivk" target="_blank" rel="noopener">https://medium.com/the-vue-point/announcing-vue-js-2-0-8af1bde7ab9#.cyoou0ivk</a></p>
+<p><img src="http://ww1.sinaimg.cn/mw1024/660d0cdfgw1f3bs1115fsj20ug0jiq6m.jpg" alt=""></p>
+<p>今天我们非常激动的首发 Vue 2.0 preview 版本，这个版本带来了很多激动人心的改进和新特性。我们来看看这里面都有些什么！</p></div><a href="/blog/announcing-vue-2/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/blog/small-and-beautiful/" class="post-title-link">务实的小而美</a></h2><div class="post-info">2016年1月6日</div><div class="post-content"></div><a href="/blog/small-and-beautiful/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/blog/vuejs-1-0-0-release/" class="post-title-link">Vue.js 1.0.0 发布了！</a></h2><div class="post-info">2015年10月29日</div><div class="post-content"><p>作为“打入敌人内部”的第一件事，转载一下 Vue.js 1.0.0 新世纪福音战士 (其实发这篇文章的时候已经 1.0.3 了) 正式发布的<a href="http://vuejs.org/2015/10/26/1.0.0-release/" target="_blank" rel="noopener">博文</a> ^_^</p>
+<p><img src="http://jiongks-typecho.stor.sinaapp.com/usr/uploads/2015/10/2139857295.png" alt="Vue.js"></p>
+<hr>
+<blockquote>
+<p>Hi HN (Hacker News)! 如果你还不熟悉 Vue.js 的话，可以通过<a href="http://blog.evanyou.me/2015/10/25/vuejs-re-introduction/" target="_blank" rel="noopener">这篇文章 (英文)</a>对其有个总体印象。</p>
+</blockquote>
+<p>在经历了 300+ 次提交、8 次 alpha、4 次 beta 和 2 次 rc 之后，今天我很荣幸的向大家宣布 <a href="https://github.com/vuejs/vue/releases/tag/1.0.0" target="_blank" rel="noopener">Vue.js 1.0.0 Evangelion</a> 正式发布了！非常感谢所有参与 API 重设计的同学们——没有来自社区的贡献这是不可能完成的。</p></div><a href="/blog/vuejs-1-0-0-release/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/blog/how-to-become-a-great-front-end-engineer/" class="post-title-link">如何成为一名卓越的前端工程师</a></h2><div class="post-info">2015年8月10日</div><div class="post-content"><p>译自 <a href="http://philipwalton.com/articles/how-to-become-a-great-front-end-engineer/" target="_blank" rel="noopener">Philip Walton 的博客</a></p>
+<p>看过之后非常有感触，很多观点都是自己长期非常坚持和认同的，所以翻译出来分享给更多的前端同学！</p>
+<hr>
+<p>最近我收到一封读者来信让我陷入了思考，信是这么写的：</p>
+<blockquote>
+<p>Hi Philip，您是否介意我问您是如何成为一名卓越 (great) 的前端工程师的？对此您有什么建议吗？</p>
+</blockquote>
+<p>我不得不承认，我很惊讶被问这样的问题，因为我从来不觉得自己是个很卓越的前端工程师。甚至我入行头几年时并不认为自己可以做好这一行。我只确定自己比自己想象中还才疏学浅，而且大家面试我的时候都不知道从何问起</p>
+<p>话虽这么说，我到现在做得还算不错，而且成为了团队中有价值的一员。但我最终离开 (去寻求新的挑战——即我还不能够胜任的工作) 的时候，我经常会被要求招聘我的继任者。现在回看这些面试，我不禁感叹当我刚开始的时候自己在这方面的知识是多么的匮乏。我现在或许不会按照我自己的模型进行招聘，即便我个人的这种经历也有可能成功。</p>
+<p>我在 web 领域工作越长时间，我就越意识到区分人才和顶尖人才的并不是他们的知识——而是他们思考问题的方式。很显然，知识在很多情况下是非常重要而且关键的——但是在一个快速发展的领域，你前进和获取知识的方式 (至少在相当长的一段时间里) 会比你已经掌握的知识显得更加重要。更重要的是：你是如何运用这些知识解决每天的问题的。</p>
+<p>这里有许许多多的文章谈论你工作中需要的语言、框架、工具等等。我希望给一些不一样的建议。在这篇文章里，我想谈一谈一个前端工程师的心态，希望可以帮助大家找到通往卓越的道路。</p></div><a href="/blog/how-to-become-a-great-front-end-engineer/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/blog/our-image-workflow/" class="post-title-link">手机淘宝前端的图片相关工作流程梳理</a></h2><div class="post-info">2015年8月10日</div><div class="post-content"><p>本文首发自<a href="https://github.com/amfe/article/issues/8" target="_blank" rel="noopener">阿里无线前端博客</a></p>
+<p><em>注：本文摘自阿里内网的无线前端博客《无线前端的图片相关工作流程梳理》。其实是一个月前写的，鉴于团队在<a href="http://css.w3ctech.com/" target="_blank" rel="noopener">中国第二届 CSS Conf</a> 上做了《手机淘宝 CSS 实践启示录》的分享，而图片工作流程梳理是其中的一个子话题，故在此一并分享出来，希望仍可以给大家一些经验和启发。另外，考虑到这是一篇公开分享，原版内容有部分删节和调整，里面有一些经验和产出是和我们的工作环境相关的，不完全具有普遍性，还请见谅。</em></p>
+<p>今天很荣幸的跟大家分享一件事情，就是经过差不多半年多的努力，尤其是最近 2 周的“突击扫尾”，无线前端团队又在工具流程方面有了一个不小的突破：我们暂且称其为“图片工作流”梳理。</p>
+<h3 id="图片！图片！图片！"><a href="#图片！图片！图片！" class="headerlink" title="图片！图片！图片！"></a>图片！图片！图片！</h3><p>要说最近 1 年里，无线前端开发的一线同学最“难搞”的几件事，图片处理绝对可以排在前三。</p>
+<ul>
+<li>首先，我们首先要从视觉稿 (绝大部分出自 photoshop) 里把图片合理的分解、测量、切割、导出——俗称“切图”</li>
+<li>然后，我们要把切好的图放入页面代码中，完成相关的本地调试</li>
+<li>第三步，把本地图片通过一个内部网站 (名叫 TPS) 上传到我们的图片 CDN 上，并复制图片的 CDN 地址，把本地调试用的相对路径替换掉</li>
+<li>第四步，不同的图片、不同的外部环境下 (比如 3g 还是 wifi)，我们需要给图片不一样的尺寸、画质展现，并有一系列的配置需要遵循</li>
+<li>如果视觉稿有更改 (不要小看这件事，微观上还是很频繁的哦)，不好意思，从第一步开始再重新走一遍……</li>
+</ul>
+<p>这里面“难搞”在哪些地方呢？我们逐一分析一下：</p>
+<ol>
+<li>“切图”的效率并不高，而且每一步都很容易出现返工或再沟通</li>
+<li>打开 TPS 网站上传图片放到前端开发流程中并不是一个连贯流畅的步骤，而且 GUI 相比于命令行工具的缺陷在于无法和其它工具更好的集成</li>
+<li>替换 CDN 图片路径的工作机械而繁琐，并且代码中替换后的图片地址失去了原本的可读性，非常容易造成后期的维护困惑甚至混乱</li>
+<li>适配工作异常繁杂和辛苦，也很容易漏掉其中的某个环节</li>
+<li>视觉变更的成本高，web 的快速响应的特点在丧失</li>
+</ol>
+<p>所以可能把这些东西画成一张图表的话：</p>
+<p><img src="http://img2.tbcdn.cn/L1/461/1/58a8b4f12816b6f71918c31ee5a0ceae74f40fb9" alt=""></p>
+<h3 id="团队的单点突破"><a href="#团队的单点突破" class="headerlink" title="团队的单点突破"></a>团队的单点突破</h3><p>在最近半年的一段时间里，无线前端团队先后发起了下面几项工作，从某个点上尝试解决这些问题：</p></div><a href="/blog/our-image-workflow/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/blog/how-to-minimize-politics-in-your-company/" class="post-title-link">如何让办公室政治最小化</a></h2><div class="post-info">2015年8月2日</div><div class="post-content"><p>来来来，看看办公室政治是个什么东西，以及如何将其最小化<br>翻译如有疏漏还请指正</p>
+<p>译自：<a href="http://www.bhorowitz.com/how_to_minimize_politics_in_your_company" target="_blank" rel="noopener">How to Minimize Politics in Your Company</a> via <a href="http://www.bhorowitz.com" target="_blank" rel="noopener">www.bhorowitz.com</a></p>
+<p><em>更新：跟身边一些朋友讨论之后，觉得之前翻译的标题“杜绝”言过了，还是规规矩矩翻译成了“最小化”</em></p>
+<hr>
+<blockquote>
+<p>Who the f@#k you think you f$&amp;kin’ with<br>I’m the f%*kin’ boss</p>
+<p>—Rick Ross, Hustlin’</p>
+</blockquote>
+<p>在我所有的从商经历中，我从没听过有人说：“我喜欢办公室政治”。但在我们的周围，令人深恶痛绝的政治又到处都是，甚至自己的公司就是如此。既然大家都不喜欢政治，那为什么它无处不在呢？</p>
+<p>政治行为几乎都源自 CEO。也许你会觉得：“我讨厌政治，我也不关心政治，但是我的周围充满了政治气味。这显然不是我造成的。”很遗憾，你并不需要怎么关心政治就会让你的周围充斥政治手段。实际上，很少关心政治的 CEO 才会让办公室充斥政治手段。不关心政治的 CEO 们往往会直接助涨政治行为。</p>
+<p>我这里说的政治，就是指员工追求自我职业发展多于价值产出和贡献。也许还有别样的政治类型，但是这类政治行为真的很烦。</p></div><a href="/blog/how-to-minimize-politics-in-your-company/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/blog/vue-code-review/" class="post-title-link">Vue.js 源码学习笔记</a></h2><div class="post-info">2015年7月26日</div><div class="post-content"><p>最近饶有兴致的又把最新版 <a href="http://vuejs.org/" target="_blank" rel="noopener">Vue.js</a> 的源码学习了一下，觉得真心不错，个人觉得 Vue.js 的代码非常之优雅而且精辟，作者本身可能无 (bu) 意 (xie) 提及这些。那么，就让我来吧：）</p>
+<h3 id="程序结构梳理"><a href="#程序结构梳理" class="headerlink" title="程序结构梳理"></a>程序结构梳理</h3><p><img src="http://img2.tbcdn.cn/L1/461/1/8142ef3fc2055839f1a93a933d80e17694b4f76b" alt="Vue 程序结构"></p>
+<p>Vue.js 是一个非常典型的 MVVM 的程序结构，整个程序从最上层大概分为</p>
+<ol>
+<li>全局设计：包括全局接口、默认选项等</li>
+<li>vm 实例设计：包括接口设计 (vm 原型)、实例初始化过程设计 (vm 构造函数)</li>
+</ol>
+<p>这里面大部分内容可以直接跟 Vue.js 的<a href="http://vuejs.org/api/" target="_blank" rel="noopener">官方 API 参考文档</a>对应起来，但文档里面没有且值得一提的是构造函数的设计，下面是我摘出的构造函数最核心的工作内容。</p>
+<p><img src="http://img3.tbcdn.cn/L1/461/1/00049a09def4aff8d80f3bb7229e3f6d395426fb" alt="Vue 实例初始化"></p>
+<p>整个实例初始化的过程中，重中之重就是把数据 (Model) 和视图 (View) 建立起关联关系。Vue.js 和诸多 MVVM 的思路是类似的，主要做了三件事：</p>
+<ol>
+<li>通过 observer 对 data 进行了监听，并且提供订阅某个数据项的变化的能力</li>
+<li>把 template 解析成一段 document fragment，然后解析其中的 directive，得到每一个 directive 所依赖的数据项及其更新方法。比如 <code>v-text=&quot;message&quot;</code> 被解析之后 (这里仅作示意，实际程序逻辑会更严谨而复杂)：<ol>
+<li>所依赖的数据项 <code>this.$data.message</code>，以及</li>
+<li>相应的视图更新方法 <code>node.textContent = this.$data.message</code></li>
+</ol>
+</li>
+<li>通过 watcher 把上述两部分结合起来，即把 directive 中的数据依赖订阅在对应数据的 observer 上，这样当数据变化的时候，就会触发 observer，进而触发相关依赖对应的视图更新方法，最后达到模板原本的关联效果。</li>
+</ol>
+<p>所以整个 vm 的核心，就是如何实现 observer, directive (parser), watcher 这三样东西</p></div><a href="/blog/vue-code-review/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/blog/try-fullstack-in-timeline-app/" class="post-title-link">从原型到发布——“团队时间线” 1.0 开发心得</a></h2><div class="post-info">2015年6月27日</div><div class="post-content"><p>这篇文章将会记录我自己最近一周时间里，从产生“团队时间线”这个想法，到产品设计、交互设计、开发、迭代、再到 1.0 发布的整个过程。整件事情跨越了多个分工职能，所以这件事情虽然并不大，但对我来说是一种不一样的做事方式和经历，所以觉得应该记录下来。</p>
+<p><img src="http://jiongks-typecho.stor.sinaapp.com/usr/uploads/2015/06/1009213551.png" alt=""></p>
+<p><img src="http://img1.tbcdn.cn/L1/461/1/08312508850019d9db1c250acd4ae15fb66053f9" alt="_2015_06_27_2_11_23"></p>
+<p>“团队时间线”是个可视化展示团队所有同学时间分配/管理的平台。每个人都可以在“我的时间管理”页面极简的记录自己的时间，比如从某天到另外一天做了一个项目、或者昨天开了一个重要的会等等。</p></div><a href="/blog/try-fullstack-in-timeline-app/" class="read-more">...more</a></article></li></ul></main><footer><div class="paginator"><a href="/" class="prev">PREV</a><a href="/page/3/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2018 <a href="https://jinjiang.github.io">勾三股四</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
