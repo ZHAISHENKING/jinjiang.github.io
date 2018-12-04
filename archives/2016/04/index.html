@@ -1,1 +1,159 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 囧克斯</title><meta name="description" content="这里是勾三股四的新家"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://jinjiang.github.io/atom.xml" title="囧克斯"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="archive"><h2 class="archive-year">2016</h2><div class="post-item"><div class="post-info">2016年4月28日</div><a href="/blog/code-review-for-vue-next/" class="post-title-link">Code Review for Vue 2.0 Preview</a></div><div class="post-item"><div class="post-info">2016年4月27日</div><a href="/blog/announcing-vue-2/" class="post-title-link">Vue 2.0 发布啦！</a></div></div></main><footer><div class="paginator"></div><div class="copyright"><p>© 2015 - 2018 <a href="https://jinjiang.github.io">勾三股四</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- proud for contributing Vue.js -->
+  <meta charset="utf-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-touch-fullscreen" content="yes">
+
+  
+  <title>
+    
+    archive_a: 2016/4 -
+    
+    囧克斯
+  </title>
+
+  <link rel="stylesheet" href="/css/pure.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if IE 6]>
+    <link rel="stylesheet" href="/css/style-ie.css">
+  <![endif]-->
+
+  
+  <link rel="alternate" href="/atom.xml" title="囧克斯" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/favicon.png">
+  
+</head>
+
+<body>
+
+  <div id="wrapper">
+
+    <div id="header">
+      <h1>
+        <a href="/" title="囧克斯">
+          囧克斯
+        </a>
+      </h1>
+      <p class="description">
+        这里是勾三股四的新家
+      </p>
+    </div>
+
+    <div id="nav" class="pure-menu pure-menu-open pure-menu-horizontal">
+      <ul>
+        
+        <li>
+          <a href="/all-demos/">
+            线上
+          </a>
+        </li>
+        
+        <li>
+          <a href="/all-slides/">
+            线下
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about/">
+            关于
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+
+    <div id="main">
+<div class="content">
+  <h2>
+    <a href="/blog/code-review-for-vue-next/">
+      Code Review for Vue 2.0 Preview
+    </a>
+  </h2>
+  
+  <p>是的！<a href="http://jiongks.name/blog/announcing-vue-2/" target="_blank" rel="noopener">Vue 2.0 发布了！</a> 源代码仓库<a href="https://github.com/vuejs/vue/tree/next" target="_blank" rel="noopener">在此</a></p>
+<p>首先，当我第一次看到 Vue 2.0 的真面目的时候，我的内心是非常激动的</p>
+<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><p>来个简单的 demo，首先把 <code>dist/vue.js</code> 导入到一个空白的网页里，然后写：</p>
+<p><strong>当然，在大家阅读下面所有的内容之前，先想象一下，这是一个运行时 min+gzip 后只有 12kb 大小的库</strong></p>
+<pre><code>&lt;script src=&quot;./dist/vue.js&quot;&gt;&lt;/script&gt;
+
+&lt;div id=&quot;app&quot;&gt;
+  Hello {{who}}
+&lt;/div&gt;
+&lt;script&gt;
+  new Vue({
+    el: &apos;#app&apos;,
+    data: {who: &apos;Vue&apos;}
+  })
+&lt;/script&gt;
+</code></pre><p>你将看到 “Hello Vue”</p>
+<p>然后再看一个神奇的：</p>
+<pre><code>&lt;script src=&quot;./dist/vue.js&quot;&gt;&lt;/script&gt;
+
+&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+&lt;script&gt;
+  new Vue({
+    el: &apos;#app&apos;,
+    render: function () {
+      with (this) {
+        __h__(&apos;div&apos;,
+          {staticAttrs:{&quot;id&quot;:&quot;app&quot;}},
+          [(&quot;\n  Hello &quot;+__toString__(who)+&quot;\n&quot;)],
+          &apos;&apos;
+        )
+      }
+    }
+    data: {who: &apos;Vue&apos;}
+  })
+&lt;/script&gt;
+</code></pre><p>这个是 compile 过后的格式，大家会发现首先 <code>#app</code> 下不需要写模板了，然后 <code>&lt;script&gt;</code> 里多了一个 <code>render</code> 字段，Vue 在运行时其实是会把模板内容先转换成渲染方法存入 <code>render</code> 字段，然后再执行，如果发现 <code>render</code> 已经存在，就跳过模板解析过程直接渲染。所以在 Vue 2.0 中写一段模板和写一个 <code>render</code> option 是等价的。为什么要这样设计，稍后会我们会涉及到。</p>
+  <p class="more">
+    <a href="/blog/code-review-for-vue-next/">
+      阅读剩余部分...
+    </a>
+  </p>
+  
+</div>
+
+<div class="content">
+  <h2>
+    <a href="/blog/announcing-vue-2/">
+      Vue 2.0 发布啦！
+    </a>
+  </h2>
+  
+  <p>原文：<a href="https://medium.com/the-vue-point/announcing-vue-js-2-0-8af1bde7ab9#.cyoou0ivk" target="_blank" rel="noopener">https://medium.com/the-vue-point/announcing-vue-js-2-0-8af1bde7ab9#.cyoou0ivk</a></p>
+<p><img src="http://ww1.sinaimg.cn/mw1024/660d0cdfgw1f3bs1115fsj20ug0jiq6m.jpg" alt=""></p>
+<p>今天我们非常激动的首发 Vue 2.0 preview 版本，这个版本带来了很多激动人心的改进和新特性。我们来看看这里面都有些什么！</p>
+  <p class="more">
+    <a href="/blog/announcing-vue-2/">
+      阅读剩余部分...
+    </a>
+  </p>
+  
+</div>
+
+
+
+</div>
+
+    <div id="footer">
+      <a href="/">囧克斯</a>
+      
+      <a href="/atom.xml" title="rss_feed">文章 RSS</a>
+      <br>
+      我是百度统计：
+      <script src="http://hm.baidu.com/h.js?a0a2372d4b7621d0bfe71f33c58a4bd8"></script>
+    </div>
+  </div>
+  <script src="/js/script.js"></script>
+</body>
+
+</html>

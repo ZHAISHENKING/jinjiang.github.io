@@ -1,1 +1,277 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 囧克斯</title><meta name="description" content="这里是勾三股四的新家"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://jinjiang.github.io/atom.xml" title="囧克斯"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="archive"><h2 class="archive-year">2013</h2><div class="post-item"><div class="post-info">2013年6月2日</div><a href="/blog/connect-middleware-manual/" class="post-title-link">Connect中间件使用手册</a></div><div class="post-item"><div class="post-info">2013年5月22日</div><a href="/blog/do-practice/" class="post-title-link">实践</a></div><div class="post-item"><div class="post-info">2013年3月30日</div><a href="/blog/build-any-web-project-with-requirejs-optimizer/" class="post-title-link">巧用 RequireJS Optimizer 给传统的前端项目打包</a></div><div class="post-item"><div class="post-info">2013年2月17日</div><a href="/blog/code-editor-survay/" class="post-title-link">编辑器小调查结果</a></div><div class="post-item"><div class="post-info">2013年2月17日</div><a href="/blog/jslint-docs-zh-cn/" class="post-title-link">[翻译] JSLint 文档</a></div><div class="post-item"><div class="post-info">2013年2月10日</div><a href="/blog/my-6th-year-with-maxthon/" class="post-title-link">烟火——写给蛇年的傲游和我</a></div><div class="post-item"><div class="post-info">2013年1月4日</div><a href="/blog/recent-photography-works/" class="post-title-link">小秀个人的全年摄影作品 (共15张)</a></div><div class="post-item"><div class="post-info">2013年1月1日</div><a href="/blog/review-terrible-2012/" class="post-title-link">2012年终毫无正能量的总结</a></div></div></main><footer><div class="paginator"><a href="/archives/2013/" class="prev">PREV</a></div><div class="copyright"><p>© 2015 - 2018 <a href="https://jinjiang.github.io">勾三股四</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- proud for contributing Vue.js -->
+  <meta charset="utf-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-touch-fullscreen" content="yes">
+
+  
+  <title>
+    
+    archive_a: 2013 -
+    
+    囧克斯
+  </title>
+
+  <link rel="stylesheet" href="/css/pure.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if IE 6]>
+    <link rel="stylesheet" href="/css/style-ie.css">
+  <![endif]-->
+
+  
+  <link rel="alternate" href="/atom.xml" title="囧克斯" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/favicon.png">
+  
+</head>
+
+<body>
+
+  <div id="wrapper">
+
+    <div id="header">
+      <h1>
+        <a href="/" title="囧克斯">
+          囧克斯
+        </a>
+      </h1>
+      <p class="description">
+        这里是勾三股四的新家
+      </p>
+    </div>
+
+    <div id="nav" class="pure-menu pure-menu-open pure-menu-horizontal">
+      <ul>
+        
+        <li>
+          <a href="/all-demos/">
+            线上
+          </a>
+        </li>
+        
+        <li>
+          <a href="/all-slides/">
+            线下
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about/">
+            关于
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+
+    <div id="main">
+<div class="content">
+  <h2>
+    <a href="/blog/connect-middleware-manual/">
+      Connect中间件使用手册
+    </a>
+  </h2>
+  
+  <p>以下内容大多译自<a href="http://www.senchalabs.org/connect/" target="_blank" rel="noopener">Connect官网</a> 2013-06-02</p>
+<p>Connect是基于Node的中间件框架(middleware framework)，提供超过18种官方中间件以及更多的第三方中间件。</p>
+<p>示例：</p>
+<pre><code>var app = connect()
+  .use(connect.logger(&apos;dev&apos;))
+  .use(connect.static(&apos;public&apos;))
+  .use(function(req, res){
+    res.end(&apos;hello world\n&apos;);
+  })
+ .listen(3000);
+</code></pre><p>安装方式：</p>
+<pre><code>$ npm install connect
+</code></pre><p>依次介绍官方中间件</p>
+  <p class="more">
+    <a href="/blog/connect-middleware-manual/">
+      阅读剩余部分...
+    </a>
+  </p>
+  
+</div>
+
+<div class="content">
+  <h2>
+    <a href="/blog/do-practice/">
+      实践
+    </a>
+  </h2>
+  
+  <p>上周末在图灵的技术沙龙分享了自己Node.JS的一些项目实践心得。</p>
+<p>Node.JS这东西说起来也是3年前就听说的东西了，最近一段时间才真正拿它做东西。这种感觉既熟悉又陌生，熟悉在听大家谈过无数次，陌生在自己没怎么亲自动过手。这回的一些尝试和项目实践，让我更多的了解了这门技术，也更好的了解了我自己。</p>
+<p>分享的在线链接在此：<a href="http://t.cn/zHIafSq" target="_blank" rel="noopener">http://t.cn/zHIafSq</a>，这里就不重复其中的内容了。</p>
+<p><img src="http://www.programmer.com.cn/wp-content/uploads/2013/02/QQ截图20130225140912-231x300.jpg" alt="《程序员》201303期封面"></p>
+<p>我想更多说的是，我们有幸在HTML5快速发展的时代，这里几乎每天都会有新的规范、新的工具、新的库、新的框架、新的理论。玲琅满目，目不暇接。也许我们每天走马灯似的看它们，都不一定看得过来。我感觉自己就长期处于这种状态。可是当这些东西都只是我们眼前的匆匆过客，来不及细细体验、品味其中的内涵，那和从来都没看过相比，有多少实质上的差别呢？</p>
+<p>我觉得这里有两件事情值得考虑：第一，要再多些时间在新技术的关注和尝试上；第二，有选择性的深入其中。</p>
+<p>先说第一点，我们不能始终沉醉在对现有技术或业务的娴熟之中，同时要相信技术和产品、设计、市场、商务一样，可以驱动业务的发展和进步。我们唯有带着这样的信念去工作，去和同事交流，去和领导沟通，去在团队里一起探讨问题，才会令自己有这种空间和时间。凡事都有难处，但总要走出这第一步。</p>
+<p>第二，前端这个词逐渐由html/css/js三门语言和基本ps技巧的集合，变成一个无限宽泛的概念。我们在鼓励全面发展的同时，也不能一把抓，也需要量力而行，循序渐进，找到属于自己的突破口，找到和自身工作最佳的结合点。最关键的是，要有实践的机会。</p>
+<p>人生有时难免会站在命运的十字路口，左右为难。最后发现，真正让自己踏实下来的，往往是这些真材实料的东西。</p>
+
+  
+</div>
+
+<div class="content">
+  <h2>
+    <a href="/blog/build-any-web-project-with-requirejs-optimizer/">
+      巧用 RequireJS Optimizer 给传统的前端项目打包
+    </a>
+  </h2>
+  
+  <p><a href="https://github.com/jrburke/r.js" target="_blank" rel="noopener">r.js</a> 本是 <a href="http://requirejs.org/" target="_blank" rel="noopener">RequireJS</a> 的一个附属产品，支持在 NodeJS、Rhino 等环境下运行 <a href="http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition" target="_blank" rel="noopener">AMD</a> 程序，并且其包含了一个名为 RequireJS Optimizer 的工具，可以为项目完成合并脚本等优化操作。</p>
+<p>r.js 的介绍中明确写道它是 RequireJS 项目的一部分，和 RequireJS 协同工作。但我发现，RequireJS Optimizer 提供了丰富的配置参数，可以让我们完全跳出 AMD 和 RequireJS 程序的束缚，为我们的前端程序服务。</p>
+  <p class="more">
+    <a href="/blog/build-any-web-project-with-requirejs-optimizer/">
+      阅读剩余部分...
+    </a>
+  </p>
+  
+</div>
+
+<div class="content">
+  <h2>
+    <a href="/blog/code-editor-survay/">
+      编辑器小调查结果
+    </a>
+  </h2>
+  
+  <p>我在侧边栏放了一阵子编辑器的小调查，时间过去比较久了，是时候统计一下了，供大家参考：</p>
+<p>我一共放了5个默认选项，使用情况排名依次是：</p>
+<ol>
+<li>SublimeText 2</li>
+<li>Notepad++</li>
+<li>Dreamweaver</li>
+<li>EditPlus</li>
+<li>Vim</li>
+</ol>
+<p><img src="http://jiongks-typecho.stor.sinaapp.com/usr/uploads/2013/02/404926186.png" alt="默认选项的选择情况">
+  </p><p class="more">
+    <a href="/blog/code-editor-survay/">
+      阅读剩余部分...
+    </a>
+  </p>
+  
+</div>
+
+<div class="content">
+  <h2>
+    <a href="/blog/jslint-docs-zh-cn/">
+      [翻译] JSLint 文档
+    </a>
+  </h2>
+  
+  <p>原文地址：<a href="http://www.jslint.com/lint.html" target="_blank" rel="noopener">http://www.jslint.com/lint.html</a></p>
+<h3 id="什么是JSLint？"><a href="#什么是JSLint？" class="headerlink" title="什么是JSLint？"></a>什么是<code>JSLint</code>？</h3><p><code>JSLint</code> 是一个用来查找各种 JavaScript 程序中的问题的 JavaScript 程序。它是一个代码之类工具。</p>
+<p>在<a href="http://cm.bell-labs.com/cm/cs/who/dmr/chist.html" target="_blank" rel="noopener">早些年</a>的 <a href="http://en.wikipedia.org/wiki/C_programming_language" target="_blank" rel="noopener">C 语言</a>中，有些程序的常见错误是主流的编译器无法抓住的。所以出现了一个名叫 <a href="http://en.wikipedia.org/wiki/Lint_programming_tool" target="_blank" rel="noopener"><code>lint</code></a> 的附带程序，可以通过搜索源文件寻找错误。</p>
+<p>随着语言的成熟，其定义的健壮性足以消除一些不安因素，编译器也在问题警告方面越做越好，<code>lint</code> 也不再需要了。</p>
+<p><a href="http://javascript.crockford.com/" target="_blank" rel="noopener">JavaScript</a> 是一个年轻的语言。它原本只是用在网页上完成一些无需劳驾 Java 的小任务。但 JavaScript 是一个强大得惊人的语言，现在它已经在大项目中派上用场了。当项目变得复杂之后，之前从易用角度出发的语言特性就带来了一些麻烦。这是一个为 JavaScript 而生的 <code>lint</code> 呼之欲出：它就是 <code>JSLint</code>，一个检查 JavaScript 语法、判断 JavaScript 语法有效性的工具。</p>
+<p><code>JSLint</code> 会拿来一段 JavaScript 源代码并对其进行检索。一旦发现问题，它就会返回一则消息，用来描述这个问题以及源代码中的大概位置。发现的问题不一定是，但通常是语法上的错误。<code>JSLint</code> 通过一些代码规范来杜绝结构性的问题。这并不证明你的程序是正确的，只是提供另一种发现问题的眼光。</p>
+<p><code>JSLint</code> 定义了一个专业的 JavaScript 的子集，它比 <a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm" target="_blank" rel="noopener">ECMAScript 标准第三版</a>的定义更严格，和 <a href="http://javascript.crockford.com/code.html" target="_blank" rel="noopener">JavaScript 编码规范</a>中的建议相对应。</p>
+<p>JavaScript 是一个粗中有细的语言，它比你想象中的更好。<code>JSLint</code> 帮助你回避很多问题，在这个更好的语言中撰写程序。<code>JSLint</code> 会拒绝一些浏览器支持的程序，因为浏览器并不关心代码的质量。你应该接受 <code>JSLint</code> 的所有建议。</p>
+<p><code>JSLint</code> 在 JavaScript 源代码、HTML 源代码、CSS 源代码或 <a href="http://www.json.org/" target="_blank" rel="noopener">JSON</a> 文本中都可以运行。
+  </p><p class="more">
+    <a href="/blog/jslint-docs-zh-cn/">
+      阅读剩余部分...
+    </a>
+  </p>
+  
+</div>
+
+<div class="content">
+  <h2>
+    <a href="/blog/my-6th-year-with-maxthon/">
+      烟火——写给蛇年的傲游和我
+    </a>
+  </h2>
+  
+  <blockquote>
+<p>世界上没有怯懦的高楼<br><br>没有细水长流的烟火</p>
+<p>——1976《烟火》</p>
+</blockquote>
+<p>看完春晚正准备要睡觉，看到祥子一条微博：<q>八千块的烟火换来一小时的快乐，多少的代价可以换来一生的幸福。</q>于是我就这样陷入了沉思。</p>
+<p>祥子我恨你……</p>
+<p>此时此刻，估计整个城市，乃至全中国的“一小时的快乐”，都已经告一段落了。这对我来说，也意味着，去年的成绩、收获、经验教训，也停留在这里了；新年的奋斗史，从这一刻，就要开始书写了。</p>
+<p>每到过年的时候，也是让我猛一抬头，想起自己和过去的老师同学又多一整年不见的时候，想起自己在傲游又多待了一年的时候，想起自己和一年前相比又度过了一年美好时光的时候。</p>
+<p><img src="http://ww3.sinaimg.cn/large/660d0cdfjw1e1agx3b46nj.jpg" alt=""></p>
+<p>来傲游第六年了，去年这个时候的<a href="http://bulaoge.net/topic.blg?dmn=g3g4&amp;tid=2324366" target="_blank" rel="noopener">五周年纪念的情形</a>仿佛还历历在目。我也在此兑现自己一年前的承诺，给自己在傲游的第六年留个“快照”。</p>
+<p>现在小学时期的稳定性记录已经被打破了，人生会不会从此变得没有追求了呢？呵呵</p>
+<p>在我眼里，这一年，自己和公司都发生了很多变化。公司的办公区又一次扩张了，从“两居室小户型”演变成“两套大房子”了；高管走了一批、也来了一批；有些部门拆散了，有些部门合并了，有些部门洗牌了……无非都为的是个活字。我自己呢，团队角色和工作要求也发生了不小的变化，无非为的是能继续走下去。其实这些都不算什么伟大的志向。所以，尽管过程轰轰烈烈，结果其实很惨淡。</p>
+<p>这和我刚来公司时的感受已经截然不同了。刚来傲游的时候，觉得像天堂一样，哪儿都好，各种优越感，每天无忧无虑，技术交流的时候、同学聚会的时候、校园招聘等各种时候，一说自己是傲游的，大家都好待见你；现如今，觉得公司哪儿都有问题，哪儿都做得不好，哪儿都有改进空间。上周一个好朋友的电脑重装系统了，跟我说他把<code>Program Files/Maxthon</code>整个文件夹都备份了，问我怎么恢复收藏——聊到最后我们两个都很震惊：他震惊自己最信任的傲游浏览器把他的收藏搞丢了，我震惊他不知道我们有傲游账户和在线收藏。</p>
+<p>烟火固然美丽，但也稍纵即逝。</p>
+<p>去年年初的时候看到过一句话：“即使如日中天的Apple，也一定会有股票下跌的那一天” (如今它已经跌了)。一家公司再好，一份工作再适合你，也会有不如意的地方。其实问题总是会有的，如果每次面对问题的时候都选择逃避，这个问题不会自动消失，反而会永远缠着你。</p>
+<p>我觉得去年一年，是我让自己从理想乐观回归现实的一年。从某种角度将，它让我看清傲游是一个有很多问题的公司，同时这些问题也是大家需要很大的勇气去承认、面对和解决的——这其实对于我，以及每一个傲游人来说，其实非常重要。它比我们去年赚了多少钱、发展了多少用户、打开了多大的市场这些成绩，都更重要。</p>
+<p><img src="http://ww4.sinaimg.cn/large/80e3e3d0jw1dyt4cxkk85j.jpg" alt=""></p>
+<p>所以，做事不能只看眼前成绩，不然什么也做不成。面对问题，不能逃避，只有勇敢面对，久而久之，养成习惯，就可以战胜一切！</p>
+<p>过去的六年，对我来说，就当是一场烟火表演吧。璀璨、辉煌、这一切的一切，都无法奠定你未来的坦途。幸福的人生，需要的不是一场价值连城的烟火表演，也不是每年一度的烟火表演，而是一个持续的状态，一步一个脚印的存在感和成就感。</p>
+<p>是时候面对久违的挑战了。</p>
+
+  
+</div>
+
+<div class="content">
+  <h2>
+    <a href="/blog/recent-photography-works/">
+      小秀个人的全年摄影作品 (共15张)
+    </a>
+  </h2>
+  
+  <p>今年年初家里买了台微单相机，外加一台iPhone，我也算是个曾经摸了摸镜头的人。相比起周遭的摄影发烧友，我觉得自己真的很业余，以至于我自己说出摄影作品这个词的时候都有点心虚：不就是拍了几张照片么。还整的跟是回事儿似的。</p>
+<p>不久之前刚在自己微博上晒了几张自己拍照片时的个人恶趣味，算娱乐一下吧。下面几张是我真的认真挑选过的，如果诸位摄影达人看到觉得拍得太烂，还求轻拍 ^_^</p>
+<p><img src="http://jiongks-typecho.stor.sinaapp.com/usr/uploads/2013/01/3406089111.jpg" alt="车水马龙"><br>车水马龙
+  </p><p class="more">
+    <a href="/blog/recent-photography-works/">
+      阅读剩余部分...
+    </a>
+  </p>
+  
+</div>
+
+<div class="content">
+  <h2>
+    <a href="/blog/review-terrible-2012/">
+      2012年终毫无正能量的总结
+    </a>
+  </h2>
+  
+  <p>“丰功伟绩”、“甜言蜜语”就不在这里恶心大家了，如果有人问我你幸福吗，我会说我很幸福，以及关于我怎么幸福的长篇大论。但我不会把下面的话也说出来。</p>
+<p>乱七八糟的2012年就这样糊里糊涂的过去了。</p>
+<p>今年发生了不少冠冕堂皇的大事儿，但好像没什么实质性的收获。可能此时此刻的我心思还是在事业上多一些，但无奈力不从心。作为一个有家有老婆的人，不能加班，不能熬夜，工作上几乎没了弹性，想冲冲不起来，有劲儿不能一口气使出来；另外我们的休闲娱乐需求也很旺盛，下馆子看电视电影到处旅游总是好的，可它们基本上填满了我的业余时间，没有充足的时间用心学习这种感觉比什么都糟糕。这些事儿其实也不是我改变不了，更多的是自己也不忍心改变吧。</p>
+<p>我觉得这是我觉得2012糊里糊涂的主要原因。</p>
+<p>第二点原因是我觉得自己变懒了也变邋遢了。搬了家这么久也结婚了这么久，很多早就想请客的人也一直没请到。每到周末就跟自己怕麻烦的心妥协了。洗碗洗衣服倒洗脚水擦地吃早餐之类的事情也越来越不积极了，我最近反思了一下，可能是太想把烂摊子都寄托给老婆来收拾了，家里的脏活累活总要有人做，己所不欲勿施于人，以后还是身先士卒吧。</p>
+<p>在工作上，我比较欣慰的是自己有机会也有勇气接触更广泛的技术领域，让自己的知识面更广，更充实，但达到比较理想的状态是需要时间的。为了能够掌握更广泛的开发技能，我正在重读很多计算机的基本课程。在上学的时候它像是我毕业路上的敌人，我在乎的只是战胜那些题目；如今重读，它们更像是我的朋友，为我弥补一块块盲区，让我面对困难的时候更加自信。真的有点二次启蒙的感觉，我突然觉得这才是真正的编程。我希望在新的一年我可以处于一种低调踏实追求卓越的心态，不要像今年这样疯疯癫癫的，说得多做得少。</p>
+<p>公司这一年的形势很微妙，我觉得全公司现在最纠结的地方在于，我们想做个典型的带有鲜明中国特色的公司，还是一个超凡脱俗的洋气公司。说白了就是一群屌丝和另一群高富帅白富美凑在一起想搞个团队活动，大家一起商量是去吃西餐呢还是吃大排档呢。正在犹豫之时，眼瞅着周围的人眼疾手快，把西餐厅的位子订光了，把大排档也挤了个水泄不通，顿时就都傻眼了，可还是没有相互妥协的迹象。咳，只说这么多了…</p>
+<p>别的都还行。</p>
+<p>2013不能比今年更烂了。</p>
+
+  
+</div>
+
+
+
+<ol class="page-navigator">
+  <a class="extend prev" rel="prev" href="/archives/2013/">&laquo;</a><a class="page-number" href="/archives/2013/">1</a><span class="page-number current">2</span>
+</ol>
+
+</div>
+
+    <div id="footer">
+      <a href="/">囧克斯</a>
+      
+      <a href="/atom.xml" title="rss_feed">文章 RSS</a>
+      <br>
+      我是百度统计：
+      <script src="http://hm.baidu.com/h.js?a0a2372d4b7621d0bfe71f33c58a4bd8"></script>
+    </div>
+  </div>
+  <script src="/js/script.js"></script>
+</body>
+
+</html>

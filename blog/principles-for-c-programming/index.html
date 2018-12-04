@@ -1,4 +1,80 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> C 程序的原则 · 囧克斯</title><meta name="description" content="C 程序的原则 - 勾三股四"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://jinjiang.github.io/atom.xml" title="囧克斯"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">C 程序的原则</h1><div class="post-info">2017年3月19日</div><div class="post-content"><p>按照 Doug Gwyn 的话说：“Unix 不会阻止你做愚蠢的事情，因为那会同样阻止你做聪明的事情”。C 是一个非常强大的工具，但使用它的时候需要非常小心和<a href="http://dict.cn/discipline" target="_blank" rel="noopener">自律</a>。学习这些纪律是绝对值得的，因为 C 是所有程序语言中最优秀的。一个自律的 C 程序员将会……</p>
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- proud for contributing Vue.js -->
+  <meta charset="utf-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-touch-fullscreen" content="yes">
+
+  
+  <title>
+    
+    C 程序的原则 -
+    
+    囧克斯
+  </title>
+
+  <link rel="stylesheet" href="/css/pure.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if IE 6]>
+    <link rel="stylesheet" href="/css/style-ie.css">
+  <![endif]-->
+
+  
+  <link rel="alternate" href="/atom.xml" title="囧克斯" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/favicon.png">
+  
+</head>
+
+<body>
+
+  <div id="wrapper">
+
+    <div id="header">
+      <h1>
+        <a href="/" title="囧克斯">
+          囧克斯
+        </a>
+      </h1>
+      <p class="description">
+        这里是勾三股四的新家
+      </p>
+    </div>
+
+    <div id="nav" class="pure-menu pure-menu-open pure-menu-horizontal">
+      <ul>
+        
+        <li>
+          <a href="/all-demos/">
+            线上
+          </a>
+        </li>
+        
+        <li>
+          <a href="/all-slides/">
+            线下
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about/">
+            关于
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+
+    <div id="main"><div class="content">
+  <h2>
+    C 程序的原则
+  </h2>
+  <p>按照 Doug Gwyn 的话说：“Unix 不会阻止你做愚蠢的事情，因为那会同样阻止你做聪明的事情”。C 是一个非常强大的工具，但使用它的时候需要非常小心和<a href="http://dict.cn/discipline" target="_blank" rel="noopener">自律</a>。学习这些纪律是绝对值得的，因为 C 是所有程序语言中最优秀的。一个自律的 C 程序员将会……</p>
 <p><strong>喜欢可维护性</strong>。不要在不必要的地方自作聪明。取而代之的是，找出最简单最易懂的满足需求的方案。诸如性能之类考量是放在第二位的。你应该为你的代码做一个性能预算，并自在的支配它。</p>
 <p>随着你对这门语言越来越<a href="http://dict.cn/proficient" target="_blank" rel="noopener">了解</a>，掌握了越来越多能够从中获益的特性，你也应该学会什么时候不能使用它们。相比用到了很多新奇的方式去解决问题，易于<a href="http://dict.cn/novice" target="_blank" rel="noopener">新手</a>理解是更重要的。最好是让一个新手理解你的代码并从中有所收获。像你<a href="http://dict.cn/circa" target="_blank" rel="noopener">大概</a>去年就在维护它一样去撰写代码。</p>
 <p><strong>避免使用魔法</strong>。不要使用宏 (macros)——尽管用它定义常量是没问题的。不要使用 typedef 来隐藏指针或回避撰写“结构”。避免撰写复杂的抽象。保持你的构建系统简单透明。不要因为一个愚蠢的 hacky 的<a href="http://dict.cn/crap" target="_blank" rel="noopener">废物</a>解决问题的方式酷炫就使用它。你的代码在行为<a href="http://dict.cn/underlying" target="_blank" rel="noopener">之下</a>应该是明显的，甚至不需要上下文。</p>
@@ -18,4 +94,23 @@
 <hr>
 <p>重要的是记住规则就是用来打破的。可能有些情况下，不被鼓励的行为是有用的，被鼓励的行为是应该<a href="http://dict.cn/disregarded" target="_blank" rel="noopener">被忽视的</a>。你应该<a href="http://dict.cn/strive" target="_blank" rel="noopener">力争</a>把这些情况当作例外而不是<a href="http://dict.cn/norm" target="_blank" rel="noopener">常态</a>，并当它们发生时仔细的<a href="http://dict.cn/justify" target="_blank" rel="noopener">证明</a>它们。</p>
 <p>C 是狗屎。我爱它，并希望更多的人可以学到我做事的方式。祝好运！</p>
-</div></article></div></main><footer><div class="paginator"><a href="/blog/git-commit/" class="prev">PREV</a><a href="/blog/vue-2-is-here/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2018 <a href="https://jinjiang.github.io">勾三股四</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
+
+</div>
+
+
+
+</div>
+
+    <div id="footer">
+      <a href="/">囧克斯</a>
+      
+      <a href="/atom.xml" title="rss_feed">文章 RSS</a>
+      <br>
+      我是百度统计：
+      <script src="http://hm.baidu.com/h.js?a0a2372d4b7621d0bfe71f33c58a4bd8"></script>
+    </div>
+  </div>
+  <script src="/js/script.js"></script>
+</body>
+
+</html>

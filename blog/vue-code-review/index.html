@@ -1,4 +1,80 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Vue.js 源码学习笔记 · 囧克斯</title><meta name="description" content="Vue.js 源码学习笔记 - 勾三股四"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://jinjiang.github.io/atom.xml" title="囧克斯"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Vue.js 源码学习笔记</h1><div class="post-info">2015年7月26日</div><div class="post-content"><p>最近饶有兴致的又把最新版 <a href="http://vuejs.org/" target="_blank" rel="noopener">Vue.js</a> 的源码学习了一下，觉得真心不错，个人觉得 Vue.js 的代码非常之优雅而且精辟，作者本身可能无 (bu) 意 (xie) 提及这些。那么，就让我来吧：）</p>
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- proud for contributing Vue.js -->
+  <meta charset="utf-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-touch-fullscreen" content="yes">
+
+  
+  <title>
+    
+    Vue.js 源码学习笔记 -
+    
+    囧克斯
+  </title>
+
+  <link rel="stylesheet" href="/css/pure.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if IE 6]>
+    <link rel="stylesheet" href="/css/style-ie.css">
+  <![endif]-->
+
+  
+  <link rel="alternate" href="/atom.xml" title="囧克斯" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/favicon.png">
+  
+</head>
+
+<body>
+
+  <div id="wrapper">
+
+    <div id="header">
+      <h1>
+        <a href="/" title="囧克斯">
+          囧克斯
+        </a>
+      </h1>
+      <p class="description">
+        这里是勾三股四的新家
+      </p>
+    </div>
+
+    <div id="nav" class="pure-menu pure-menu-open pure-menu-horizontal">
+      <ul>
+        
+        <li>
+          <a href="/all-demos/">
+            线上
+          </a>
+        </li>
+        
+        <li>
+          <a href="/all-slides/">
+            线下
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about/">
+            关于
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+
+    <div id="main"><div class="content">
+  <h2>
+    Vue.js 源码学习笔记
+  </h2>
+  <p>最近饶有兴致的又把最新版 <a href="http://vuejs.org/" target="_blank" rel="noopener">Vue.js</a> 的源码学习了一下，觉得真心不错，个人觉得 Vue.js 的代码非常之优雅而且精辟，作者本身可能无 (bu) 意 (xie) 提及这些。那么，就让我来吧：）</p>
 <h3 id="程序结构梳理"><a href="#程序结构梳理" class="headerlink" title="程序结构梳理"></a>程序结构梳理</h3><p><img src="http://img2.tbcdn.cn/L1/461/1/8142ef3fc2055839f1a93a933d80e17694b4f76b" alt="Vue 程序结构"></p>
 <p>Vue.js 是一个非常典型的 MVVM 的程序结构，整个程序从最上层大概分为</p>
 <ol>
@@ -102,4 +178,438 @@ parse(obj, path) // 2
 </ul>
 <p>自己也在阅读代码，了解 Vue.js 的同时学到了很多东西，同时我觉得代码实现只是 Vue.js 优秀的要素之一，整体的程序设计、API 设计、细节的取舍、项目的工程考量都非常棒！</p>
 <p>总之，分享一些自己的收获和代码的细节，希望可以帮助大家开阔思路，提供灵感。</p>
-</div></article></div></main><footer><div class="paginator"><a href="/blog/how-to-minimize-politics-in-your-company/" class="prev">PREV</a><a href="/blog/try-fullstack-in-timeline-app/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2018 <a href="https://jinjiang.github.io">勾三股四</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
+
+</div>
+
+
+
+<div id="comments">
+  <h2>早期评论</h2>
+  <ul>
+  
+    <li id="comment-104559" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://fuxiaohei.me" target="_blank" title="傅小黑">傅小黑</a>
+        
+        </strong>
+        <small>2015/07/26 11:48:17</small></p>
+      赞
+    </li>
+  
+    <li id="comment-104649" style="margin-left: 0em;">
+      <p>
+        <strong>
+        chaoren1641
+        
+        </strong>
+        <small>2015/07/28 11:32:03</small></p>
+      32个赞
+    </li>
+  
+    <li id="comment-118306" style="margin-left: 2em;">
+      <p>
+        <strong>
+        <a href="http://regsehs.com" target="_blank" title="的">的</a>
+        
+        </strong>
+        <small>2017/09/12 09:50:53</small></p>
+      发
+    </li>
+  
+    <li id="comment-105247" style="margin-left: 0em;">
+      <p>
+        <strong>
+        kid
+        
+        </strong>
+        <small>2015/08/07 11:05:05</small></p>
+      码下以后仔细看
+    </li>
+  
+    <li id="comment-108740" style="margin-left: 0em;">
+      <p>
+        <strong>
+        comver
+        
+        </strong>
+        <small>2015/09/27 03:37:52</small></p>
+      学习了！
+    </li>
+  
+    <li id="comment-111082" style="margin-left: 0em;">
+      <p>
+        <strong>
+        cxczy
+        
+        </strong>
+        <small>2015/11/16 05:27:36</small></p>
+      总结的很好，Vue如此小巧却又这么多优点
+    </li>
+  
+    <li id="comment-111936" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://simplyy.space" target="_blank" title="SimplyY">SimplyY</a>
+        
+        </strong>
+        <small>2016/02/22 09:13:55</small></p>
+      文件结构梳理 标题下有错别字<br>
+<br>
+这些目录之前也是有更立体的关系的：<br>
+<br>
+之前应该是之间
+    </li>
+  
+    <li id="comment-112302" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://jiongks.name/blog/vue-code-review/" target="_blank" title="我">我</a>
+        
+        </strong>
+        <small>2016/04/28 11:22:42</small></p>
+      恩，这篇文章写的挺好，去年收藏的，今天才看也是醉醉的。
+    </li>
+  
+    <li id="comment-112428" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://www.shellsec.com/news/17522.html" target="_blank" title="Vue ES6 Jade Scss Webpack Gulp | 神刀安全网">Vue ES6 Jade Scss Webpack Gulp | 神刀安全网</a>
+        
+        </strong>
+        <small>2016/05/09 02:30:48</small></p>
+      [...]Vue篇  Vue.js：轻量高效的前端组件化方案 来自Vue作者 尤雨溪  Vue官方教程  Vue.js 源码学习笔记 来自 囧克斯  vue-router文档  Vue 组件化开发实践  mvvm学习&amp;vue实践小结[...]
+    </li>
+  
+    <li id="comment-112442" style="margin-left: 0em;">
+      <p>
+        <strong>
+        张三
+        
+        </strong>
+        <small>2016/05/10 02:39:47</small></p>
+      看到代码里面一会儿 $，一会儿 _，我就再也没有兴趣学这个框架了
+    </li>
+  
+    <li id="comment-112520" style="margin-left: 0em;">
+      <p>
+        <strong>
+        李思葱
+        
+        </strong>
+        <small>2016/05/18 05:55:47</small></p>
+      请问博主这么漂亮的图是如何画出来的？
+    </li>
+  
+    <li id="comment-112820" style="margin-left: 2em;">
+      <p>
+        <strong>
+        <a href="http://www.coderyin.com/" target="_blank" title="coderYin">coderYin</a>
+        
+        </strong>
+        <small>2016/07/17 11:24:22</small></p>
+      思维导图
+    </li>
+  
+    <li id="comment-121418" style="margin-left: 4em;">
+      <p>
+        <strong>
+        <a href="https://colliot.me" target="_blank" title="Colliot">Colliot</a>
+        
+        </strong>
+        <small>2018/02/24 01:10:04</small></p>
+      那对源码的批注图呢？
+    </li>
+  
+    <li id="comment-112850" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://www.luobotang.cn/" target="_blank" title="luobotang">luobotang</a>
+        
+        </strong>
+        <small>2016/07/20 05:23:37</small></p>
+      文章和Vue的作者都很棒！
+    </li>
+  
+    <li id="comment-112934" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://lxchuan12.github.io" target="_blank" title="轩辕Rowboat">轩辕Rowboat</a>
+        
+        </strong>
+        <small>2016/08/22 12:43:25</small></p>
+      感谢博主，暂时还没到阅读源码的阶段。
+    </li>
+  
+    <li id="comment-112954" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://www.jinpeng.site/2016/08/29/vue-js%e5%85%a5%e9%97%a8%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99/" target="_blank" title="Vue.js入门参考资料 R11; 鹏仔">Vue.js入门参考资料 R11; 鹏仔</a>
+        
+        </strong>
+        <small>2016/08/29 06:12:26</small></p>
+      [...]Vue.js 源码学习笔记[...]
+    </li>
+  
+    <li id="comment-112994" style="margin-left: 0em;">
+      <p>
+        <strong>
+        刘成
+        
+        </strong>
+        <small>2016/09/05 05:24:33</small></p>
+      阿姨的网站字好大，看得眼睛发胀。。。
+    </li>
+  
+    <li id="comment-113353" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://xn--vkuk.org" target="_blank" title="睡觉">睡觉</a>
+        
+        </strong>
+        <small>2016/10/04 08:57:21</small></p>
+      底部after伪元素看着很烦。。要么黑色，要么删掉行么。。。
+    </li>
+  
+    <li id="comment-113354" style="margin-left: 2em;">
+      <p>
+        <strong>
+        <a href="http://xn--vkuk.org" target="_blank" title="睡觉">睡觉</a>
+        
+        </strong>
+        <small>2016/10/04 11:03:22</small></p>
+      窗口没有滚动到底部的时候，那个fixed还是稍微影响阅读的。。<br>
+不过，直接到底部看着确实不错
+    </li>
+  
+    <li id="comment-114004" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://getcrx.cn" target="_blank" title="dodo">dodo</a>
+        
+        </strong>
+        <small>2016/11/09 01:58:45</small></p>
+      感谢分享~<br>
+请问，这篇博文是基于哪个版本的产出？
+    </li>
+  
+    <li id="comment-114204" style="margin-left: 0em;">
+      <p>
+        <strong>
+        金山
+        
+        </strong>
+        <small>2016/11/28 03:56:17</small></p>
+      虽然对于我这种的初级程序来说。貌似很吊。点赞66666666666666666666666666666666666666666666666666666666666666666
+    </li>
+  
+    <li id="comment-114214" style="margin-left: 0em;">
+      <p>
+        <strong>
+        yuguangde
+        
+        </strong>
+        <small>2016/11/29 09:56:28</small></p>
+      这是vue的哪个版本啊，感觉目录结构和我看的不一样
+    </li>
+  
+    <li id="comment-118004" style="margin-left: 2em;">
+      <p>
+        <strong>
+        Nine
+        
+        </strong>
+        <small>2017/08/24 06:14:05</small></p>
+      vue官方github仓库切换branch就能看到了！
+    </li>
+  
+    <li id="comment-114343" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://null.com" target="_blank" title="茄果">茄果</a>
+        
+        </strong>
+        <small>2016/12/12 11:09:39</small></p>
+      文字好大，我猜现在四爷有点老花了？
+    </li>
+  
+    <li id="comment-115111" style="margin-left: 0em;">
+      <p>
+        <strong>
+        nobrokenboy
+        
+        </strong>
+        <small>2017/02/20 04:05:35</small></p>
+      请问博主分析的是vue1.0的还是vue2.0的呢，博主写的好深奥，菜鸟表示看不懂，
+    </li>
+  
+    <li id="comment-116459" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://www.xuxihai.top" target="_blank" title="x373241884y">x373241884y</a>
+        
+        </strong>
+        <small>2017/06/02 12:33:06</small></p>
+      讲的不错！
+    </li>
+  
+    <li id="comment-118003" style="margin-left: 0em;">
+      <p>
+        <strong>
+        Nine
+        
+        </strong>
+        <small>2017/08/24 06:07:53</small></p>
+      厉害！
+    </li>
+  
+    <li id="comment-118505" style="margin-left: 2em;">
+      <p>
+        <strong>
+        frank
+        
+        </strong>
+        <small>2017/09/27 07:48:20</small></p>
+      厉害了
+    </li>
+  
+    <li id="comment-119487" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://www.worktle.com/articles/2467/" target="_blank" title="VueJS学习资料大全 | Worktle.com">VueJS学习资料大全 | Worktle.com</a>
+        
+        </strong>
+        <small>2017/11/24 11:28:56</small></p>
+      [...]Vue.js 源码学习笔记[...]
+    </li>
+  
+    <li id="comment-119896" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://www.it448.com" target="_blank" title="vuejs">vuejs</a>
+        
+        </strong>
+        <small>2017/12/05 10:59:06</small></p>
+      Vue.js视频教程www.it448.com/forum.php?mod=forumdisplay&fid=43
+    </li>
+  
+    <li id="comment-120493" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://xiaoyueyue.org/wordpress/2018/01/11/%e4%bc%98%e8%b4%a8%e5%89%8d%e7%ab%af%e5%8d%9a%e5%ae%a2/" target="_blank" title="优质前端博客 R11; 小越越的blog">优质前端博客 R11; 小越越的blog</a>
+        
+        </strong>
+        <small>2018/01/11 10:11:57</small></p>
+      [...]《Vue.js 源码学习笔记》[...]
+    </li>
+  
+    <li id="comment-120797" style="margin-left: 0em;">
+      <p>
+        <strong>
+        zuank
+        
+        </strong>
+        <small>2018/02/02 11:54:30</small></p>
+      便利 -> 遍历
+    </li>
+  
+    <li id="comment-120835" style="margin-left: 2em;">
+      <p>
+        <strong>
+        <a href="http://jiongks.name/" target="_blank" title="囧克斯">囧克斯</a>
+        
+        </strong>
+        <small>2018/02/06 01:18:04</small></p>
+      <a href="#comment-120797">@zuank</a><br>
+<br>
+已更正，感谢
+    </li>
+  
+    <li id="comment-122417" style="margin-left: 0em;">
+      <p>
+        <strong>
+        阅夏
+        
+        </strong>
+        <small>2018/03/29 11:33:16</small></p>
+      请问，这篇文章分析的是v0.11版本吗？
+    </li>
+  
+    <li id="comment-124311" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="https://photo.itmeseji.com/archives/2241" target="_blank" title="Vue源码解读相关（读完后会做一些总结） R11; x">Vue源码解读相关（读完后会做一些总结） R11; x</a>
+        
+        </strong>
+        <small>2018/06/06 05:39:17</small></p>
+      [...]1.Vue.js 源码学习笔记&nbsp;http://jiongks.name/blog/vue-code-review/[...]
+    </li>
+  
+    <li id="comment-124438" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="https://com-it.tech/archives/67017" target="_blank" title="Vue原始碼解讀相關（讀完後會做一些總結） - 程序員的後花園">Vue原始碼解讀相關（讀完後會做一些總結） - 程序員的後花園</a>
+        
+        </strong>
+        <small>2018/06/08 09:16:49</small></p>
+      [...]1.Vue.js 原始碼學習筆記&nbsp;http://jiongks.name/blog/vue-code-review/[...]
+    </li>
+  
+    <li id="comment-124621" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="https://www.qqwenda.com/wenda/22399.html" target="_blank" title="ja&lt;x&gt;vasc&lt;x&gt;ript 进阶之深入理解数据双向绑定 - 奇奇问答">ja&lt;x&gt;vasc&lt;x&gt;ript 进阶之深入理解数据双向绑定 - 奇奇问答</a>
+        
+        </strong>
+        <small>2018/06/12 09:15:29</small></p>
+      [...]Vue.js 源码学习笔记[...]
+    </li>
+  
+    <li id="comment-124641" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="https://www.qqwenda.com/wenda/25775.html" target="_blank" title="Vue.js资源分享 - 奇奇问答">Vue.js资源分享 - 奇奇问答</a>
+        
+        </strong>
+        <small>2018/06/13 02:32:56</small></p>
+      [...]Vue.js 源码学习笔记[...]
+    </li>
+  
+    <li id="comment-124917" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="https://codertw.com/%e5%89%8d%e7%ab%af%e9%96%8b%e7%99%bc/189088/" target="_blank" title="VueJS原始碼學習——專案結構&amp;amp;目錄 | 程式前沿">VueJS原始碼學習——專案結構&amp;amp;目錄 | 程式前沿</a>
+        
+        </strong>
+        <small>2018/06/23 06:33:41</small></p>
+      [...]囧克斯的一篇原始碼解析文章[...]
+    </li>
+  
+    <li id="comment-126384" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="https://www.supermap.com/cn/" target="_blank" title="薛恒飞">薛恒飞</a>
+        
+        </strong>
+        <small>2018/07/24 10:07:24</small></p>
+      明人不说暗话 我真的看不懂，虽然我已经看了好几天vue了
+    </li>
+  
+  </ul>
+</div>
+
+</div>
+
+    <div id="footer">
+      <a href="/">囧克斯</a>
+      
+      <a href="/atom.xml" title="rss_feed">文章 RSS</a>
+      <br>
+      我是百度统计：
+      <script src="http://hm.baidu.com/h.js?a0a2372d4b7621d0bfe71f33c58a4bd8"></script>
+    </div>
+  </div>
+  <script src="/js/script.js"></script>
+</body>
+
+</html>

@@ -1,1 +1,139 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 囧克斯</title><meta name="description" content="这里是勾三股四的新家"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://jinjiang.github.io/atom.xml" title="囧克斯"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="archive"><h2 class="archive-year">2013</h2><div class="post-item"><div class="post-info">2013年12月11日</div><a href="/blog/writing-testable-javascript/" class="post-title-link">撰写可测试的 JavaScript</a></div><div class="post-item"><div class="post-info">2013年12月1日</div><a href="/blog/semantic-versioning/" class="post-title-link">语义化版本管理</a></div></div></main><footer><div class="paginator"></div><div class="copyright"><p>© 2015 - 2018 <a href="https://jinjiang.github.io">勾三股四</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- proud for contributing Vue.js -->
+  <meta charset="utf-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-touch-fullscreen" content="yes">
+
+  
+  <title>
+    
+    archive_a: 2013/12 -
+    
+    囧克斯
+  </title>
+
+  <link rel="stylesheet" href="/css/pure.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if IE 6]>
+    <link rel="stylesheet" href="/css/style-ie.css">
+  <![endif]-->
+
+  
+  <link rel="alternate" href="/atom.xml" title="囧克斯" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/favicon.png">
+  
+</head>
+
+<body>
+
+  <div id="wrapper">
+
+    <div id="header">
+      <h1>
+        <a href="/" title="囧克斯">
+          囧克斯
+        </a>
+      </h1>
+      <p class="description">
+        这里是勾三股四的新家
+      </p>
+    </div>
+
+    <div id="nav" class="pure-menu pure-menu-open pure-menu-horizontal">
+      <ul>
+        
+        <li>
+          <a href="/all-demos/">
+            线上
+          </a>
+        </li>
+        
+        <li>
+          <a href="/all-slides/">
+            线下
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about/">
+            关于
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+
+    <div id="main">
+<div class="content">
+  <h2>
+    <a href="/blog/writing-testable-javascript/">
+      撰写可测试的 JavaScript
+    </a>
+  </h2>
+  
+  <p>译自：<a href="http://alistapart.com/article/writing-testable-javascript" target="_blank" rel="noopener">Writing Testable JavaScript - A List Apart</a></p>
+<p>这篇文章算是 A List Apart 系列文章中，包括滑动门在内，令我印象最深刻的文章之一。最近有时间翻译了一下，分享给更多人，希望对大家有所帮助！</p>
+<hr>
+<p><strong>我们已经面对到了这一窘境：一开始我们写的 JavaScript 只有区区几行代码，但是它的代码量一直在增长，我们不断的加参数、加条件。最后，粗 bug 了…… 我们才不得不收拾这个烂摊子。</strong></p>
+<p>如上所述，今天的客户端代码确实承载了更多的责任，浏览器里的整个应用都越变越复杂。我们发现两个明显的趋势：1、我们没法通过单纯的鼠标定位和点击来检验代码是否正常工作，自动化的测试才会真正让我们放心；2、我们也许应该在撰写代码的时候就考虑到，让它变得可测试。</p>
+<p>神马？我们需要改变自己的编码方式？是的。因为即使我们意识到自动化测试的好，大部分人可能只是写写集成测试(integration tests)罢了。集成测试的侧重点是让整个系统的每一部分和谐共存，但是这并没有告诉我们每个独立的<em>功能单元</em>运转起来是否都和我们预期的一样。</p>
+<p>这就是为什么我们要引入单元测试。我们已经准备好经历一段痛苦的<em>撰写单元测试</em>的过程了，但最终我们能够<em>撰写可测试的 JavaScript</em>。</p>
+  <p class="more">
+    <a href="/blog/writing-testable-javascript/">
+      阅读剩余部分...
+    </a>
+  </p>
+  
+</div>
+
+<div class="content">
+  <h2>
+    <a href="/blog/semantic-versioning/">
+      语义化版本管理
+    </a>
+  </h2>
+  
+  <p>译自：<a href="http://semver.org/" target="_blank" rel="noopener">语义化版本管理</a> 2.0.0</p>
+<h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>对于一个给定的版本号 MAJOR.MINOR.PATCH (主、次、补丁)，其变化的规律是：</p>
+<ol>
+<li>MAJOR version (主版本) 会在 API 发生不可向下兼容的改变时增大。</li>
+<li>MINOR version (次版本) 会在有向下兼容的新功能加入时增大。</li>
+<li>PATCH version (补丁版本) 会在bug以向下兼容的方式被修复时增大。</li>
+</ol>
+<p>我们还可以根据预发布、构建元数据 (build metadata) 的实际需求，在 MAJOR.MINOR.PATCH 格式之上扩展出额外的标记。</p>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>在软件管理领域，存在一个叫做“dependency hell (依赖地狱)”的坑。随着系统越变越大，你集成了越多的软件包，也越发觉得，有一天，你会陷入绝望。</p>
+<p>对于有很多依赖关系的系统来说，发布新版本的软件包会迅速变成一场噩梦。如果依赖性规定得太紧，你会陷入 version lock (版本锁，即每次软件包的升级无法产生新的版本)。如果依赖性规定得太松，你会不可避免的面对 version promiscuity (版本泛滥，假设未来版本是需要考虑兼容性的)。当 version lock 和 version promiscuity 让你的项目无法安全而又轻松的向前推进时，这就是所谓的 dependency hell。</p>
+<p>作为一种解决问题的办法，我提出了一套简单的规则和要求来表明版本号该如何确定和增加。这套规则基于但不仅限用于已经广泛存在的开源闭源软件的一般实践。为了让这个系统工作起来，你首先需要声明一个公有的 API，它可以由文档组成或在代码层面强制实现，且必须是清晰准确的。一旦你标识了你的公有 API，你就可以通过不同的版本号的增加来交流 API 的各种改变。设想一个形如 X.Y.Z 的版本，不影响 API 的 bug 修复会增大补丁版本，向下兼容的 API 增加或改变会增大次版本，而不兼容的 API 改变会增大主版本。</p>
+<p>我把这套系统称作“语义化版本管理”。在这套系统之下，版本号及其改变传递了代码背后的含义，以及每个相邻版本之间的变化。</p>
+  <p class="more">
+    <a href="/blog/semantic-versioning/">
+      阅读剩余部分...
+    </a>
+  </p>
+  
+</div>
+
+
+
+</div>
+
+    <div id="footer">
+      <a href="/">囧克斯</a>
+      
+      <a href="/atom.xml" title="rss_feed">文章 RSS</a>
+      <br>
+      我是百度统计：
+      <script src="http://hm.baidu.com/h.js?a0a2372d4b7621d0bfe71f33c58a4bd8"></script>
+    </div>
+  </div>
+  <script src="/js/script.js"></script>
+</body>
+
+</html>

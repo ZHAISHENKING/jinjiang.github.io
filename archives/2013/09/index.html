@@ -1,1 +1,172 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 囧克斯</title><meta name="description" content="这里是勾三股四的新家"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://jinjiang.github.io/atom.xml" title="囧克斯"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="archive"><h2 class="archive-year">2013</h2><div class="post-item"><div class="post-info">2013年9月29日</div><a href="/blog/v8-javascript-performance-tips/" class="post-title-link">JavaScript V8性能小贴士</a></div><div class="post-item"><div class="post-info">2013年9月22日</div><a href="/blog/parallax/" class="post-title-link">视觉差，走起！</a></div><div class="post-item"><div class="post-info">2013年9月18日</div><a href="/blog/devtools-five-performance-features/" class="post-title-link">Chrome开发者工具中评估性能的五大新特性</a></div></div></main><footer><div class="paginator"></div><div class="copyright"><p>© 2015 - 2018 <a href="https://jinjiang.github.io">勾三股四</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- proud for contributing Vue.js -->
+  <meta charset="utf-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-touch-fullscreen" content="yes">
+
+  
+  <title>
+    
+    archive_a: 2013/9 -
+    
+    囧克斯
+  </title>
+
+  <link rel="stylesheet" href="/css/pure.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if IE 6]>
+    <link rel="stylesheet" href="/css/style-ie.css">
+  <![endif]-->
+
+  
+  <link rel="alternate" href="/atom.xml" title="囧克斯" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/favicon.png">
+  
+</head>
+
+<body>
+
+  <div id="wrapper">
+
+    <div id="header">
+      <h1>
+        <a href="/" title="囧克斯">
+          囧克斯
+        </a>
+      </h1>
+      <p class="description">
+        这里是勾三股四的新家
+      </p>
+    </div>
+
+    <div id="nav" class="pure-menu pure-menu-open pure-menu-horizontal">
+      <ul>
+        
+        <li>
+          <a href="/all-demos/">
+            线上
+          </a>
+        </li>
+        
+        <li>
+          <a href="/all-slides/">
+            线下
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about/">
+            关于
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+
+    <div id="main">
+<div class="content">
+  <h2>
+    <a href="/blog/v8-javascript-performance-tips/">
+      JavaScript V8性能小贴士
+    </a>
+  </h2>
+  
+  <p>译自：<a href="http://www.html5rocks.com/en/tutorials/speed/v8/" target="_blank" rel="noopener">Performance Tips for JavaScript in V8</a></p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>关于如何巧妙提高V8 JavaScript性能的话题，Daniel Clifford在Google I/O上做了<a href="http://www.youtube.com/watch?v=UJPdhx5zTaw" target="_blank" rel="noopener">一次非常精彩的分享</a>。Daniel鼓励我们“追求更快”，认真的分析C++和JavaScript之间的性能差距，根据JavaScript的工作原理撰写代码。在Daniel的分享中，有一个核心要点的归纳，我们也会根据性能指导的变化保持对这篇文章的更新。</p>
+<h3 id="最重要的建议"><a href="#最重要的建议" class="headerlink" title="最重要的建议"></a>最重要的建议</h3><p>最重要的是要把任何性能建议放在特定的情境当中。性能建议是附加的东西，有时一开始就特别注意深层的建议反而会对我们造成干扰。你需要从一个综合的角度看待你的Web应用的性能——在关注这些性能建议之前，你应该找<a href="https://developers.google.com/speed/pagespeed/" target="_blank" rel="noopener">PageSpeed</a>之类的工具大概分析一下你的代码，也算是跑个分先。这会防止你过度优化。</p>
+<p>对Web应用的性能优化，几个原则性的建议是：</p>
+<ul>
+<li>首先，未雨绸缪</li>
+<li>然后，找到症结</li>
+<li>最后，修复它</li>
+</ul>
+<p>为了完成这几个步骤，理解V8如何优化JS是一件很重要的事情，这样你就可以根据其对JS运行时的设计撰写代码。同样重要的是掌握一些帮得上忙的工具。Daniel也交代了一些开发者工具的用法，它们刚好抓住了一些V8引擎设计上最重要的部分。</p>
+<p>OK。开始V8小贴士。</p>
+  <p class="more">
+    <a href="/blog/v8-javascript-performance-tips/">
+      阅读剩余部分...
+    </a>
+  </p>
+  
+</div>
+
+<div class="content">
+  <h2>
+    <a href="/blog/parallax/">
+      视觉差，走起！
+    </a>
+  </h2>
+  
+  <p>翻译自：<a href="http://www.html5rocks.com/en/tutorials/speed/parallax/" target="_blank" rel="noopener">http://www.html5rocks.com/en/tutorials/speed/parallax/</a></p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>现在满大街都是视觉差(parallax)网站了，我们随便看几个：</p>
+<ul>
+<li><a href="http://www.rowtothepole.com/" target="_blank" rel="noopener">Old Pulteney Row to the Pole</a></li>
+<li><a href="http://www.adidas.com/com/apps/snowboarding/" target="_blank" rel="noopener">Adidas Snowboarding</a></li>
+<li><a href="http://www.bbc.co.uk/news/entertainment-arts-20026367" target="_blank" rel="noopener">BBC News - James Bond: Cars, catchphrases and kisses</a></li>
+</ul>
+<p>也许你对这玩意儿还不太熟，视觉差其实就是它的视觉结构会随着页面的滚动而变化。通常情况下页面里的元素会根据页面的滚动位置而缩放、旋转或移动。</p>
+<p><img src="http://www.html5rocks.com/static/demos/parallax/parallax.jpg" alt="一个视觉差页面的demo"><br>我们的视觉差demo的完整效果</p>
+<p>不管你喜不喜欢视觉差网站，有一件事毫无疑问，它是一个性能的黑洞。因为当页面滚动时，浏览器的优化都倾向于新内容随滚动而出现于屏幕的最上方或最下方的情况。一般来说，内容改变得越少浏览器性能越高。而对于一个视觉差网站来说，在页面滚动时，好多元素都在发生改变，大多数情况下整个页面的大块可视元素都在发生变化，所以浏览器不得不重绘整个页面。</p>
+<p>我们有理由这样归纳一个视觉差的网站：</p>
+<ul>
+<li>背景元素会在你向上或向下滚动页面时改变位置、旋转或缩放。</li>
+<li>页面内容，如文字或小的图片，在页面滚动时会按照传统的方式进行上下移动。</li>
+</ul>
+<p>建议大家先阅读我们之前介绍过的<a href="http://www.html5rocks.com/en/tutorials/speed/scrolling/" target="_blank" rel="noopener">滚动性能</a>来改进你的app的响应速度。本篇文章是基于那篇文章所写的。</p>
+<p>所以文字是如果你在建立一个视觉差网站，那么你是否受困于高昂的重绘开销？有没有别的改进建议使得性能最大化？让我们看看这几个方案：</p>
+  <p class="more">
+    <a href="/blog/parallax/">
+      阅读剩余部分...
+    </a>
+  </p>
+  
+</div>
+
+<div class="content">
+  <h2>
+    <a href="/blog/devtools-five-performance-features/">
+      Chrome开发者工具中评估性能的五大新特性
+    </a>
+  </h2>
+  
+  <p>摘自：<a href="http://www.html5rocks.com/en/tutorials/developertools/revolutions2013/" target="_blank" rel="noopener">Chrome DevTools Revolutions 2013</a></p>
+<p>本次开发者工具的改进中有几项新特性是针对性能的：</p>
+<ul>
+<li>持续绘制模式</li>
+<li>显示绘制矩形及其层的边框</li>
+<li>每秒帧数的测量仪</li>
+<li>找到强制同步布局(layout thrashing)</li>
+<li>对象分配跟踪</li>
+</ul>
+  <p class="more">
+    <a href="/blog/devtools-five-performance-features/">
+      阅读剩余部分...
+    </a>
+  </p>
+  
+</div>
+
+
+
+</div>
+
+    <div id="footer">
+      <a href="/">囧克斯</a>
+      
+      <a href="/atom.xml" title="rss_feed">文章 RSS</a>
+      <br>
+      我是百度统计：
+      <script src="http://hm.baidu.com/h.js?a0a2372d4b7621d0bfe71f33c58a4bd8"></script>
+    </div>
+  </div>
+  <script src="/js/script.js"></script>
+</body>
+
+</html>

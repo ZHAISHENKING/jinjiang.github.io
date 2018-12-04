@@ -1,4 +1,80 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Vue + webpack 项目实践 · 囧克斯</title><meta name="description" content="Vue + webpack 项目实践 - 勾三股四"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://jinjiang.github.io/atom.xml" title="囧克斯"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Vue + webpack 项目实践</h1><div class="post-info">2015年6月25日</div><div class="post-content"><p>最近在内部项目中做了一些基于 vue + webpack 的尝试，在小范围和同事们探讨之后，还是蛮多同学认可和喜欢的，所以通过 blog 分享给更多人。</p>
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- proud for contributing Vue.js -->
+  <meta charset="utf-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-touch-fullscreen" content="yes">
+
+  
+  <title>
+    
+    Vue + webpack 项目实践 -
+    
+    囧克斯
+  </title>
+
+  <link rel="stylesheet" href="/css/pure.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if IE 6]>
+    <link rel="stylesheet" href="/css/style-ie.css">
+  <![endif]-->
+
+  
+  <link rel="alternate" href="/atom.xml" title="囧克斯" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/favicon.png">
+  
+</head>
+
+<body>
+
+  <div id="wrapper">
+
+    <div id="header">
+      <h1>
+        <a href="/" title="囧克斯">
+          囧克斯
+        </a>
+      </h1>
+      <p class="description">
+        这里是勾三股四的新家
+      </p>
+    </div>
+
+    <div id="nav" class="pure-menu pure-menu-open pure-menu-horizontal">
+      <ul>
+        
+        <li>
+          <a href="/all-demos/">
+            线上
+          </a>
+        </li>
+        
+        <li>
+          <a href="/all-slides/">
+            线下
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about/">
+            关于
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+
+    <div id="main"><div class="content">
+  <h2>
+    Vue + webpack 项目实践
+  </h2>
+  <p>最近在内部项目中做了一些基于 vue + webpack 的尝试，在小范围和同事们探讨之后，还是蛮多同学认可和喜欢的，所以通过 blog 分享给更多人。</p>
 <p>首先，我会先简单介绍一下 vue 和 webpack：</p>
 <p>(当然如果你已经比较熟悉它们的话前两个部分可以直接跳过)</p>
 <h3 id="介绍-vue"><a href="#介绍-vue" class="headerlink" title="介绍 vue"></a>介绍 vue</h3><p><img src="http://img4.tbcdn.cn/L1/461/1/bfe85a6c83b251c21d6b7c1fd38baae3fa790540" alt="_2015_06_25_12_37_36"></p>
@@ -245,4 +321,624 @@ function mapFiles(list, extname) {
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>其实上面提到的 <code>just-vue</code> 脚手架已经远不止文章中介绍的东西了， <strong>我们在业务落地的“最后一公里”做了更多的沉淀和积累，比如自动图片上传与画质处理、rem单位自动换算、服务端/客户端/数据埋点接口的梳理与整合、自动化 htmlone 打包与 awp 发布等等。它们为支持业务的开发者提供了更简单高效的工作体验。</strong> 篇幅有限，更多内容我也希望将来有机会再多分享出来。</p>
 <p>最后再次希望大家如果有兴趣的话可以来玩一下，无线前端组内的同学我都愿意提供一对一入门指导：）</p>
 <p>Just Vue！</p>
-</div></article></div></main><footer><div class="paginator"><a href="/blog/try-fullstack-in-timeline-app/" class="prev">PREV</a><a href="/blog/try-koajs/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2018 <a href="https://jinjiang.github.io">勾三股四</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
+
+</div>
+
+
+
+<div id="comments">
+  <h2>早期评论</h2>
+  <ul>
+  
+    <li id="comment-102651" style="margin-left: 0em;">
+      <p>
+        <strong>
+        hilooooo
+        
+        </strong>
+        <small>2015/06/25 03:18:22</small></p>
+      是真爱
+    </li>
+  
+    <li id="comment-102791" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="https://github.com/szmtcjm" target="_blank" title="szmtcjm">szmtcjm</a>
+        
+        </strong>
+        <small>2015/06/26 01:08:22</small></p>
+      为什么我们内部项目这么少！
+    </li>
+  
+    <li id="comment-102852" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://fuxiaohei.me" target="_blank" title="傅小黑">傅小黑</a>
+        
+        </strong>
+        <small>2015/06/27 09:04:28</small></p>
+      还是不太喜欢require(css)哈哈
+    </li>
+  
+    <li id="comment-102854" style="margin-left: 2em;">
+      <p>
+        <strong>
+        <a href="http://jiongks.name/" target="_blank" title="囧克斯">囧克斯</a>
+        
+        </strong>
+        <small>2015/06/27 12:00:47</small></p>
+      你看我也纠结过这个问题，现在也逐渐接受了 http://weibo.com/1712131295/ClWOljrho
+    </li>
+  
+    <li id="comment-110923" style="margin-left: 4em;">
+      <p>
+        <strong>
+        <a href="http://djyde.github.io" target="_blank" title="Randy">Randy</a>
+        
+        </strong>
+        <small>2015/11/09 11:55:17</small></p>
+      用多了之后你会发现 require css 是很方便的东西，因为用 st<x>yle-loader 和其它 loader 可以让你免于写 gulp 去 process 你的 st<x>ylesheet。
+    </x></x></li>
+  
+    <li id="comment-120727" style="margin-left: 4em;">
+      <p>
+        <strong>
+        <a href="http:www.qq.com" target="_blank" title="商店">商店</a>
+        
+        </strong>
+        <small>2018/01/26 02:15:50</small></p>
+      阿
+    </li>
+  
+    <li id="comment-122853" style="margin-left: 4em;">
+      <p>
+        <strong>
+        test
+        
+        </strong>
+        <small>2018/04/17 02:45:52</small></p>
+      的所发生的？汉字多日本字少
+    </li>
+  
+    <li id="comment-103846" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://dzh.me" target="_blank" title="dazhenhan">dazhenhan</a>
+        
+        </strong>
+        <small>2015/07/15 05:05:42</small></p>
+      发现一个小错误，在getConfig方法中，for 中取值漏了i，应为<br>
+<br>
+for (var i in opt) {<br>
+    config[i] = opt[i]<br>
+}<br>
+<br>
+是吧？
+    </li>
+  
+    <li id="comment-104339" style="margin-left: 0em;">
+      <p>
+        <strong>
+        think2011
+        
+        </strong>
+        <small>2015/07/23 12:17:17</small></p>
+      好大的版面文字
+    </li>
+  
+    <li id="comment-105081" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://blog.yaobieting.com/front-end-development/javascript/236.html" target="_blank" title="今天使用Vue+webpack对项目进行了重构 丨 Raito_MH的世界">今天使用Vue+webpack对项目进行了重构 丨 Raito_MH的世界</a>
+        
+        </strong>
+        <small>2015/08/05 12:12:26</small></p>
+      [...]在这几个月接触的项目中，都使用vue.js这个框架来进行开发，可以说是各种便利，然后今天无意间在微博上看到了勾股大大的这篇博文《Vue + webpack 项目实践》,可以说是受益匪浅，于是对目前正在做的web版本进行了重构。[...]
+    </li>
+  
+    <li id="comment-105127" style="margin-left: 0em;">
+      <p>
+        <strong>
+        tcdona
+        
+        </strong>
+        <small>2015/08/05 04:38:37</small></p>
+      报错了，请问谁成功了吗
+    </li>
+  
+    <li id="comment-105128" style="margin-left: 2em;">
+      <p>
+        <strong>
+        tcdona
+        
+        </strong>
+        <small>2015/08/05 05:10:03</small></p>
+      发现是我项目文件的问题，config 错误确实存在。<br>
+<br>
+最后希望能直接提供zip 包demo，避免一些错误~<br>
+<br>
+文章赞!
+    </li>
+  
+    <li id="comment-105420" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://www.atwang.cn/%e6%b7%98%e5%ae%9d%e6%97%a0%e7%ba%bf%e5%89%8d%e7%ab%af%e5%9b%be%e7%89%87%e5%a4%84%e7%90%86%e6%b5%81%e7%a8%8b/" target="_blank" title="淘宝无线前端图片处理流程 | 潮流前端">淘宝无线前端图片处理流程 | 潮流前端</a>
+        
+        </strong>
+        <small>2015/08/10 04:38:33</small></p>
+      [...]我在这个过程中，融入了之前一段时间集中实践的 vue 和 webpack 的工程体系，在 vue 的基础上进行组件化开发，在 webpack 的基础上管理资源打包、集成和发布，最终合并在了最新的 just-vue 的 adam template 里面。[...]
+    </li>
+  
+    <li id="comment-105683" style="margin-left: 0em;">
+      <p>
+        <strong>
+        naux
+        
+        </strong>
+        <small>2015/08/14 11:50:42</small></p>
+      .vue 文件里的css经过webpack都是inline st<x>yle，如何把vue组件样式抽取出来，合并到一个css文件中
+    </x></li>
+  
+    <li id="comment-112737" style="margin-left: 2em;">
+      <p>
+        <strong>
+        左手阳光
+        
+        </strong>
+        <small>2016/07/01 11:59:04</small></p>
+      使用var ExtractTextPlugin = require("extract-text-webpack-plugin");
+    </li>
+  
+    <li id="comment-106279" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://jiasuhui.com/our-image-workflow" target="_blank" title="手机淘宝前端的图片相关工作流程梳理！ | 加速会">手机淘宝前端的图片相关工作流程梳理！ | 加速会</a>
+        
+        </strong>
+        <small>2015/08/23 04:54:10</small></p>
+      [...]我在这个过程中，融入了之前一段时间集中实践的 vue 和 webpack 的工程体系，在 vue 的基础上进行组件化开发，在 webpack 的基础上管理资源打包、集成和发布，最终合并在了最新的 just-vue 的 adam template 里面。[...]
+    </li>
+  
+    <li id="comment-107084" style="margin-left: 0em;">
+      <p>
+        <strong>
+        梁晓晨
+        
+        </strong>
+        <small>2015/09/02 03:26:02</small></p>
+      有了webpack还配合gulp。我也是醉了
+    </li>
+  
+    <li id="comment-107435" style="margin-left: 0em;">
+      <p>
+        <strong>
+        测试用户
+        
+        </strong>
+        <small>2015/09/07 10:25:57</small></p>
+      “里面包含一个值为 message 的文本何一个相同值的输入框”<br>
+“何”to“和”。
+    </li>
+  
+    <li id="comment-108304" style="margin-left: 0em;">
+      <p>
+        <strong>
+        Aaron
+        
+        </strong>
+        <small>2015/09/19 09:55:57</small></p>
+      我个人也尝试了vue-gulp-webpack的方案<br>
+为什么用gulp<br>
+配合browser-sync做代码注入与浏览器刷新<br>
+gulp watch监控文件变动<br>
+webpack提供监控，但是很慢，消耗比较大<br>
+提供一个简单的配置：<br>
+https://github.com/JsAaron/vue-gulp-webpack-example
+    </li>
+  
+    <li id="comment-111261" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://ivydom.com" target="_blank" title="ivy">ivy</a>
+        
+        </strong>
+        <small>2015/11/29 04:35:58</small></p>
+      值得学习
+    </li>
+  
+    <li id="comment-111947" style="margin-left: 0em;">
+      <p>
+        <strong>
+        雨时节
+        
+        </strong>
+        <small>2016/02/25 12:23:19</small></p>
+      网址已收藏，谢谢。
+    </li>
+  
+    <li id="comment-112179" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://www.swegood.com/164/" target="_blank" title="Vue + webpack 项目实践 R11; 思维谷">Vue + webpack 项目实践 R11; 思维谷</a>
+        
+        </strong>
+        <small>2016/04/06 06:44:02</small></p>
+      [...]本博客转载于http://jiongks.name/blog/just-vue/[...]
+    </li>
+  
+    <li id="comment-112194" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="https://github.com/zjb65532788" target="_blank" title="zjb">zjb</a>
+        
+        </strong>
+        <small>2016/04/09 02:46:18</small></p>
+      最近也在做gulp+webpack+vue,但是每次上线时，打包时间好长啊~要20几秒~
+    </li>
+  
+    <li id="comment-112196" style="margin-left: 2em;">
+      <p>
+        <strong>
+        <a href="https://genffy.com" target="_blank" title="genffy">genffy</a>
+        
+        </strong>
+        <small>2016/04/09 09:44:13</small></p>
+      20几秒你就偷着乐吧，grunt那东西上个线concat minify 要十几分钟，不过跟用了requirejs有关，还有我们是all in one，准备改写，实在受不了了。
+    </li>
+  
+    <li id="comment-112203" style="margin-left: 4em;">
+      <p>
+        <strong>
+        <a href="https://github.com/zjb65532788" target="_blank" title="zjb">zjb</a>
+        
+        </strong>
+        <small>2016/04/10 05:59:00</small></p>
+      10几分钟 怎么忍啊！！
+    </li>
+  
+    <li id="comment-112699" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://fanhehe.cn" target="_blank" title="fanhehe">fanhehe</a>
+        
+        </strong>
+        <small>2016/06/10 06:58:00</small></p>
+      学习了！！！
+    </li>
+  
+    <li id="comment-112713" style="margin-left: 0em;">
+      <p>
+        <strong>
+        小错
+        
+        </strong>
+        <small>2016/06/17 09:51:46</small></p>
+      请问不同的组件之间怎么传数据呢？
+    </li>
+  
+    <li id="comment-112727" style="margin-left: 0em;">
+      <p>
+        <strong>
+        Simon
+        
+        </strong>
+        <small>2016/06/23 02:19:22</small></p>
+      为什么中间还需要到gulp来处理，不直接webpack+vue呢？
+    </li>
+  
+    <li id="comment-112732" style="margin-left: 0em;">
+      <p>
+        <strong>
+        喵喵
+        
+        </strong>
+        <small>2016/06/30 10:09:34</small></p>
+      说好的webpack ，怎么还用gulp呢
+    </li>
+  
+    <li id="comment-112846" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://github.com/wanderxx" target="_blank" title="Sunny">Sunny</a>
+        
+        </strong>
+        <small>2016/07/18 04:51:43</small></p>
+      使用 gulp的原因是什么呢？难道是广泛说的 webpack watch 占内存太高？
+    </li>
+  
+    <li id="comment-115107" style="margin-left: 2em;">
+      <p>
+        <strong>
+        LazyCat
+        
+        </strong>
+        <small>2017/02/20 12:36:54</small></p>
+      webpack能做图片压缩吗，雪碧图行么
+    </li>
+  
+    <li id="comment-115108" style="margin-left: 2em;">
+      <p>
+        <strong>
+        LazyCat
+        
+        </strong>
+        <small>2017/02/20 12:36:54</small></p>
+      webpack能做图片压缩吗，雪碧图行么
+    </li>
+  
+    <li id="comment-112864" style="margin-left: 0em;">
+      <p>
+        <strong>
+        liang
+        
+        </strong>
+        <small>2016/07/25 05:03:47</small></p>
+      v-attr这个修饰符在1.x已经不可用了
+    </li>
+  
+    <li id="comment-112871" style="margin-left: 0em;">
+      <p>
+        <strong>
+        Gao
+        
+        </strong>
+        <small>2016/07/25 05:49:31</small></p>
+      标题应该是为“Vue+gulp-webpack”
+    </li>
+  
+    <li id="comment-112872" style="margin-left: 0em;">
+      <p>
+        <strong>
+        Mr.D
+        
+        </strong>
+        <small>2016/07/26 08:08:08</small></p>
+      求问~~编辑器主题是啥哈哈 看着舒服
+    </li>
+  
+    <li id="comment-112883" style="margin-left: 2em;">
+      <p>
+        <strong>
+        liangdaren
+        
+        </strong>
+        <small>2016/08/05 04:39:06</small></p>
+      sublime吧
+    </li>
+  
+    <li id="comment-116427" style="margin-left: 4em;">
+      <p>
+        <strong>
+        我额你的啊
+        
+        </strong>
+        <small>2017/05/31 11:51:51</small></p>
+      是ATOM的默认主题
+    </li>
+  
+    <li id="comment-112925" style="margin-left: 0em;">
+      <p>
+        <strong>
+        Leisure
+        
+        </strong>
+        <small>2016/08/18 09:47:08</small></p>
+      有源代码吗
+    </li>
+  
+    <li id="comment-112953" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://www.jinpeng.site/2016/08/29/vue-js%e5%85%a5%e9%97%a8%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99/" target="_blank" title="Vue.js入门参考资料 R11; 鹏仔">Vue.js入门参考资料 R11; 鹏仔</a>
+        
+        </strong>
+        <small>2016/08/29 06:12:23</small></p>
+      [...]Vue + webpack 项目实践[...]
+    </li>
+  
+    <li id="comment-113361" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="https://applehater.cn" target="_blank" title="zonghua">zonghua</a>
+        
+        </strong>
+        <small>2016/10/05 01:45:04</small></p>
+      一个页面就对应一个 vue 示例吗？？数据的嵌套有什么方法，我很纠结这个
+    </li>
+  
+    <li id="comment-114103" style="margin-left: 0em;">
+      <p>
+        <strong>
+        夜深未眠
+        
+        </strong>
+        <small>2016/11/21 12:55:33</small></p>
+      感谢楼主的分享。
+    </li>
+  
+    <li id="comment-114105" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://tobe.engineer" target="_blank" title="tolerious">tolerious</a>
+        
+        </strong>
+        <small>2016/11/21 02:32:49</small></p>
+      已被这么大的文字亮瞎，哈哈。
+    </li>
+  
+    <li id="comment-114215" style="margin-left: 0em;">
+      <p>
+        <strong>
+        wolf
+        
+        </strong>
+        <small>2016/11/29 03:45:53</small></p>
+      项目的实例404
+    </li>
+  
+    <li id="comment-114232" style="margin-left: 0em;">
+      <p>
+        <strong>
+        小七
+        
+        </strong>
+        <small>2016/11/30 11:52:02</small></p>
+      项目实例的链接失效啦。在vue作者的github找到一个demo<br>
+连接是： https://github.com/vuejs/vue-loader-example
+    </li>
+  
+    <li id="comment-116942" style="margin-left: 2em;">
+      <p>
+        <strong>
+        <a href="http://jiongks.name/" target="_blank" title="囧克斯">囧克斯</a>
+        
+        </strong>
+        <small>2017/06/27 04:38:18</small></p>
+      感谢指正，我加了实效注明
+    </li>
+  
+    <li id="comment-114997" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://jiongks.name/" target="_blank" title="你妈你爸">你妈你爸</a>
+        
+        </strong>
+        <small>2017/02/09 03:09:23</small></p>
+      国际化
+    </li>
+  
+    <li id="comment-117268" style="margin-left: 0em;">
+      <p>
+        <strong>
+        zhuzhuxia216
+        
+        </strong>
+        <small>2017/07/11 07:35:45</small></p>
+      大牛犀利，言语中，作者对技术的荒蛮生长的各方面东西，保持谨慎接受。
+    </li>
+  
+    <li id="comment-117742" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://www.hubwiz.com" target="_blank" title="小智">小智</a>
+        
+        </strong>
+        <small>2017/08/07 01:34:43</small></p>
+      我们刚出了课程，欢迎大家帮忙瞅瞅。<br>
+<br>
+vue.js 2:<br>
+http://xc.hubwiz.com/course/592ee9b2b343f27b0ae1ba99<br>
+<br>
+vuex 2<br>
+http://xc.hubwiz.com/course/597d463fff52d0da7e3e397a
+    </li>
+  
+    <li id="comment-118309" style="margin-left: 0em;">
+      <p>
+        <strong>
+        酸奶不是酸奶
+        
+        </strong>
+        <small>2017/09/12 03:52:12</small></p>
+      感觉用gulp搞得好复杂 按理说 一般webpack都可以的
+    </li>
+  
+    <li id="comment-119486" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://www.worktle.com/articles/2467/" target="_blank" title="VueJS学习资料大全 | Worktle.com">VueJS学习资料大全 | Worktle.com</a>
+        
+        </strong>
+        <small>2017/11/24 11:28:55</small></p>
+      [...]Vue + webpack 项目实践[...]
+    </li>
+  
+    <li id="comment-121710" style="margin-left: 0em;">
+      <p>
+        <strong>
+        释然了
+        
+        </strong>
+        <small>2018/03/05 05:32:37</small></p>
+      请问热启动如何加载？
+    </li>
+  
+    <li id="comment-122724" style="margin-left: 0em;">
+      <p>
+        <strong>
+        ezpod
+        
+        </strong>
+        <small>2018/04/11 11:42:11</small></p>
+      推荐一个vue工程化实践教程：http://xc.hubwiz.com/course/598bad66c7fd1d49453979c9?affid=jks7878
+    </li>
+  
+    <li id="comment-123464" style="margin-left: 0em;">
+      <p>
+        <strong>
+        qiuguomuhai
+        
+        </strong>
+        <small>2018/05/16 04:35:12</small></p>
+      “杜拉拉不如紫罗兰”是什么梗？
+    </li>
+  
+    <li id="comment-123711" style="margin-left: 2em;">
+      <p>
+        <strong>
+        <a href="http://jiongks.name/" target="_blank" title="囧克斯">囧克斯</a>
+        
+        </strong>
+        <small>2018/05/23 10:19:12</small></p>
+      好吧都过去这么久了。。。我揭晓答案吧：“独乐乐不如众乐乐”的拼音推荐结果 (就是当时我用拼音输入法写 dllbrzll 的第一个推荐词) 不好意思这个有点冷 - -
+    </li>
+  
+    <li id="comment-123616" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="https://codertw.com/%e5%89%8d%e7%ab%af%e9%96%8b%e7%99%bc/4586/" target="_blank" title="前端資源分享-只為更好前端 | 程式前沿">前端資源分享-只為更好前端 | 程式前沿</a>
+        
+        </strong>
+        <small>2018/05/21 06:04:12</small></p>
+      [...]Vue   webpack 專案實踐[...]
+    </li>
+  
+    <li id="comment-124640" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="https://www.qqwenda.com/wenda/25775.html" target="_blank" title="Vue.js资源分享 - 奇奇问答">Vue.js资源分享 - 奇奇问答</a>
+        
+        </strong>
+        <small>2018/06/13 02:32:33</small></p>
+      [...]Vue + webpack 项目实践[...]
+    </li>
+  
+    <li id="comment-124642" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="https://www.qqwenda.com/wenda/26044.html" target="_blank" title="搭建vue+webpack+mock脚手架（一） - 奇奇问答">搭建vue+webpack+mock脚手架（一） - 奇奇问答</a>
+        
+        </strong>
+        <small>2018/06/13 02:39:14</small></p>
+      [...]vue+webpack项目实战 http://jiongks.name/blog/just&#8230;[...]
+    </li>
+  
+  </ul>
+</div>
+
+</div>
+
+    <div id="footer">
+      <a href="/">囧克斯</a>
+      
+      <a href="/atom.xml" title="rss_feed">文章 RSS</a>
+      <br>
+      我是百度统计：
+      <script src="http://hm.baidu.com/h.js?a0a2372d4b7621d0bfe71f33c58a4bd8"></script>
+    </div>
+  </div>
+  <script src="/js/script.js"></script>
+</body>
+
+</html>

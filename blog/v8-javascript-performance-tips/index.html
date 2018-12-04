@@ -1,4 +1,80 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> JavaScript V8性能小贴士 · 囧克斯</title><meta name="description" content="JavaScript V8性能小贴士 - 勾三股四"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://jinjiang.github.io/atom.xml" title="囧克斯"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">JavaScript V8性能小贴士</h1><div class="post-info">2013年9月29日</div><div class="post-content"><p>译自：<a href="http://www.html5rocks.com/en/tutorials/speed/v8/" target="_blank" rel="noopener">Performance Tips for JavaScript in V8</a></p>
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- proud for contributing Vue.js -->
+  <meta charset="utf-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-touch-fullscreen" content="yes">
+
+  
+  <title>
+    
+    JavaScript V8性能小贴士 -
+    
+    囧克斯
+  </title>
+
+  <link rel="stylesheet" href="/css/pure.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if IE 6]>
+    <link rel="stylesheet" href="/css/style-ie.css">
+  <![endif]-->
+
+  
+  <link rel="alternate" href="/atom.xml" title="囧克斯" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/favicon.png">
+  
+</head>
+
+<body>
+
+  <div id="wrapper">
+
+    <div id="header">
+      <h1>
+        <a href="/" title="囧克斯">
+          囧克斯
+        </a>
+      </h1>
+      <p class="description">
+        这里是勾三股四的新家
+      </p>
+    </div>
+
+    <div id="nav" class="pure-menu pure-menu-open pure-menu-horizontal">
+      <ul>
+        
+        <li>
+          <a href="/all-demos/">
+            线上
+          </a>
+        </li>
+        
+        <li>
+          <a href="/all-slides/">
+            线下
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about/">
+            关于
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+
+    <div id="main"><div class="content">
+  <h2>
+    JavaScript V8性能小贴士
+  </h2>
+  <p>译自：<a href="http://www.html5rocks.com/en/tutorials/speed/v8/" target="_blank" rel="noopener">Performance Tips for JavaScript in V8</a></p>
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>关于如何巧妙提高V8 JavaScript性能的话题，Daniel Clifford在Google I/O上做了<a href="http://www.youtube.com/watch?v=UJPdhx5zTaw" target="_blank" rel="noopener">一次非常精彩的分享</a>。Daniel鼓励我们“追求更快”，认真的分析C++和JavaScript之间的性能差距，根据JavaScript的工作原理撰写代码。在Daniel的分享中，有一个核心要点的归纳，我们也会根据性能指导的变化保持对这篇文章的更新。</p>
 <h3 id="最重要的建议"><a href="#最重要的建议" class="headerlink" title="最重要的建议"></a>最重要的建议</h3><p>最重要的是要把任何性能建议放在特定的情境当中。性能建议是附加的东西，有时一开始就特别注意深层的建议反而会对我们造成干扰。你需要从一个综合的角度看待你的Web应用的性能——在关注这些性能建议之前，你应该找<a href="https://developers.google.com/speed/pagespeed/" target="_blank" rel="noopener">PageSpeed</a>之类的工具大概分析一下你的代码，也算是跑个分先。这会防止你过度优化。</p>
 <p>对Web应用的性能优化，几个原则性的建议是：</p>
@@ -135,4 +211,23 @@ try {
 <li><a href="http://v8-io12.appspot.com/" target="_blank" rel="noopener">Deck上的Danial的幻灯演示</a></li>
 <li><a href="http://mrale.ph/blog/2011/12/18/v8-optimization-checklist.html" target="_blank" rel="noopener">V8工程师Vyacheslav Egorov的“我要基于V8优化我们的JS应用”清单</a></li>
 </ul>
-</div></article></div></main><footer><div class="paginator"><a href="/blog/color-matrix-filters-using-the-html5-canvas/" class="prev">PREV</a><a href="/blog/parallax/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2018 <a href="https://jinjiang.github.io">勾三股四</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
+
+</div>
+
+
+
+</div>
+
+    <div id="footer">
+      <a href="/">囧克斯</a>
+      
+      <a href="/atom.xml" title="rss_feed">文章 RSS</a>
+      <br>
+      我是百度统计：
+      <script src="http://hm.baidu.com/h.js?a0a2372d4b7621d0bfe71f33c58a4bd8"></script>
+    </div>
+  </div>
+  <script src="/js/script.js"></script>
+</body>
+
+</html>

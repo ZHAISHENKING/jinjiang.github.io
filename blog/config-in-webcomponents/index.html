@@ -1,4 +1,80 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> webcomponents 笔记 之 配置管理 · 囧克斯</title><meta name="description" content="webcomponents 笔记 之 配置管理 - 勾三股四"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://jinjiang.github.io/atom.xml" title="囧克斯"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">webcomponents 笔记 之 配置管理</h1><div class="post-info">2015年3月30日</div><div class="post-content"><p>话说上周末看到<a href="http://weibo.com/1712131295/CaM1n2FcY" target="_blank" rel="noopener">一个吐槽腾讯“内部开源”的微博</a>，后来我想了想，自己那么骚包的在项目还没做完之前，就在 <a href="/slides/css-scoping/">CSSConf</a> 上说我们将来要开源一个名叫 Zorro 的库。结果好几个月过去了还是没有准备好，也就不敢再笑话别人了……</p>
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- proud for contributing Vue.js -->
+  <meta charset="utf-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-touch-fullscreen" content="yes">
+
+  
+  <title>
+    
+    webcomponents 笔记 之 配置管理 -
+    
+    囧克斯
+  </title>
+
+  <link rel="stylesheet" href="/css/pure.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if IE 6]>
+    <link rel="stylesheet" href="/css/style-ie.css">
+  <![endif]-->
+
+  
+  <link rel="alternate" href="/atom.xml" title="囧克斯" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/favicon.png">
+  
+</head>
+
+<body>
+
+  <div id="wrapper">
+
+    <div id="header">
+      <h1>
+        <a href="/" title="囧克斯">
+          囧克斯
+        </a>
+      </h1>
+      <p class="description">
+        这里是勾三股四的新家
+      </p>
+    </div>
+
+    <div id="nav" class="pure-menu pure-menu-open pure-menu-horizontal">
+      <ul>
+        
+        <li>
+          <a href="/all-demos/">
+            线上
+          </a>
+        </li>
+        
+        <li>
+          <a href="/all-slides/">
+            线下
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about/">
+            关于
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+
+    <div id="main"><div class="content">
+  <h2>
+    webcomponents 笔记 之 配置管理
+  </h2>
+  <p>话说上周末看到<a href="http://weibo.com/1712131295/CaM1n2FcY" target="_blank" rel="noopener">一个吐槽腾讯“内部开源”的微博</a>，后来我想了想，自己那么骚包的在项目还没做完之前，就在 <a href="/slides/css-scoping/">CSSConf</a> 上说我们将来要开源一个名叫 Zorro 的库。结果好几个月过去了还是没有准备好，也就不敢再笑话别人了……</p>
 <p>我觉得把东西开源出来之前，有几件事要准备好，不然除了自己刷存在感之外，真的没意义。比如：</p>
 <ol>
 <li>是否有了 (或阐述清楚了) 明确的目标和方向，不然找不到合适的合作者和贡献者</li>
@@ -88,4 +164,23 @@
 <p><strong>以上这些，构成了今天的 <code>&lt;z-config&gt;</code> 组件</strong></p>
 <p>实现机制并不复杂，这里就暂不贴代码出来了，但终归是会开源的，我保证。</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>说回配置管理本身，它实际上是一种信息在程序和组件之间的流通方式。我们基于对 webcomponents 自身特点和形态的理解，加上业务实践中的一些体会，设计了这样的一个标签。希望给大家一些启发，同时也欢迎大家的讨论和观点。</p>
-</div></article></div></main><footer><div class="paginator"><a href="/blog/try-koajs/" class="prev">PREV</a><a href="/blog/2014-2015/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2018 <a href="https://jinjiang.github.io">勾三股四</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
+
+</div>
+
+
+
+</div>
+
+    <div id="footer">
+      <a href="/">囧克斯</a>
+      
+      <a href="/atom.xml" title="rss_feed">文章 RSS</a>
+      <br>
+      我是百度统计：
+      <script src="http://hm.baidu.com/h.js?a0a2372d4b7621d0bfe71f33c58a4bd8"></script>
+    </div>
+  </div>
+  <script src="/js/script.js"></script>
+</body>
+
+</html>

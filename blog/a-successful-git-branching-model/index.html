@@ -1,4 +1,80 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Git 分支的最佳实践 · 囧克斯</title><meta name="description" content="Git 分支的最佳实践 - 勾三股四"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://jinjiang.github.io/atom.xml" title="囧克斯"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Git 分支的最佳实践</h1><div class="post-info">2014年1月1日</div><div class="post-content"><p>译自：<a href="http://nvie.com/posts/a-successful-git-branching-model/" target="_blank" rel="noopener">A successful Git branching model &raquo; nvie.com</a></p>
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- proud for contributing Vue.js -->
+  <meta charset="utf-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-touch-fullscreen" content="yes">
+
+  
+  <title>
+    
+    Git 分支的最佳实践 -
+    
+    囧克斯
+  </title>
+
+  <link rel="stylesheet" href="/css/pure.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if IE 6]>
+    <link rel="stylesheet" href="/css/style-ie.css">
+  <![endif]-->
+
+  
+  <link rel="alternate" href="/atom.xml" title="囧克斯" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/favicon.png">
+  
+</head>
+
+<body>
+
+  <div id="wrapper">
+
+    <div id="header">
+      <h1>
+        <a href="/" title="囧克斯">
+          囧克斯
+        </a>
+      </h1>
+      <p class="description">
+        这里是勾三股四的新家
+      </p>
+    </div>
+
+    <div id="nav" class="pure-menu pure-menu-open pure-menu-horizontal">
+      <ul>
+        
+        <li>
+          <a href="/all-demos/">
+            线上
+          </a>
+        </li>
+        
+        <li>
+          <a href="/all-slides/">
+            线下
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about/">
+            关于
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+
+    <div id="main"><div class="content">
+  <h2>
+    Git 分支的最佳实践
+  </h2>
+  <p>译自：<a href="http://nvie.com/posts/a-successful-git-branching-model/" target="_blank" rel="noopener">A successful Git branching model &raquo; nvie.com</a></p>
 <hr>
 <p>本文将展示我一年前在自己的项目中成功运用的开发模型。我一直打算把这些东西写出来，但总是没有抽出时间，现在终于写好了。这里介绍的不是任何项目的细节，而是有关分支的策略以及对发布的管理。</p>
 <p><img src="http://nvie.com/img/git-model@2x.png" alt=""></p>
@@ -138,4 +214,124 @@ Deleted branch hotfix-1.2.1 (was abbe5d6).
 </code></pre><h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>其实这个分支模型里没有什么新奇的东西。文章开头的那张大图对我们的项目来说非常有用。它非常易于团队成员理解这个优雅有效的模型，并在团队内部达成共识。</p>
 <p>这里还有一份那张大图的 <a href="http://nvie.com/files/Git-branching-model.pdf" target="_blank" rel="noopener">高清PDF版本</a>，你可以把它当做手册放在手边快速浏览。</p>
 <p><strong>补充</strong>：还有，如果你们需要的话，这里还有一份 <a href="http://github.com/downloads/nvie/gitflow/Git-branching-model-src.key.zip" target="_blank" rel="noopener">Keynote 版本</a></p>
-</div></article></div></main><footer><div class="paginator"><a href="/blog/naming-css-stuff-is-really-hard/" class="prev">PREV</a><a href="/blog/writing-testable-javascript/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2018 <a href="https://jinjiang.github.io">勾三股四</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
+
+</div>
+
+
+
+<div id="comments">
+  <h2>早期评论</h2>
+  <ul>
+  
+    <li id="comment-54525" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://funwo.tk" target="_blank" title="咧威">咧威</a>
+        
+        </strong>
+        <small>2014/08/07 10:26:57</small></p>
+      git merge --on-ff  应该是 --no-ff
+    </li>
+  
+    <li id="comment-57996" style="margin-left: 2em;">
+      <p>
+        <strong>
+        <a href="http://jiongks.name/" target="_blank" title="囧克斯">囧克斯</a>
+        
+        </strong>
+        <small>2014/08/18 01:50:30</small></p>
+      <a href="#comment-54525">@咧威</a><br>
+确实搞错了，已修正，谢谢：）
+    </li>
+  
+    <li id="comment-54983" style="margin-left: 0em;">
+      <p>
+        <strong>
+        jw
+        
+        </strong>
+        <small>2014/08/10 12:04:08</small></p>
+      用的不错的sourcetree飘过~
+    </li>
+  
+    <li id="comment-68519" style="margin-left: 0em;">
+      <p>
+        <strong>
+        CSS魔法
+        
+        </strong>
+        <small>2014/10/14 08:44:22</small></p>
+      勾股哥，原文的图片地址变了。
+    </li>
+  
+    <li id="comment-68639" style="margin-left: 2em;">
+      <p>
+        <strong>
+        <a href="http://jiongks.name/" target="_blank" title="囧克斯">囧克斯</a>
+        
+        </strong>
+        <small>2014/10/15 05:35:32</small></p>
+      嗷~ 赶紧修…… 囧
+    </li>
+  
+    <li id="comment-77080" style="margin-left: 0em;">
+      <p>
+        <strong>
+        Bin
+        
+        </strong>
+        <small>2014/11/26 12:23:48</small></p>
+      多谢楼主，很多帮助
+    </li>
+  
+    <li id="comment-93245" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="https://github.com/sinkcup" target="_blank" title="sinkcup">sinkcup</a>
+        
+        </strong>
+        <small>2015/04/11 10:20:06</small></p>
+      web项目用这个流程很合适，但多版本并行的软件项目怎么办？很困惑，请教博主。<br>
+比如像ubuntu， 如果14.04在master里发布了，而开发的新版14.10 在develop里，当14.10开发完毕，打算发布时，合并到master，那14.04就不存在了，如果出问题，需要发布14.04.1怎么办？从哪里checkout？<br>
+实际上，ubuntu的确发布了14.04.1、 14.04.2。<br>
+解决办法：每个版本都重新创建一个项目？比如14.04 、 14.10 、 15.04 是3个项目，感觉很奇怪……
+    </li>
+  
+    <li id="comment-93838" style="margin-left: 2em;">
+      <p>
+        <strong>
+        <a href="http://jiongks.name/" target="_blank" title="囧克斯">囧克斯</a>
+        
+        </strong>
+        <small>2015/04/19 12:32:48</small></p>
+      可以在 14.04 的节点上打一个 tag，维护这个版本的时候，就从 14.04 的 tag 上 checkout 一个分支出来
+    </li>
+  
+    <li id="comment-105997" style="margin-left: 0em;">
+      <p>
+        <strong>
+        Adrian
+        
+        </strong>
+        <small>2015/08/19 04:01:49</small></p>
+      相当猛的教材！！
+    </li>
+  
+  </ul>
+</div>
+
+</div>
+
+    <div id="footer">
+      <a href="/">囧克斯</a>
+      
+      <a href="/atom.xml" title="rss_feed">文章 RSS</a>
+      <br>
+      我是百度统计：
+      <script src="http://hm.baidu.com/h.js?a0a2372d4b7621d0bfe71f33c58a4bd8"></script>
+    </div>
+  </div>
+  <script src="/js/script.js"></script>
+</body>
+
+</html>

@@ -1,4 +1,80 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 【整理】Vue 2.0 自 beta 1 到 beta 4 以来的主要更新 · 囧克斯</title><meta name="description" content="【整理】Vue 2.0 自 beta 1 到 beta 4 以来的主要更新 - 勾三股四"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://jinjiang.github.io/atom.xml" title="囧克斯"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">【整理】Vue 2.0 自 beta 1 到 beta 4 以来的主要更新</h1><div class="post-info">2016年7月28日</div><div class="post-content"><p>主要内容来自 <a href="https://github.com/vuejs/vue/releases" target="_blank" rel="noopener">https://github.com/vuejs/vue/releases</a></p>
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- proud for contributing Vue.js -->
+  <meta charset="utf-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-touch-fullscreen" content="yes">
+
+  
+  <title>
+    
+    【整理】Vue 2.0 自 beta 1 到 beta 4 以来的主要更新 -
+    
+    囧克斯
+  </title>
+
+  <link rel="stylesheet" href="/css/pure.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if IE 6]>
+    <link rel="stylesheet" href="/css/style-ie.css">
+  <![endif]-->
+
+  
+  <link rel="alternate" href="/atom.xml" title="囧克斯" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/favicon.png">
+  
+</head>
+
+<body>
+
+  <div id="wrapper">
+
+    <div id="header">
+      <h1>
+        <a href="/" title="囧克斯">
+          囧克斯
+        </a>
+      </h1>
+      <p class="description">
+        这里是勾三股四的新家
+      </p>
+    </div>
+
+    <div id="nav" class="pure-menu pure-menu-open pure-menu-horizontal">
+      <ul>
+        
+        <li>
+          <a href="/all-demos/">
+            线上
+          </a>
+        </li>
+        
+        <li>
+          <a href="/all-slides/">
+            线下
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about/">
+            关于
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+
+    <div id="main"><div class="content">
+  <h2>
+    【整理】Vue 2.0 自 beta 1 到 beta 4 以来的主要更新
+  </h2>
+  <p>主要内容来自 <a href="https://github.com/vuejs/vue/releases" target="_blank" rel="noopener">https://github.com/vuejs/vue/releases</a></p>
 <p>之前 <a href="http://jiongks.name/blog/announcing-vue-2/" target="_blank" rel="noopener">Vue 2.0 发布技术预览版</a> 到现在差不多三个月了，之前写过一篇简单的 <a href="http://jiongks.name/blog/code-review-for-vue-next/" target="_blank" rel="noopener">code review</a>，如今三个月过去了，Vue 2.0 在这个<a href="http://jiongks.name/blog/a-big-map-to-intro-vue-next/" target="_blank" rel="noopener">基础</a>之上又带来了不少更新，这里汇总 beta 以来 (最新的版本是 beta 4) 的主要更新，大家随意学习感受一下</p>
 <h3 id="alpha-和-beta-版本的侧重点会有所不同"><a href="#alpha-和-beta-版本的侧重点会有所不同" class="headerlink" title="alpha 和 beta 版本的侧重点会有所不同"></a>alpha 和 beta 版本的侧重点会有所不同</h3><p>首先 Vue 2.0 对 alpha、beta 有自己的理解和设定：alpha 版本旨在完善 API、考虑所需的特性；而来到 beta 版则会对未来的正式发布进行充分的“消化”，比如提前进行一些必要的 breaking change，增强框架的稳定性、完善文档和周边工具 (如 vue-router 2.0 等)</p>
 <h3 id="最后的几个-alpha-版本主要更新"><a href="#最后的几个-alpha-版本主要更新" class="headerlink" title="最后的几个 alpha 版本主要更新"></a>最后的几个 alpha 版本主要更新</h3><p>Vue 本身的语法基础这里就不多赘述了，网上有很多资料可以查阅，我们已经假定你比较熟悉 Vue 并对 2.0 的理念和技术预览版的状态有一定的了解。</p>
@@ -73,4 +149,74 @@ render: (h, props, children) {
 <h4 id="beta-4"><a href="#beta-4" class="headerlink" title="beta 4"></a>beta 4</h4><p>2 天前发布的，其实这个版本以 bugfix 为主</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>以上是近期 Vue 2.0 的一些更新，让我自己比较兴奋的主要是 functional component 以及基于这个设计的 <code>&lt;transition&gt;</code> 和 <code>&lt;transition-group&gt;</code> 标签和自定义 transition 标签的能力拓展，还有就是久违的 <code>&lt;comp @click.native=&quot;...&quot;&gt;&lt;/comp&gt;</code></p>
 <p>最后希望大家可以多多试用，有更大兴趣的可以多多学习 Vue 的源码！</p>
-</div></article></div></main><footer><div class="paginator"><a href="/blog/vue-2-is-here/" class="prev">PREV</a><a href="/blog/a-big-map-to-intro-vue-next/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2018 <a href="https://jinjiang.github.io">勾三股四</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
+
+</div>
+
+
+
+<div id="comments">
+  <h2>早期评论</h2>
+  <ul>
+  
+    <li id="comment-112873" style="margin-left: 0em;">
+      <p>
+        <strong>
+        banri
+        
+        </strong>
+        <small>2016/07/29 12:23:31</small></p>
+      对我来说最激动的还是 component + keep-alive 终于可以正常的在同构造器的组件实例间切换了。<br>
+各种 tab 切换的需求处理起来就简单多了，这个必须是最感人的特性啊 QAQ
+    </li>
+  
+    <li id="comment-113127" style="margin-left: 0em;">
+      <p>
+        <strong>
+        <a href="http://shenzm.cn" target="_blank" title="志敏">志敏</a>
+        
+        </strong>
+        <small>2016/09/13 04:27:42</small></p>
+      2.0上 删除了prop的prop binding modes部分，理由是"v-model can work on components"，<br>
+关于这点，不是很明白啊？<br>
+是说父子组件之间传递的prop都是双向绑定么？
+    </li>
+  
+    <li id="comment-113420" style="margin-left: 0em;">
+      <p>
+        <strong>
+        plortinus
+        
+        </strong>
+        <small>2016/10/09 10:30:53</small></p>
+      beta3里,有个文字错误"时间绑定"应该是"事件绑定"
+    </li>
+  
+    <li id="comment-113495" style="margin-left: 2em;">
+      <p>
+        <strong>
+        <a href="http://jiongks.name/" target="_blank" title="囧克斯">囧克斯</a>
+        
+        </strong>
+        <small>2016/10/13 07:57:53</small></p>
+      <a href="#comment-113420">@plortinus</a><br>
+多谢！已修正
+    </li>
+  
+  </ul>
+</div>
+
+</div>
+
+    <div id="footer">
+      <a href="/">囧克斯</a>
+      
+      <a href="/atom.xml" title="rss_feed">文章 RSS</a>
+      <br>
+      我是百度统计：
+      <script src="http://hm.baidu.com/h.js?a0a2372d4b7621d0bfe71f33c58a4bd8"></script>
+    </div>
+  </div>
+  <script src="/js/script.js"></script>
+</body>
+
+</html>
