@@ -1,137 +1,55 @@
-(function($){
-  // Search
-  var $searchWrap = $('#search-form-wrap'),
-    isSearchAnim = false,
-    searchAnimDuration = 200;
+(function () {
+  var title = document.querySelector('#header h1 a');
+  var text = title.innerText;
+  var firstLetter = document.createElement('span');
+  firstLetter.className = 'first-letter';
+  firstLetter.innerText = text.substr(0, 1);
+  var otherLetters = document.createTextNode(text.substr(1));
+  title.innerHTML = '';
+  title.appendChild(firstLetter);
+  title.appendChild(otherLetters);
+})();
 
-  var startSearchAnim = function(){
-    isSearchAnim = true;
-  };
-
-  var stopSearchAnim = function(callback){
-    setTimeout(function(){
-      isSearchAnim = false;
-      callback && callback();
-    }, searchAnimDuration);
-  };
-
-  $('#nav-search-btn').on('click', function(){
-    if (isSearchAnim) return;
-
-    startSearchAnim();
-    $searchWrap.addClass('on');
-    stopSearchAnim(function(){
-      $('.search-form-input').focus();
-    });
-  });
-
-  $('.search-form-input').on('blur', function(){
-    startSearchAnim();
-    $searchWrap.removeClass('on');
-    stopSearchAnim();
-  });
-
-  // Share
-  $('body').on('click', function(){
-    $('.article-share-box.on').removeClass('on');
-  }).on('click', '.article-share-link', function(e){
-    e.stopPropagation();
-
-    var $this = $(this),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      id = 'article-share-box-' + $this.attr('data-id'),
-      offset = $this.offset();
-
-    if ($('#' + id).length){
-      var box = $('#' + id);
-
-      if (box.hasClass('on')){
-        box.removeClass('on');
-        return;
-      }
-    } else {
-      var html = [
-        '<div id="' + id + '" class="article-share-box">',
-          '<input class="article-share-input" value="' + url + '">',
-          '<div class="article-share-links">',
-            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
-            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
-          '</div>',
-        '</div>'
-      ].join('');
-
-      var box = $(html);
-
-      $('body').append(box);
+(function () {
+  var pages = document.querySelectorAll('.page-navigator > *');
+  pages = [].slice.call(pages);
+  pages.forEach(function (page) {
+    page.classList.add('pure-button');
+    if (page.classList.contains('current')) {
+      page.classList.add('pure-button-disabled');
     }
-
-    $('.article-share-box.on').hide();
-
-    box.css({
-      top: offset.top + 25,
-      left: offset.left
-    }).addClass('on');
-  }).on('click', '.article-share-box', function(e){
-    e.stopPropagation();
-  }).on('click', '.article-share-box-input', function(){
-    $(this).select();
-  }).on('click', '.article-share-box-link', function(e){
-    e.preventDefault();
-    e.stopPropagation();
-
-    window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
   });
+})();
 
-  // Caption
-  $('.article-entry').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-
-      var alt = this.alt;
-
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-
-  if ($.fancybox){
-    $('.fancybox').fancybox();
+(function () {
+  var header = document.querySelector('#header');
+  if (header) {
+    var bgImage = '/images/bg_' + Math.ceil(Math.random() * 16) + '.jpg';
+    if (window.innerWidth <= 640) {
+      bgImage = bgImage.replace('.jpg', '_m.jpg');
+    }
+    header.style.background = '#09c none no-repeat center center';
+    header.style.backgroundSize = 'cover';
+    header.style.backgroundImage = '-webkit-linear-gradient(top, rgba(0, 144, 192, 1), rgba(0, 144, 192, 0.5)), url(' + bgImage + ')';
+    header.style.backgroundImage = '-moz-linear-gradient(top, rgba(0, 144, 192, 1), rgba(0, 144, 192, 0.5)), url(' + bgImage + ')';
+    header.style.backgroundImage = '-ms-linear-gradient(top, rgba(0, 144, 192, 1), rgba(0, 144, 192, 0.5)), url(' + bgImage + ')';
+    header.style.backgroundImage = 'linear-gradient(top, rgba(0, 144, 192, 1), rgba(0, 144, 192, 0.5)), url(' + bgImage + ')';
   }
+})();
 
-  // Mobile nav
-  var $container = $('#container'),
-    isMobileNavAnim = false,
-    mobileNavAnimDuration = 200;
-
-  var startMobileNavAnim = function(){
-    isMobileNavAnim = true;
-  };
-
-  var stopMobileNavAnim = function(){
-    setTimeout(function(){
-      isMobileNavAnim = false;
-    }, mobileNavAnimDuration);
+(function () {
+  var footer = document.querySelector('#footer');
+  if (footer) {
+    var bgImage = '/images/bg_' + Math.ceil(Math.random() * 16) + '.jpg';
+    if (window.innerWidth <= 640) {
+      bgImage = bgImage.replace('.jpg', '_m.jpg');
+    }
+    footer.style.background = '#f60 none no-repeat center center';
+    footer.style.backgroundSize = 'cover';
+    footer.style.backgroundImage = '-webkit-linear-gradient(top, rgba(255, 96, 0, 0.5), rgba(255, 96, 0, 1)), url(' + bgImage + ')';
+    footer.style.backgroundImage = '-moz-linear-gradient(top, rgba(255, 96, 0, 0.5), rgba(255, 96, 0, 1)), url(' + bgImage + ')';
+    footer.style.backgroundImage = '-ms-linear-gradient(top, rgba(255, 96, 0, 0.5), rgba(255, 96, 0, 1)), url(' + bgImage + ')';
+    footer.style.backgroundImage = 'linear-gradient(top, rgba(255, 96, 0, 0.5), rgba(255, 96, 0, 1)), url(' + bgImage + ')';
   }
+})();
 
-  $('#main-nav-toggle').on('click', function(){
-    if (isMobileNavAnim) return;
-
-    startMobileNavAnim();
-    $container.toggleClass('mobile-nav-on');
-    stopMobileNavAnim();
-  });
-
-  $('#wrap').on('click', function(){
-    if (isMobileNavAnim || !$container.hasClass('mobile-nav-on')) return;
-
-    $container.removeClass('mobile-nav-on');
-  });
-})(jQuery);

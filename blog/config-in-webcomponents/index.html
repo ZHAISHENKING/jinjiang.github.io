@@ -87,13 +87,13 @@
 <p>—- 以上是一些比较啰嗦的铺陈 —-</p>
 <h3 id="组件分解的方式及其衍变"><a href="#组件分解的方式及其衍变" class="headerlink" title="组件分解的方式及其衍变"></a>组件分解的方式及其衍变</h3><p>在开发大型应用的时候，难免要用到一些组件化的分解方式。比如：把一个相册浏览界面分解成：“相册列表”和“大图预览”两个区域，“相册列表”又由一个个“相册缩略图”组成，每个“相册缩略图”包含了一个“小图片”以及“预览按钮”、“删除按钮”、“排序按钮”等操作按钮……</p>
 <p>而如何管理和划分组件逐渐变成了前端工程里的一门学问。<a id="more"></a></p>
-<p><img src="http://jiongks-typecho.stor.sinaapp.com/usr/uploads/2015/03/594096967.png" alt="components_1.png"></p>
+<p><img src="/uploads/2015/03/594096967.png" alt="components_1.png"></p>
 <p>最简单的分解方式是树形分解，自上而下。比如刚才的那个相册浏览界面的例子。</p>
-<p><img src="http://jiongks-typecho.stor.sinaapp.com/usr/uploads/2015/03/3435937818.png" alt="components_2.png"></p>
+<p><img src="/uploads/2015/03/3435937818.png" alt="components_2.png"></p>
 <p>同时，我们会发现，树形的最末端往往存在着有共性的组件，比如按钮、文本框之类的组件，它们无处不在。这时，就有了所谓的“基础组件”和“业务组件”之分。“基础组件”是共享的，树形结构中的任何一个结点(“业务组件”)都可以直接使用这些“基础组件”。</p>
-<p><img src="http://jiongks-typecho.stor.sinaapp.com/usr/uploads/2015/03/2975873720.png" alt="components_3.png"></p>
+<p><img src="/uploads/2015/03/2975873720.png" alt="components_3.png"></p>
 <p>如果程序的结构再复杂，那么就在“业务”和“基础”之间分更多的层，每一层有自己明确的职能范围，同时，较高层的组件可以自由调用较低层的组件。</p>
-<p><img src="http://jiongks-typecho.stor.sinaapp.com/usr/uploads/2015/03/1309938584.png" alt="components_4.png"></p>
+<p><img src="/uploads/2015/03/1309938584.png" alt="components_4.png"></p>
 <h3 id="组件的配置信息"><a href="#组件的配置信息" class="headerlink" title="组件的配置信息"></a>组件的配置信息</h3><p>配置信息大多是在组件在兼顾通用性抽象和特殊性业务时出现的。好的配置设计可以避免大量重复的组件设计和实现。</p>
 <p>较简单的配置信息通常都是组件本身的一些属性 (properties) 或特性 (attributes)，在 webcomponents (<a href="http://docs.polymerchina.org/" target="_blank" rel="noopener">polymer</a>) 的场景下，就是：</p>
 <pre><code>&lt;polymer-element name=&quot;x-person&quot; attributes=&quot;name, age, gender, avatar, ...&quot;&gt;  

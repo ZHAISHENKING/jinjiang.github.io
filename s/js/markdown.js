@@ -386,7 +386,7 @@ Markdown.dialects.Gruber = {
     // There are two types of lists. Tight and loose. Tight lists have no whitespace
     // between the items (and result in text just in the <li>) and loose lists,
     // which have an empty line between list items, resulting in (one or more)
-    // paragraphs inside the </li><li>.
+    // paragraphs inside the <li>.
     //
     // There are all sorts weird edge cases about the original markdown.pl's
     // handling of lists:
@@ -574,7 +574,28 @@ Markdown.dialects.Gruber = {
                 if (!found) {
                   //print("not found. l:", uneval(l));
                   wanted_depth++;
-                  if (wanted_depth <= stack.length)="" {="" stack.splice(wanted_depth);="" print("desired="" depth="" now",="" wanted_depth,="" "stack:",="" stack.length);="" list="stack[wanted_depth-1].list;" print("list:",="" uneval(list)="" );="" }="" else="" print="" ("made="" new="" stack="" for="" messy="" indent");="" last_li.push(list);="" print(="" uneval(list),="" "last",="" stack[stack.length-1].list="" last_li="[" "listitem"="" ];="" list.push(last_li);="" end="" of="" shenegains="" nl="" ;="" add="" content="" if="" (l.length=""> m[0].length) {
+                  if (wanted_depth <= stack.length) {
+                    stack.splice(wanted_depth);
+                    //print("Desired depth now", wanted_depth, "stack:", stack.length);
+                    list = stack[wanted_depth-1].list;
+                    //print("list:", uneval(list) );
+                  }
+                  else {
+                    //print ("made new stack for messy indent");
+                    list = make_list(m);
+                    last_li.push(list);
+                  }
+                }
+
+                //print( uneval(list), "last", list === stack[stack.length-1].list );
+                last_li = [ "listitem" ];
+                list.push(last_li);
+              } // end depth of shenegains
+              nl = "";
+            }
+
+            // Add content
+            if (l.length > m[0].length) {
               li_accumulate += nl + l.substr( m[0].length );
             }
           } // tight_search
@@ -685,7 +706,7 @@ Markdown.dialects.Gruber = {
 
       var b = this.loop_re_over_block(re, block, function( m ) {
 
-        if ( m[2] && m[2][0] == '<' &&="" m[2][m[2].length-1]="=" '="">' )
+        if ( m[2] && m[2][0] == '<' && m[2][m[2].length-1] == '>' )
           m[2] = m[2].substring( 1, m[2].length - 1 );
 
         var ref = attrs.references[ m[1].toLowerCase() ] = {
@@ -776,7 +797,11 @@ Markdown.dialects.Gruber.inline = {
 
     "![": function image( text ) {
       // ![Alt text](/path/to/img.jpg "Optional title")
-      //      1          2            3       4         <--- captures="" var="" m="text.match(" ^!\[(.*?)\][="" \t]*\([="" \t]*(\s*)(?:[="" \t]+(["'])(.*?)\3)?[="" \t]*\)="" );="" if="" (="" )="" {="" m[2]="" &&="" m[2][0]="=" '<'="" m[2][m[2].length-1]="=" '="">' )
+      //      1          2            3       4         <--- captures
+      var m = text.match( /^!\[(.*?)\][ \t]*\([ \t]*(\S*)(?:[ \t]+(["'])(.*?)\3)?[ \t]*\)/ );
+
+      if ( m ) {
+        if ( m[2] && m[2][0] == '<' && m[2][m[2].length-1] == '>' )
           m[2] = m[2].substring( 1, m[2].length - 1 );
 
         m[2] == this.dialect.inline.__call__.call( this, m[2], /\\/ )[0];
@@ -803,7 +828,11 @@ Markdown.dialects.Gruber.inline = {
 
     "[": function link( text ) {
       // [link text](/path/to/img.jpg "Optional title")
-      //      1          2            3       4         <--- captures="" var="" m="text.match(" ^\[([\s\s]*?)\][="" \t]*\([="" \t]*(\s+)(?:[="" \t]+(["'])(.*?)\3)?[="" \t]*\)="" );="" if="" (="" )="" {="" m[2]="" &&="" m[2][0]="=" '<'="" m[2][m[2].length-1]="=" '="">' )
+      //      1          2            3       4         <--- captures
+      var m = text.match( /^\[([\s\S]*?)\][ \t]*\([ \t]*(\S+)(?:[ \t]+(["'])(.*?)\3)?[ \t]*\)/ );
+
+      if ( m ) {
+        if ( m[2] && m[2][0] == '<' && m[2][m[2].length-1] == '>' )
           m[2] = m[2].substring( 1, m[2].length - 1 );
 
         // Process escapes only
@@ -845,7 +874,10 @@ Markdown.dialects.Gruber.inline = {
     },
 
 
-    "<": function="" autolink(="" text="" )="" {="" var="" m;="" if="" (="" m="text.match(" ^<(?:((https?|ftp|mailto):[^="">]+)|(.*?@.*?\.[a-zA-Z]+))>/ ) ) != null ) {
+    "<": function autoLink( text ) {
+      var m;
+
+      if ( ( m = text.match( /^<(?:((https?|ftp|mailto):[^>]+)|(.*?@.*?\.[a-zA-Z]+))>/ ) ) != null ) {
         if ( m[3] ) {
           return [ m[0].length, [ "link", { href: "mailto:" + m[3] }, m[3] ] ];
 
@@ -857,7 +889,142 @@ Markdown.dialects.Gruber.inline = {
           return [ m[0].length, [ "link", { href: m[1] }, m[1] ] ];
       }
 
-      return [ 1, "<" 1="" ];="" },="" "`":="" function="" inlinecode(="" text="" )="" {="" inline="" code="" block.="" as="" many="" backticks="" you="" like="" to="" start="" it="" always="" skip="" over="" the="" opening="" ticks.="" var="" m="text.match(" (`+)(([\s\s]*?)\1)="" );="" if="" (="" &&="" m[2]="" return="" [="" m[1].length="" +="" m[2].length,="" "inlinecode",="" m[3]="" ]="" else="" todo:="" no="" matching="" end="" found="" -="" warn!="" 1,="" "`"="" }="" "="" \n":="" linebreak(="" 3,="" "linebreak"="" meta="" helper="" generator="" method="" for="" em="" and="" strong="" handling="" strong_em(="" tag,="" md="" state_slot="tag" "_state",="" other_slot="tag" =="strong" ?="" "em_state"="" :="" "strong_state";="" closetag(len)="" this.len_after="len;" this.name="close_" md;="" text,="" orig_match="" (this[state_slot][0]="=" md)="" most="" recent="" is="" of="" this="" type="" d:this.debug("closing",="" md);="" this[state_slot].shift();="" "consume"="" everything="" go="" back="" recrusion="" in="" else-block="" below="" return[="" text.length,="" new="" closetag(text.length-md.length)="" store="" a="" clone="" states="" other="this[other_slot].slice()," state="this[state_slot].slice();" this[state_slot].unshift(md);="" d:this.debug_indent="" ;="" recurse="" res="this.processInline(" text.substr(="" md.length="" last="res[res.length" 1];="" d:this.debug("processinline="" from",="" tag="" ":="" ",="" uneval(="" check="this[state_slot].shift();" (last="" instanceof="" closetag)="" res.pop();="" we="" matched!="" huzzah.="" consumed="text.length" last.len_after;="" consumed,="" ].concat(res)="" restore="" kind.="" might="" have="" mistakenly="" closed="" it.="" this[other_slot]="other;" this[state_slot]="state;" can't="" reuse="" processed="" result="" could="" wrong="" parsing="" contexts="" md.length,="" returned="" markdown.dialects.gruber.inline["**"]="strong_em("strong"," "**");="" markdown.dialects.gruber.inline["__"]="strong_em("strong"," "__");="" markdown.dialects.gruber.inline["*"]="strong_em("em"," "*");="" markdown.dialects.gruber.inline["_"]="strong_em("em"," "_");="" build="" default order="" from="" insertion="" order.="" markdown.buildblockorder="function(d)" ord="[];" i="" d="" "__order__"="" ||="" "__call__"="" continue;="" ord.push(="" d.__order__="ord;" patterns="" matcher="" markdown.buildinlinepatterns="function(d)" (i="=" "__call__")="" l="i.replace(" ([\\.*+?|()\[\]{}])="" g,="" "\\$1"="" .replace(="" \n="" ,="" "\\n"="" patterns.push(="" i.length="=" "(?:"="" ")"="" print("patterns:",="" fn="d.__call__;" d.__call__="function(text," pattern)="" (pattern="" !="undefined)" fn.call(this,="" pattern);="" patterns);="" make="" sub-classing="" dialect="" easier="" markdown.subclassdialect="function(" block()="" {};="" block.prototype="d.block;" inline()="" inline.prototype="d.inline;" block:="" block(),="" inline:="" };="" markdown.dialects.gruber.block="" markdown.buildinlinepatterns(="" markdown.dialects.gruber.inline="" markdown.dialects.maruku="Markdown.subclassDialect(" markdown.dialects.gruber="" markdown.dialects.maruku.block.document_meta="function" document_meta(="" block,="" next="" we're="" only="" interested="" first="" block="" block.linenumber=""> 1 ) return undefined;
+      return [ 1, "<" ];
+    },
+
+    "`": function inlineCode( text ) {
+      // Inline code block. as many backticks as you like to start it
+      // Always skip over the opening ticks.
+      var m = text.match( /(`+)(([\s\S]*?)\1)/ );
+
+      if ( m && m[2] )
+        return [ m[1].length + m[2].length, [ "inlinecode", m[3] ] ];
+      else {
+        // TODO: No matching end code found - warn!
+        return [ 1, "`" ];
+      }
+    },
+
+    "  \n": function lineBreak( text ) {
+      return [ 3, [ "linebreak" ] ];
+    }
+
+}
+
+// Meta Helper/generator method for em and strong handling
+function strong_em( tag, md ) {
+
+  var state_slot = tag + "_state",
+      other_slot = tag == "strong" ? "em_state" : "strong_state";
+
+  function CloseTag(len) {
+    this.len_after = len;
+    this.name = "close_" + md;
+  }
+
+  return function ( text, orig_match ) {
+
+    if (this[state_slot][0] == md) {
+      // Most recent em is of this type
+      //D:this.debug("closing", md);
+      this[state_slot].shift();
+
+      // "Consume" everything to go back to the recrusion in the else-block below
+      return[ text.length, new CloseTag(text.length-md.length) ];
+    }
+    else {
+      // Store a clone of the em/strong states
+      var other = this[other_slot].slice(),
+          state = this[state_slot].slice();
+
+      this[state_slot].unshift(md);
+
+      //D:this.debug_indent += "  ";
+
+      // Recurse
+      var res = this.processInline( text.substr( md.length ) );
+      //D:this.debug_indent = this.debug_indent.substr(2);
+
+      var last = res[res.length - 1];
+
+      //D:this.debug("processInline from", tag + ": ", uneval( res ) );
+
+      var check = this[state_slot].shift();
+      if (last instanceof CloseTag) {
+        res.pop();
+        // We matched! Huzzah.
+        var consumed = text.length - last.len_after;
+        return [ consumed, [ tag ].concat(res) ];
+      }
+      else {
+        // Restore the state of the other kind. We might have mistakenly closed it.
+        this[other_slot] = other;
+        this[state_slot] = state;
+
+        // We can't reuse the processed result as it could have wrong parsing contexts in it.
+        return [ md.length, md ];
+      }
+    }
+  } // End returned function
+}
+
+Markdown.dialects.Gruber.inline["**"] = strong_em("strong", "**");
+Markdown.dialects.Gruber.inline["__"] = strong_em("strong", "__");
+Markdown.dialects.Gruber.inline["*"]  = strong_em("em", "*");
+Markdown.dialects.Gruber.inline["_"]  = strong_em("em", "_");
+
+
+// Build default order from insertion order.
+Markdown.buildBlockOrder = function(d) {
+  var ord = [];
+  for ( var i in d ) {
+    if ( i == "__order__" || i == "__call__" ) continue;
+    ord.push( i );
+  }
+  d.__order__ = ord;
+}
+
+// Build patterns for inline matcher
+Markdown.buildInlinePatterns = function(d) {
+  var patterns = [];
+
+  for ( var i in d ) {
+    if (i == "__call__") continue;
+    var l = i.replace( /([\\.*+?|()\[\]{}])/g, "\\$1" )
+             .replace( /\n/, "\\n" );
+    patterns.push( i.length == 1 ? l : "(?:" + l + ")" );
+  }
+
+  patterns = patterns.join("|");
+  //print("patterns:", uneval( patterns ) );
+
+  var fn = d.__call__;
+  d.__call__ = function(text, pattern) {
+    if (pattern != undefined)
+      return fn.call(this, text, pattern);
+    else
+      return fn.call(this, text, patterns);
+  }
+}
+
+// Helper function to make sub-classing a dialect easier
+Markdown.subclassDialect = function( d ) {
+  function Block() {};
+  Block.prototype = d.block;
+  function Inline() {};
+  Inline.prototype = d.inline;
+
+  return { block: new Block(), inline: new Inline() };
+}
+
+Markdown.buildBlockOrder ( Markdown.dialects.Gruber.block );
+Markdown.buildInlinePatterns( Markdown.dialects.Gruber.inline );
+
+Markdown.dialects.Maruku = Markdown.subclassDialect( Markdown.dialects.Gruber );
+
+Markdown.dialects.Maruku.block.document_meta = function document_meta( block, next ) {
+  // we're only interested in the first block
+  if ( block.lineNumber > 1 ) return undefined;
 
   // document_meta blocks consist of one or more lines of `Key: Value\n`
   if ( ! block.match( /^(?:\w+:.*\n)*\w+:.*$/ ) ) return undefined;
@@ -1124,7 +1291,8 @@ expose.renderJsonML = function( jsonml, options ) {
 
 function escapeHTML( text ) {
   return text.replace( /&/g, "&amp;" )
-             .replace( //g, "&gt;" )
+             .replace( /</g, "&lt;" )
+             .replace( />/g, "&gt;" )
              .replace( /"/g, "&quot;" )
              .replace( /'/g, "&#39;" );
 }
@@ -1153,7 +1321,7 @@ function render_tree( jsonml ) {
   }
 
   // be careful about adding whitespace here for inline elements
-  return "<"+ tag="" +="" tag_attrs="" "="">" + content.join( "" ) + "</"+></">";
+  return "<"+ tag + tag_attrs + ">" + content.join( "" ) + "</" + tag + ">";
 }
 
 function convert_tree_to_html( tree, references, options ) {
@@ -1305,4 +1473,3 @@ function merge_text_nodes( jsonml ) {
     return exports;
   }
 } )() );
-</":></---></---></'></=></li></christoph@christophdorn.com>

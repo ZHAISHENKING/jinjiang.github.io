@@ -81,9 +81,9 @@
   <p>这次 <a href="http://weibo.com/html5dw" target="_blank" rel="noopener">@HTML5梦工场</a> 的活动真是太棒了！我们了解企业，了解同行，了解技术，了解趋势，吃喝玩乐，雅俗共赏，天南海北共聚一堂，还有什么活动能跟这样的 <a href="http://2012.html5dw.com/" target="_blank" rel="noopener">#html5峰会#</a> 相媲美呢？！虽然2天脚都站酸了，但真心觉得值！</p>
 <h3 id="了解企业"><a href="#了解企业" class="headerlink" title="了解企业"></a>了解企业</h3><p>这次峰会上，诸多企业都在会场搭建了属于自己的展台：有浏览器，有应用平台、有技术图书出版社，这样不够，后台技术来了，电视来了，物联网来了，广告服务来了，这样还不够，更夸张的是眼镜和糕点也来了。其实仔细想想，中间这部分领域是早晚要和HTML5打交道的，而后面这部分呢，也几乎是每一个前端工程师生活的一部分(你看，干这行的视力都不太好，还经常以庆祝xxx为借口买蛋糕吃)。我们了解形形色色的行业和企业，体验工程师生活的每一部分。</p>
 <p>当然说到企业展台，这也包括我的老东家傲游。今年公司启动了全平台的浏览器研发项目，除了已经有的PC、安卓版本，还陆续发布了Mac、iPad、iPhone版本。所以这次的展台内容很丰富，有些朋友甚至来到展台前把所有的设备都试用一遍，才意尤未尽的离开，这让我们这两天“辛苦站台”的同事们倍感欣慰。</p>
-<p><img src="http://jiongks-typecho.stor.sinaapp.com/usr/uploads/2012/08/1544819964.jpg" alt="傲游浏览器的展台"></p>
+<p><img src="/uploads/2012/08/1544819964.jpg" alt="傲游浏览器的展台"></p>
 <h3 id="了解同行"><a href="#了解同行" class="headerlink" title="了解同行"></a>了解同行</h3><p>我想说第二天的HTML5作品展真棒！一口气看58份优秀作品，结识58组前端精英，感受大家的创意和热情！这次给我印象深刻的，有一个是用Canvas写毛笔字的，可以根据书写的速度模拟出毛笔的力道来，非常神奇；还有一个作品用到了最新的摄像头媒介接口，做出了类似Kinect的游戏体验，他们的作者自豪的说：“我们的目标就是秒杀Kinect！”；另外我非常有幸结识到了HTML5图形库<a href="http://www.ichartjs.cn" target="_blank" rel="noopener">ichartjs</a>的作者，我觉得他的作品像一阵及时雨，刚好填补了图表制作这个HTML5非常大的领域空白。除此之外的其它作品也都各有千秋，看得出他们呕心沥血的投入和付出。</p>
-<p><img src="http://jiongks-typecho.stor.sinaapp.com/usr/uploads/2012/08/186888587.png" alt="H5Slides"></p>
+<p><img src="/uploads/2012/08/186888587.png" alt="H5Slides"></p>
 <p>我也有机会展示了自己参与的一个开源项目：就是<a href="http://h5Slides.com" target="_blank" rel="noopener">H5Slides</a>，我们专门为了这次的峰会搭建了一个供大家试用和体验的网站。不少开发者也对我们的作品产生了浓厚的兴趣。还有些人在网上看到过，现场认出我来了，哈哈好害羞滴说！</p>
   <p class="more">
     <a href="/blog/html5dw-2012/">
@@ -103,10 +103,10 @@
   <p>这款bookmarklet是我对主流阅读模式智能识别规则的一种吐槽。</p>
 <p>当然，首先，阅读模式本身是一项非常棒的功能！他可以增强文章的阅读体验，统一不同页面的视觉风格。可以让人专注在文章内容中。等等。<br>而我要吐槽的点，是这个所谓的“智能判断文章内容”的算法。</p>
 <h3 id="“智能分析”的阅读器"><a href="#“智能分析”的阅读器" class="headerlink" title="“智能分析”的阅读器"></a>“智能分析”的阅读器</h3><p>阅读模式的核心任务之一，就是能够找出我们在各种凌乱广告、装饰物、页眉页脚之中的正文内容。在找内容这件事上，大家不约而同的使用了智能分析的路数。<a href="http://code.google.com/p/arc90labs-readability/source/browse/trunk/js/readability.js" target="_blank" rel="noopener">这里</a>是早期开源的Readability脚本库的核心代码，我们可以看到其中包含着大量用来识别某dom结点是否是正文根结点的算法公示。而这套算法，又是从大量已存在的网页中归纳而来的。</p>
-<p><img src="http://jiongks-typecho.stor.sinaapp.com/usr/uploads/2012/08/3234165205.png" alt="Readability"></p>
+<p><img src="/uploads/2012/08/3234165205.png" alt="Readability"></p>
 <h4 id="阻力"><a href="#阻力" class="headerlink" title="阻力"></a>阻力</h4><p>既然是归纳的结果，而现如今已存在的网页已经数以亿计五花八门了，那不可避免的会存在判断误差。我们希望把内容识别的准确率提到最高，但会遇到一个问题：就是广告主、站长都有各自的小算盘，他们时刻准备着违背这些智能，降低判别的准确率，不让它正常工作，以谋取自己更高的收益或二次点击率。因此，这一智能的识别规则无法完全公开(Readability随后停止了开放源代码，我猜也有这方面的考量)。</p>
 <h4 id="how-to-enable"><a href="#how-to-enable" class="headerlink" title="how to enable?"></a>how to enable?</h4><p>可黑盒的智能规则又导致了另外一个问题：智能识别如果出现判断误差，对于那些希望支持阅读模式的网站，又无奈于找不到这些计算规则去适配。于是我们又会看到类似“<a href="http://www.google.com/search?q=how-to-enable-safari-reader" target="_blank" rel="noopener">how to enable safari reader</a>”这样的问题满天飞。</p>
-<p><img src="http://jiongks-typecho.stor.sinaapp.com/usr/uploads/2012/08/938520538.png" alt="Google搜索截图：如何激活阅读模式"></p>
+<p><img src="/uploads/2012/08/938520538.png" alt="Google搜索截图：如何激活阅读模式"></p>
 <p>最后阅读模式的识别规则、支持者、反对者扭打在了一起。</p>
   <p class="more">
     <a href="/blog/bookmarklet-read-anything/">
@@ -124,7 +124,7 @@
   </h2>
   
   <p>直观的感觉是这次“冷”敦奥运会上，国际上对中国集体发难。这样的感觉起码有这些因素作祟：第一，自从北京奥运会中国在家门口历史上首次拿到金牌第一，国际媒体就开始越来越关注中国；第二，以前我们都陶醉在某些洗脑工具中，听不到国外的声音；第三，称赞中国的声音不够劲爆，我们的舆论也有选择性的把更多偏激的言论带回了国内；第四，新媒体全面占领传统媒体，消息更快速，也更不准确；第五，我们喜欢“拿来”，却不喜欢回馈。</p>
-<p><img src="http://jiongks-typecho.stor.sinaapp.com/usr/uploads/2012/08/1497762744.jpg" alt="144261153.jpg"><br>图片来自和讯新闻</p>
+<p><img src="/uploads/2012/08/1497762744.jpg" alt="144261153.jpg"><br>图片来自和讯新闻</p>
 <p>话说这次奥运会4对羽毛球选手被判消极比赛取消资格一事，绝对是国际羽联对中国长期以来忍无可忍的一次报复。毫无疑问中国现在在羽毛球这个项目上太过强大，尤其是女双，强大到对手连打败你的信心都没有了。这样的话选手的成绩在淘汰赛制中变得偶然性很大：第一轮就碰中国，名次肯定倒数，晚点碰中国，甚至可以拿奖牌。</p>
 <p>我猜国际羽联把羽毛球由纯淘汰赛改成循环赛加淘汰赛，这也直接导致了这一出闹剧的出现。其实规则的改变就是给那些名次不好的人更多机会，给中国队更多危险。<strong>但我不认为这是一种良性的改变</strong>。</p>
   <p class="more">
