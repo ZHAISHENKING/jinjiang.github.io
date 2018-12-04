@@ -95,7 +95,7 @@
 <p>所以开发者该怎么应对呢？我们站在了这个十字路口。如果我们不能想出一个合适的功能性 class 名，那么我们不妨基于内容、或者展现给它起个名字。它们也各自暗示着不同的可维护性。</p>
 <h3 id="内容性-class-名"><a href="#内容性-class-名" class="headerlink" title="内容性 class 名"></a>内容性 class 名</h3><pre><code>&lt;button class=&quot;submit-button&quot;&gt;Send Message&lt;/button&gt;
 </code></pre><p>基于内容的 class 名是描述它们包含的内容的 class 名。如果你曾经见到过类似 <code>submit-button</code>、<code>intro-text</code> 或 <code>profile-photo</code> 的 class 名，那些名字就是基于内容起的。</p>
-<p>这些 class 名感觉很干净。它们让你的内容 (HTML) 和样式 (CSS) 之间保持简洁的分离。理论上，这可以让你完全改版网站的样式和感官而无需触碰到 HTML。<a href="http://www.csszengarden.com/" target="_blank" rel="noopener">CSS Zen Garden</a> 就是这样的。</p>
+<p>这些 class 名感觉很干净。它们让你的内容 (HTML) 和样式 (CSS) 之间保持简洁的分离。理论上，这可以让你完全改版网站的样式和感官而无需触碰到 HTML。<a href="https://www.csszengarden.com/" target="_blank" rel="noopener">CSS Zen Garden</a> 就是这样的。</p>
 <p>现在我们回到最初的问题：“这样做的好处是什么？”</p>
 <p>我从来没有被要求改版一个网站而不触碰 HTML。变化是存在各种可能的。当然一些 HTML 可以作为后台系统的集成成果固定下来，但是随着你对 HTML 的失控，这时你还是需要写一些非理想化的 hacky CSS 来应付设计的变化。想想看，CSS Zen Garden 更多的是一个 CSS 技术演示而不是一个可维护的 CSS 的例子。没有必要一味追求在改版的时候只改 CSS。</p>
 <p>当你开发一个小网站的时候，内容性的 class 名非常好用。而随着你的网站不断成长，它就感觉越来越不合适了。它们并不易于样式重用。如果你的 <code>login-button</code> 和 <code>submit-button</code> 看起来一样该怎么处理呢？在你的 CSS 架构里该如何展示这些东西？为保持展现样式块，你不得不写一堆用逗号分隔开的选择器，或者通过预处理器展开。这些组织方式对于大型的项目来说都比较困难。</p>

@@ -78,14 +78,14 @@
     </a>
   </h2>
   
-  <p>最近饶有兴致的又把最新版 <a href="http://vuejs.org/" target="_blank" rel="noopener">Vue.js</a> 的源码学习了一下，觉得真心不错，个人觉得 Vue.js 的代码非常之优雅而且精辟，作者本身可能无 (bu) 意 (xie) 提及这些。那么，就让我来吧：）</p>
+  <p>最近饶有兴致的又把最新版 <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue.js</a> 的源码学习了一下，觉得真心不错，个人觉得 Vue.js 的代码非常之优雅而且精辟，作者本身可能无 (bu) 意 (xie) 提及这些。那么，就让我来吧：）</p>
 <h3 id="程序结构梳理"><a href="#程序结构梳理" class="headerlink" title="程序结构梳理"></a>程序结构梳理</h3><p><img src="http://img2.tbcdn.cn/L1/461/1/8142ef3fc2055839f1a93a933d80e17694b4f76b" alt="Vue 程序结构"></p>
 <p>Vue.js 是一个非常典型的 MVVM 的程序结构，整个程序从最上层大概分为</p>
 <ol>
 <li>全局设计：包括全局接口、默认选项等</li>
 <li>vm 实例设计：包括接口设计 (vm 原型)、实例初始化过程设计 (vm 构造函数)</li>
 </ol>
-<p>这里面大部分内容可以直接跟 Vue.js 的<a href="http://vuejs.org/api/" target="_blank" rel="noopener">官方 API 参考文档</a>对应起来，但文档里面没有且值得一提的是构造函数的设计，下面是我摘出的构造函数最核心的工作内容。</p>
+<p>这里面大部分内容可以直接跟 Vue.js 的<a href="https://vuejs.org/api/" target="_blank" rel="noopener">官方 API 参考文档</a>对应起来，但文档里面没有且值得一提的是构造函数的设计，下面是我摘出的构造函数最核心的工作内容。</p>
 <p><img src="http://img3.tbcdn.cn/L1/461/1/00049a09def4aff8d80f3bb7229e3f6d395426fb" alt="Vue 实例初始化"></p>
 <p>整个实例初始化的过程中，重中之重就是把数据 (Model) 和视图 (View) 建立起关联关系。Vue.js 和诸多 MVVM 的思路是类似的，主要做了三件事：</p>
 <ol>

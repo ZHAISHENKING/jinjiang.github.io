@@ -74,15 +74,15 @@
   <h2>
     [翻译] JSLint 文档
   </h2>
-  <p>原文地址：<a href="http://www.jslint.com/lint.html" target="_blank" rel="noopener">http://www.jslint.com/lint.html</a></p>
+  <p>原文地址：<a href="https://www.jslint.com/lint.html" target="_blank" rel="noopener">https://www.jslint.com/lint.html</a></p>
 <h3 id="什么是JSLint？"><a href="#什么是JSLint？" class="headerlink" title="什么是JSLint？"></a>什么是<code>JSLint</code>？</h3><p><code>JSLint</code> 是一个用来查找各种 JavaScript 程序中的问题的 JavaScript 程序。它是一个代码之类工具。</p>
 <p>在<a href="http://cm.bell-labs.com/cm/cs/who/dmr/chist.html" target="_blank" rel="noopener">早些年</a>的 <a href="http://en.wikipedia.org/wiki/C_programming_language" target="_blank" rel="noopener">C 语言</a>中，有些程序的常见错误是主流的编译器无法抓住的。所以出现了一个名叫 <a href="http://en.wikipedia.org/wiki/Lint_programming_tool" target="_blank" rel="noopener"><code>lint</code></a> 的附带程序，可以通过搜索源文件寻找错误。</p>
 <p>随着语言的成熟，其定义的健壮性足以消除一些不安因素，编译器也在问题警告方面越做越好，<code>lint</code> 也不再需要了。</p>
 <p><a href="http://javascript.crockford.com/" target="_blank" rel="noopener">JavaScript</a> 是一个年轻的语言。它原本只是用在网页上完成一些无需劳驾 Java 的小任务。但 JavaScript 是一个强大得惊人的语言，现在它已经在大项目中派上用场了。当项目变得复杂之后，之前从易用角度出发的语言特性就带来了一些麻烦。这是一个为 JavaScript 而生的 <code>lint</code> 呼之欲出：它就是 <code>JSLint</code>，一个检查 JavaScript 语法、判断 JavaScript 语法有效性的工具。</p>
 <p><code>JSLint</code> 会拿来一段 JavaScript 源代码并对其进行检索。一旦发现问题，它就会返回一则消息，用来描述这个问题以及源代码中的大概位置。发现的问题不一定是，但通常是语法上的错误。<code>JSLint</code> 通过一些代码规范来杜绝结构性的问题。这并不证明你的程序是正确的，只是提供另一种发现问题的眼光。</p>
-<p><code>JSLint</code> 定义了一个专业的 JavaScript 的子集，它比 <a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm" target="_blank" rel="noopener">ECMAScript 标准第三版</a>的定义更严格，和 <a href="http://javascript.crockford.com/code.html" target="_blank" rel="noopener">JavaScript 编码规范</a>中的建议相对应。</p>
+<p><code>JSLint</code> 定义了一个专业的 JavaScript 的子集，它比 <a href="https://www.ecma-international.org/publications/standards/Ecma-262.htm" target="_blank" rel="noopener">ECMAScript 标准第三版</a>的定义更严格，和 <a href="http://javascript.crockford.com/code.html" target="_blank" rel="noopener">JavaScript 编码规范</a>中的建议相对应。</p>
 <p>JavaScript 是一个粗中有细的语言，它比你想象中的更好。<code>JSLint</code> 帮助你回避很多问题，在这个更好的语言中撰写程序。<code>JSLint</code> 会拒绝一些浏览器支持的程序，因为浏览器并不关心代码的质量。你应该接受 <code>JSLint</code> 的所有建议。</p>
-<p><code>JSLint</code> 在 JavaScript 源代码、HTML 源代码、CSS 源代码或 <a href="http://www.json.org/" target="_blank" rel="noopener">JSON</a> 文本中都可以运行。<a id="more"></a></p>
+<p><code>JSLint</code> 在 JavaScript 源代码、HTML 源代码、CSS 源代码或 <a href="https://www.json.org/" target="_blank" rel="noopener">JSON</a> 文本中都可以运行。<a id="more"></a></p>
 <h3 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h3><p>JavaScript 的最大问题就是其依赖的全局变量，特别隐含的全局变量。如果一个变量没有被显性的声明 (通常是通过 <code>var</code> 语句)，则 JavaScript 会假定这个变量是全局变量。这会掩盖拼写错误等其它问题。</p>
 <p><code>JSLint</code> 希望所有的变量和函数都要在使用或调用之前被声明。这样我们就可以探测隐含着的全局变量。同时，这也让程序的可读性增强了。</p>
 <p>有的时候一个文件会依赖于在别处定义好的全局变量或全局函数。这时你可以通过一个 <code>var</code> 语句让 <code>JSLint</code> 识别该程序依赖的这些全局函数和对象。</p>
@@ -183,11 +183,11 @@
 </code></pre><p>这个特性是试验性的。请把任何问题或束缚报告出来。这里有一个 <code>css</code> 选项，可以容忍一些非标准的使用习惯。</p>
 <h3 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h3><p><code>JSLint</code> 提供了很多选项，它们控制了其操作和敏感度。在网页版中，选项是可以通过复选框进行勾选的。</p>
 <p>我们还提供了通过构造 <code>/*jslint*/</code> 指令和 <code>/*properties*/</code> 指令的方式进行辅助。</p>
-<p>当 <code>JSLint</code> 被当做函数调用时，它接受一个 <code>option</code> 对象参数，这个参数允许你判定你可接受的 JavaScript 子集。网页版的 <code>JSLint</code> 在 <a href="http://www.jslint.com" target="_blank" rel="noopener">http://www.JSLint.com</a>，就是这样工作的。</p>
+<p>当 <code>JSLint</code> 被当做函数调用时，它接受一个 <code>option</code> 对象参数，这个参数允许你判定你可接受的 JavaScript 子集。网页版的 <code>JSLint</code> 在 <a href="https://www.jslint.com" target="_blank" rel="noopener">https://www.JSLint.com</a>，就是这样工作的。</p>
 <p>选项还可以在 <code>/*jslint*/</code> 指令中被定义：</p>
 <pre><code>/*jslint nomen: true, debug: true, evil: false, vars: true*/
 </code></pre><p>选项指令起始于 ‘/<em>jslint’。注意 <code>j</code> 前面没有空格。本规范包含了一系列的键值对，这些键是 <code>JSLint</code> 的选项，值是 <code>true</code> 或 <code>false</code>。<code>indent</code> 选项可以取一个数字。一个 `/</em>jslint*/<code>指令优先于</code>option` 对象。指令遵照函数作用域。</p>
-<p>(表格略，详见：<a href="http://www.jslint.com/lint.html#options" target="_blank" rel="noopener">http://www.jslint.com/lint.html#options</a>)</p>
+<p>(表格略，详见：<a href="https://www.jslint.com/lint.html#options" target="_blank" rel="noopener">https://www.jslint.com/lint.html#options</a>)</p>
 <h3 id="报告"><a href="#报告" class="headerlink" title="报告"></a>报告</h3><p>如果 <code>JSLint</code> 可以完成检查，那么它会生成一个函数报告。其列出下面每个函数：</p>
 <ul>
 <li>起始行号。</li>
@@ -201,7 +201,7 @@
 <li><em>Global</em>：在该函数中使用的全局变量。把这个用量降到最少。</li>
 <li><em>Label</em>：该函数中使用的语句标记。</li>
 </ul>
-<p>报告还会包含一个使用过的属性名列表。这里是<a href="http://www.jslint.com/msgs.html" target="_blank" rel="noopener"><code>JSLint</code>的消息列表</a>。</p>
+<p>报告还会包含一个使用过的属性名列表。这里是<a href="https://www.jslint.com/msgs.html" target="_blank" rel="noopener"><code>JSLint</code>的消息列表</a>。</p>
 
 </div>
 

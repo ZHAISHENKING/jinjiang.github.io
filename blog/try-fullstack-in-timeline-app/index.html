@@ -101,7 +101,7 @@
 <p>我自己觉得，也许对于牛掰的设计师来说，他们只是因为太牛掰了以至于可以脑补那些初级的设计手段罢了。反正自己没那个专业能力，还是照猫画虎中规中矩一点，所以就试着先画框线图，然后实现原型功能，再做出高保真视觉 (视觉稿)，再做出高保真原型来。走一遍自己认为比较“规矩“的流程</p>
 <p><img src="http://img4.tbcdn.cn/L1/461/1/72fb3861788e347254093011ad2d57eeadee23dc" alt="_2015_06_27_2_55_25"></p>
 <p><img src="http://img1.tbcdn.cn/L1/461/1/7cc8467fc8a828d6c5aad794956852052d1de553" alt="IMG_1435"></p>
-<p>当然，凑巧我找到了一个利器——<a href="http://www.fiftythree.com/paper" target="_blank" rel="noopener">53 Paper</a> + <a href="http://www.fiftythree.com/pencil" target="_blank" rel="noopener">53 Pencil</a>，它可以把 iPad 变成你的画板，而且 app 本身的品质是非常之高的！我现在不光拿它来画框线图，而且开会也可以拿它当会议记录本。</p>
+<p>当然，凑巧我找到了一个利器——<a href="https://www.fiftythree.com/paper" target="_blank" rel="noopener">53 Paper</a> + <a href="https://www.fiftythree.com/pencil" target="_blank" rel="noopener">53 Pencil</a>，它可以把 iPad 变成你的画板，而且 app 本身的品质是非常之高的！我现在不光拿它来画框线图，而且开会也可以拿它当会议记录本。</p>
 <h4 id="先把线框图画出来"><a href="#先把线框图画出来" class="headerlink" title="先把线框图画出来"></a>先把线框图画出来</h4><p><img src="http://img2.tbcdn.cn/L1/461/1/5f84ca794875b77a534fc19ca9fd8c56dae51db1" alt="IMG_1426"></p>
 <p><img src="http://img2.tbcdn.cn/L1/461/1/70fcc37b36142deb3f5c9dff4792d15bab890fed" alt="IMG_1431"></p>
 <p>然后趁热打铁，把组件划分出来，并定下来基本的几个组件名和方法/属性名</p>
@@ -123,7 +123,7 @@
 <p>什么鬼，为什么突然就这么好看了<br>bootstrap，果然</p>
 </blockquote>
 <h4 id="融合"><a href="#融合" class="headerlink" title="融合"></a>融合</h4><p>但其实这个设计出来的页面是不能操作的，只是个静态效果。最后我又花了差不多半个小时时间，把静态效果套到之前的“抽象”界面中。第四部也完成了。前后差不多经过了 1 天时间。</p>
-<h3 id="前端开发"><a href="#前端开发" class="headerlink" title="前端开发"></a>前端开发</h3><p>前面已经卖了个关子了，能够用一个晚上搞定这个界面的全套功能，包括每个组件的完备性、交互反映、动画效果。Vue + webpack 功不可没，前几天我刚<a href="http://jiongks.name/blog/just-vue/" target="_blank" rel="noopener">博客介绍</a>过一些 vue + webpack 的内容，没错，就是用这一套技术基础快速搭建起来的。再加上前期产品设计的时候已经把组件划分和主要属性/方法命名都确定过了，所以整个开发过程完全是自顶向下的。大应用拆成子组件，子组件再拆成更小的组件；大函数写成几行伪代码，每行伪代码再拆成不同的子函数……非常之顺畅，几乎没有返工。很多地方的逻辑都是一次浏览器刷新就通过的 (那天工作状态也确实不错)</p>
+<h3 id="前端开发"><a href="#前端开发" class="headerlink" title="前端开发"></a>前端开发</h3><p>前面已经卖了个关子了，能够用一个晚上搞定这个界面的全套功能，包括每个组件的完备性、交互反映、动画效果。Vue + webpack 功不可没，前几天我刚<a href="https://jiongks.name/blog/just-vue/" target="_blank" rel="noopener">博客介绍</a>过一些 vue + webpack 的内容，没错，就是用这一套技术基础快速搭建起来的。再加上前期产品设计的时候已经把组件划分和主要属性/方法命名都确定过了，所以整个开发过程完全是自顶向下的。大应用拆成子组件，子组件再拆成更小的组件；大函数写成几行伪代码，每行伪代码再拆成不同的子函数……非常之顺畅，几乎没有返工。很多地方的逻辑都是一次浏览器刷新就通过的 (那天工作状态也确实不错)</p>
 <p><img src="http://img2.tbcdn.cn/L1/461/1/83973f5da5f461820be65649bb2d1eda57037f3a" alt="_2015_06_27_3_56_48"></p>
 <p>除了之前博客介绍到的 vue 和 webpack 以及 gulpfile.js 我又加入了 htmlone 打包和 awp 发布等更高集成化的工作方式。让调试、打包、发布都非常简单省时。</p>
 <h4 id="好用的库的积累"><a href="#好用的库的积累" class="headerlink" title="好用的库的积累"></a>好用的库的积累</h4><ul>

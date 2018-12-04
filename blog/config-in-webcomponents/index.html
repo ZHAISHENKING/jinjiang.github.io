@@ -74,7 +74,7 @@
   <h2>
     webcomponents 笔记 之 配置管理
   </h2>
-  <p>话说上周末看到<a href="http://weibo.com/1712131295/CaM1n2FcY" target="_blank" rel="noopener">一个吐槽腾讯“内部开源”的微博</a>，后来我想了想，自己那么骚包的在项目还没做完之前，就在 <a href="/slides/css-scoping/">CSSConf</a> 上说我们将来要开源一个名叫 Zorro 的库。结果好几个月过去了还是没有准备好，也就不敢再笑话别人了……</p>
+  <p>话说上周末看到<a href="https://weibo.com/1712131295/CaM1n2FcY" target="_blank" rel="noopener">一个吐槽腾讯“内部开源”的微博</a>，后来我想了想，自己那么骚包的在项目还没做完之前，就在 <a href="/slides/css-scoping/">CSSConf</a> 上说我们将来要开源一个名叫 Zorro 的库。结果好几个月过去了还是没有准备好，也就不敢再笑话别人了……</p>
 <p>我觉得把东西开源出来之前，有几件事要准备好，不然除了自己刷存在感之外，真的没意义。比如：</p>
 <ol>
 <li>是否有了 (或阐述清楚了) 明确的目标和方向，不然找不到合适的合作者和贡献者</li>
@@ -95,7 +95,7 @@
 <p>如果程序的结构再复杂，那么就在“业务”和“基础”之间分更多的层，每一层有自己明确的职能范围，同时，较高层的组件可以自由调用较低层的组件。</p>
 <p><img src="/uploads/2015/03/1309938584.png" alt="components_4.png"></p>
 <h3 id="组件的配置信息"><a href="#组件的配置信息" class="headerlink" title="组件的配置信息"></a>组件的配置信息</h3><p>配置信息大多是在组件在兼顾通用性抽象和特殊性业务时出现的。好的配置设计可以避免大量重复的组件设计和实现。</p>
-<p>较简单的配置信息通常都是组件本身的一些属性 (properties) 或特性 (attributes)，在 webcomponents (<a href="http://docs.polymerchina.org/" target="_blank" rel="noopener">polymer</a>) 的场景下，就是：</p>
+<p>较简单的配置信息通常都是组件本身的一些属性 (properties) 或特性 (attributes)，在 webcomponents (<a href="https://docs.polymerchina.org/" target="_blank" rel="noopener">polymer</a>) 的场景下，就是：</p>
 <pre><code>&lt;polymer-element name=&quot;x-person&quot; attributes=&quot;name, age, gender, avatar, ...&quot;&gt;  
   ...  
 &lt;/polymer-element&gt;
@@ -125,7 +125,7 @@
 <li>在页面最外层 (<code>&lt;body&gt;</code>里面) 写入一些 <code>&lt;input type=&quot;hidden&quot;&gt;</code> 的标签，注明服务器相关配置</li>
 <li>在组件中写一段脚本，查询所有的这样的标签，并且把键值对记录下来——这其中就包括应用自身的图片上传的服务器地址</li>
 </ol>
-<p><em>2015-03-31 追加说明：感谢民工哥 <a href="http://weibo.com/1858846672" target="_blank" rel="noopener">@民工精髓</a> 在<a href="http://weibo.com/1858846672/Cb3Pwd0ZO" target="_blank" rel="noopener">微博</a>上的指点。也是因为很多服务器的配置是后端同学决定的，所以我们创造了这种对传统后端配置友好的 <code>&lt;input type=&quot;hidden&quot;&gt;</code> 写法。这样的写法对于后端的友好之处我就不一一列举了。如果是纯前端程序，配置来自前端，确实直接定义全局变量就好，不必这么麻烦。</em></p>
+<p><em>2015-03-31 追加说明：感谢民工哥 <a href="https://weibo.com/1858846672" target="_blank" rel="noopener">@民工精髓</a> 在<a href="https://weibo.com/1858846672/Cb3Pwd0ZO" target="_blank" rel="noopener">微博</a>上的指点。也是因为很多服务器的配置是后端同学决定的，所以我们创造了这种对传统后端配置友好的 <code>&lt;input type=&quot;hidden&quot;&gt;</code> 写法。这样的写法对于后端的友好之处我就不一一列举了。如果是纯前端程序，配置来自前端，确实直接定义全局变量就好，不必这么麻烦。</em></p>
 <p>于是整个程序变成了：</p>
 <pre><code>&lt;polymer-element ...&gt;
   &lt;script&gt;

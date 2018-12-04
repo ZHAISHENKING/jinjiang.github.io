@@ -78,7 +78,7 @@
 <p>首先，我会先简单介绍一下 vue 和 webpack：</p>
 <p>(当然如果你已经比较熟悉它们的话前两个部分可以直接跳过)</p>
 <h3 id="介绍-vue"><a href="#介绍-vue" class="headerlink" title="介绍 vue"></a>介绍 vue</h3><p><img src="http://img4.tbcdn.cn/L1/461/1/bfe85a6c83b251c21d6b7c1fd38baae3fa790540" alt="_2015_06_25_12_37_36"></p>
-<p><a href="http://vuejs.org/" target="_blank" rel="noopener">Vue.js</a> 是一款极简的 mvvm 框架，如果让我用一个词来形容它，就是 <strong>“轻·巧”</strong> 。如果用一句话来描述它，它能够集众多优秀逐流的前端框架之大成，但同时保持简单易用。废话不多说，来看几个例子：</p>
+<p><a href="https://vuejs.org/" target="_blank" rel="noopener">Vue.js</a> 是一款极简的 mvvm 框架，如果让我用一个词来形容它，就是 <strong>“轻·巧”</strong> 。如果用一句话来描述它，它能够集众多优秀逐流的前端框架之大成，但同时保持简单易用。废话不多说，来看几个例子：</p>
 <pre><code>&lt;script src=&quot;vue.js&quot;&gt;&lt;/script&gt;
 
 &lt;div id=&quot;demo&quot;&gt;
@@ -117,17 +117,17 @@
 &lt;/script&gt;
 </code></pre><p>这里的视图模板加入了一个 <code>&lt;img&gt;</code> 标签，同时我们看到了 2 个特性的值都写作了 <code></code>。这样的话，图片的 <code>title</code> 和 <code>alt</code> 特性值就都会被绑定为字符串 <code>&#39;taobao&#39;</code>。</p>
 <p>如果想绑定的特性是像 <code>img[src]</code> 这样的不能在 html 中随意初始化的 (可能默认会产生预期外的网络请求)，没关系，有 <code>v-attr=&quot;src: url&quot;</code> 这样的写法，把被绑定的数据里的 <code>url</code> 同步过来。</p>
-<p>没有介绍到的功能还有很多，推荐大家来我(发起并)翻译的<a href="http://cn.vuejs.org/guide/" target="_blank" rel="noopener">Vue.js 中文文档</a></p>
+<p>没有介绍到的功能还有很多，推荐大家来我(发起并)翻译的<a href="https://cn.vuejs.org/guide/" target="_blank" rel="noopener">Vue.js 中文文档</a></p>
 <h4 id="web-组件化"><a href="#web-组件化" class="headerlink" title="web 组件化"></a>web 组件化</h4><p>最后要介绍 Vue.js 对于 web 组件化开发的思考和设计</p>
 <p>如果我们要开发更大型的网页或 web 应用，web 组件化的思维是非常重要的，这也是今天整个前端社区长久不衰的话题。</p>
 <p>Vue.js 设计了一个 <code>*.vue</code> 格式的文件，令每一个组件的样式、模板和脚本集合成了一整个文件， <strong>每个文件就是一个组件，同时还包含了组件之间的依赖关系，麻雀虽小五脏俱全，整个组件从外观到结构到特性再到依赖关系都一览无余</strong> ：</p>
-<p><img src="http://vuejs.org/images/vue-component.png" alt="vue 文件示例"></p>
+<p><img src="https://vuejs.org/images/vue-component.png" alt="vue 文件示例"></p>
 <p>并且支持预编译各种方言：</p>
-<p><img src="http://vuejs.org/images/vue-component-with-pre-processors.png" alt="vue 文件示例"></p>
+<p><img src="https://vuejs.org/images/vue-component-with-pre-processors.png" alt="vue 文件示例"></p>
 <p>这样再大的系统、在复杂的界面，也可以用这样的方式庖丁解牛。当然这种组件的写法是需要编译工具才能最终在浏览器端工作的，下面会提到一个基于 webpack 的具体方案。</p>
 <h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p><strong>从功能角度，template, directive, data-binding, components 各种实用功能都齐全，而 filter, computed var, var watcher, custom event 这样的高级功能也都洋溢着作者的巧思；从开发体验角度，这些设计几乎是完全自然的，没有刻意设计过或欠考虑的感觉，只有个别不得已的地方带了自己框架专属的 <code>v-</code> 前缀。从性能、体积角度评估，Vue.js 也非常有竞争力！</strong></p>
 <h3 id="介绍-webpack"><a href="#介绍-webpack" class="headerlink" title="介绍 webpack"></a>介绍 webpack</h3><p><img src="http://img1.tbcdn.cn/L1/461/1/fb28e5d63e7c32fb2bae6fe2b0539a6e9b77c737" alt=""></p>
-<p><a href="http://webpack.github.io/" target="_blank" rel="noopener">webpack</a> 是另一个近期发现的好东西。它主要的用途是通过 CommonJS 的语法把所有浏览器端需要发布的静态资源做相应的准备，比如资源的合并和打包。</p>
+<p><a href="https://webpack.github.io/" target="_blank" rel="noopener">webpack</a> 是另一个近期发现的好东西。它主要的用途是通过 CommonJS 的语法把所有浏览器端需要发布的静态资源做相应的准备，比如资源的合并和打包。</p>
 <p>举个例子，现在有个脚本主文件 <code>app.js</code> 依赖了另一个脚本 <code>module.js</code></p>
 <pre><code>// app.js
 var module = require(&apos;./module.js&apos;)

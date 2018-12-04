@@ -75,7 +75,7 @@
     Vue 2.0 发布啦！
   </h2>
   <p>原文：<a href="https://medium.com/the-vue-point/announcing-vue-js-2-0-8af1bde7ab9#.cyoou0ivk" target="_blank" rel="noopener">https://medium.com/the-vue-point/announcing-vue-js-2-0-8af1bde7ab9#.cyoou0ivk</a></p>
-<p><img src="http://ww1.sinaimg.cn/mw1024/660d0cdfgw1f3bs1115fsj20ug0jiq6m.jpg" alt=""></p>
+<p><img src="https://ww1.sinaimg.cn/mw1024/660d0cdfgw1f3bs1115fsj20ug0jiq6m.jpg" alt=""></p>
 <p>今天我们非常激动的首发 Vue 2.0 preview 版本，这个版本带来了很多激动人心的改进和新特性。我们来看看这里面都有些什么！</p>
 <a id="more"></a>
 <h3 id="更轻，更快"><a href="#更轻，更快" class="headerlink" title="更轻，更快"></a>更轻，更快</h3><p>Vue.js 始终聚焦在轻量和快速上面，而 2.0 把它做得更好。现在的渲染层基于一个轻量级的 virtual-DOM 实现，在大多数场景下初试化渲染速度和内存消耗都提升了 2~4 倍 (详见这里的 <a href="https://github.com/vuejs/vue/tree/next/benchmarks" target="_blank" rel="noopener">benchmarks</a>)。从模板到 virtuel-DOM 的编译器和运行时是可以独立开来的，所以你可以将模板预编译并只通过 Vue 的运行时让你的应用工作起来，而这份运行时的代码 min+gzip 之后只有不到 12kb (提一下，React 15 在 min+gzip 之后的大小是 44kb)。编译器同样可以在浏览器中工作，也就是说你也可以写一段 script 标签然后开始你的工作，就像以前一样。而即便你把编译器加进去，build 出来的文件 min+gzip 之后也仅有 17kb，仍然小于目前的 1.0 版本。</p>
@@ -94,7 +94,7 @@
 <p>作为一个兼顾设计和开发的人，我喜欢用模板来写大部分的界面，但在某些情况下我也希望能拥有 JSX/hyperscript 的灵活性。举例来说，当你想在一个组件中程序化的处理其子元素时，基于模板的 slot 机制会显得比较有局限性。</p>
 <p>那么，为什么不能同时拥有它们呢？在 Vue 2.0 中，你可以继续使用熟悉的模板语法，但当你觉得受限制的时候，你也可以直接写底层的 virtual-DOM 代码，只需用一个 <code>render</code> 函数替换掉 <code>template</code> 选项。你甚至可以直接在你的模板里使用一个特殊的 <code>&lt;render&gt;</code> 标签来嵌入渲染函数！一个框架，两全其美。</p>
 <h3 id="流式服务端渲染"><a href="#流式服务端渲染" class="headerlink" title="流式服务端渲染"></a>流式服务端渲染</h3><p>既然迁移到了 virtual-DOM，Vue 2.0 自然支持服务端渲染和客户端的 hydration（直接使用服务端渲染的 DOM 元素）。当前服务端渲染的实现有一个痛点，比如在 React 里，渲染是同步的，所以如果这个 app 比较复杂的话它会阻塞服务器的 event loop。同步的服务端渲染在优化不当的情况下甚至会对客户端获得内容的速度带来负面影响。Vue 2.0 提供了内建的流式服务端渲染 - 在渲染组件时返回一个可读的 stream，然后直接 pipe 到 HTTP response。流式渲染能够确保服务端的响应度，也能让用户更快地获得渲染内容。</p>
-<h3 id="解锁更多可能性"><a href="#解锁更多可能性" class="headerlink" title="解锁更多可能性"></a>解锁更多可能性</h3><p>基于新的架构，我们还有更多的可能性有待开发 - 比如在手机端渲染到 native 界面。目前我们正在探索一个 Vue.js 2.0 的端，它会用 <a href="http://alibaba.github.io/weex/" target="_blank" rel="noopener">weex</a>：一个由中国最大科技公司之一的阿里巴巴的工程师们维护的项目，作为一个 native 的渲染层。同时从技术角度 Vue 2.0 运行在 ReactNative 上也是可行的。让我们拭目以待！</p>
+<h3 id="解锁更多可能性"><a href="#解锁更多可能性" class="headerlink" title="解锁更多可能性"></a>解锁更多可能性</h3><p>基于新的架构，我们还有更多的可能性有待开发 - 比如在手机端渲染到 native 界面。目前我们正在探索一个 Vue.js 2.0 的端，它会用 <a href="https://alibaba.github.io/weex/" target="_blank" rel="noopener">weex</a>：一个由中国最大科技公司之一的阿里巴巴的工程师们维护的项目，作为一个 native 的渲染层。同时从技术角度 Vue 2.0 运行在 ReactNative 上也是可行的。让我们拭目以待！</p>
 <h3 id="兼容性以及接下来的计划"><a href="#兼容性以及接下来的计划" class="headerlink" title="兼容性以及接下来的计划"></a>兼容性以及接下来的计划</h3><p>Vue.js 2.0 仍然处在 pre-alpha 阶段，但是你可以来<a href="https://github.com/vuejs/vue/tree/next/" target="_blank" rel="noopener">这里</a> 查看源代码。尽管 2.0 是一个完全重写的项目，但是除了一些有意废弃掉的功能，API 和 1.0 是大部分兼容的。看看 <a href="https://github.com/vuejs/vue/tree/next/examples" target="_blank" rel="noopener">2.0 中一模一样的官方例子</a> - 你会发现几乎没有什么变化！</p>
 <p>对于部分功能的废弃，本质上是为了提供更简洁的 API 从而提高开发者的效率。你可以移步<a href="https://github.com/vuejs/vue/wiki/2.0-features" target="_blank" rel="noopener">这里</a> 查看 1.0 和 2.0 的特性比对。如果你在现有的项目中大量地使用着一些被废弃的特性，这意味着会有一定的迁移成本，不过我们在未来会提供更详实的升级指导。</p>
 <p>现在我们还有很多工作没有完成。一旦我们达到了令人满意的测试覆盖率，我们将会推出 alpha 版本，同时我们希望能在五月底六月初推出 beta 版。除了更多的测试之外，我们也需要更新相关库（如 vue-router, Vuex, vue-loader, vueify…）的支持。目前只有 Vuex 在 2.0 下可以直接使用，但是我们会确保在 2.0 正式发布时所有东西都会顺畅地工作。</p>

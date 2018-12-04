@@ -74,7 +74,7 @@
   <h2>
     Code Review for Vue 2.0 Preview
   </h2>
-  <p>是的！<a href="http://jiongks.name/blog/announcing-vue-2/" target="_blank" rel="noopener">Vue 2.0 发布了！</a> 源代码仓库<a href="https://github.com/vuejs/vue/tree/next" target="_blank" rel="noopener">在此</a></p>
+  <p>是的！<a href="https://jiongks.name/blog/announcing-vue-2/" target="_blank" rel="noopener">Vue 2.0 发布了！</a> 源代码仓库<a href="https://github.com/vuejs/vue/tree/next" target="_blank" rel="noopener">在此</a></p>
 <p>首先，当我第一次看到 Vue 2.0 的真面目的时候，我的内心是非常激动的</p>
 <h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><p>来个简单的 demo，首先把 <code>dist/vue.js</code> 导入到一个空白的网页里，然后写：</p>
 <p><strong>当然，在大家阅读下面所有的内容之前，先想象一下，这是一个运行时 min+gzip 后只有 12kb 大小的库</strong></p>
@@ -124,7 +124,7 @@
 <h4 id="compiler-runtime-platforms"><a href="#compiler-runtime-platforms" class="headerlink" title="compiler + runtime + platforms"></a><code>compiler</code> + <code>runtime</code> + <code>platforms</code></h4><p>Wahahaha~</p>
 <p>这要说到 Vue 2.0 的第二个优点：virtual-DOM！virtual-DOM 有很多优点，也被很多人热议，而 Vue 2.0 里面的 virtual-DOM 简直是把它做到了极致！代码非常简练，而且性能超高 (据说秒杀 React，我自己没试过，大家可以自己比比看)。在这一点上编译器的前置起到了非常重要的作用，而且很多 diff 算法的优化点而且是在运行时之前就准备好的。</p>
 <p>另外 virtual-DOM 的另一个优点当然就是可以对渲染引擎做一般化的抽象，进而适配到更多类型的终端渲染引擎上！所以在我的怂恿下，小右把本来在 <code>runtime</code> 下的 <code>runtime/dom</code> 文件夹挪到了一个名叫 <code>platforms</code> 的新文件夹下，改名叫 <code>platforms/web/runtime</code>，把本来 <code>compiler</code> 文件夹下 web 相关的 <code>modules</code> 挪到了 <code>platforms/web/compiler</code>！</p>
-<p>(是的没错，今天在 <a href="http://alibaba.github.io/weex/" target="_blank" rel="noopener">Weex</a> 的子仓库里已经有另外一个 <code>platforms/weex</code> 文件夹了耶)</p>
+<p>(是的没错，今天在 <a href="https://alibaba.github.io/weex/" target="_blank" rel="noopener">Weex</a> 的子仓库里已经有另外一个 <code>platforms/weex</code> 文件夹了耶)</p>
 <h4 id="compiler-runtime-platforms-server"><a href="#compiler-runtime-platforms-server" class="headerlink" title="compiler + runtime + platforms + server"></a><code>compiler</code> + <code>runtime</code> + <code>platforms</code> + <code>server</code></h4><p>是的没有错！Vue 2.0 既然已经有了 virtual-DOM，也有了运行环境无关的 compiler，为什么不能 ssr 呢？！Vue 2.0 不只是简单的把预渲染拿到服务端这么简单，Vue 2.0 ssr 除了提供传统的由源文件编译出字符串之外，还提供了输出 stream 的功能，这样服务端的渲染不会因为大量的同步字符串处理而变慢。即：<code>createRenderer()</code> 会返回 <code>renderToString()</code> 和 <code>renderToStream()</code> 两个方法。同时，在 <code>platforms/web</code> 文件夹下除了 <code>runtime</code> 和 <code>compiler</code> 之外又多了一个 <code>server</code> 目录，这样编译器、服务端流式预渲染、运行时的铁三角架构就这样达成了！</p>
 <h3 id="test"><a href="#test" class="headerlink" title="test"></a><code>test</code></h3><p>说到测试，我惊奇的发现，在带来了这么多颠覆性的改变之后，Vue 2.0 竟然完好保留了绝大多数 1.0 的 API 设计，而且更快更小巧延展性更强。Vue 2.0 在前期研发阶段主要是通过粗线条的 e2e 测试进行质量保障的，因为版本延续性做得非常好，所以这部分在 1.x 的积累已经帮上很大忙了。现在 Vue 2.0 逐渐的在从 feature 的角度在进一步覆盖测试用例，对每个 API 和每个流程进行测试。目前以我个人的感觉主要的常见的链路都已经比较畅通了，具体功能细节上偶尔还是会遇到 bug 待修复，不过作为一个新兴的 Vue 2.0 来说，相信这已经远远超过大家的预期了！</p>
 <h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><p>我觉得 Vue 2.0 在编译器和运行时的解耦上做得超级棒！中间格式设计得也非常巧妙，把静态的部分在编译时就分析出来，而且通过非常简单的 <code>__h__</code>, <code>__renderList__</code> 等方法就搞定了几乎所有的逻辑控制和数据绑定。之前我个人在实践 Weex 的时候也是会把 template 提前 compile，但只是 compile 成一段 JSON，逻辑分析还是在运行时做的，当时和小右交流的时候就在讨论，能不能把分析过程也前置，无奈自己功力不够啊，一直没搞出来。看到 2.0 横空出世，简直是泪流满面有木有！！</p>

@@ -95,8 +95,8 @@
     </a>
   </h2>
   
-  <p>译自：<a href="http://www.html5rocks.com/en/tutorials/speed/v8/" target="_blank" rel="noopener">Performance Tips for JavaScript in V8</a></p>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>关于如何巧妙提高V8 JavaScript性能的话题，Daniel Clifford在Google I/O上做了<a href="http://www.youtube.com/watch?v=UJPdhx5zTaw" target="_blank" rel="noopener">一次非常精彩的分享</a>。Daniel鼓励我们“追求更快”，认真的分析C++和JavaScript之间的性能差距，根据JavaScript的工作原理撰写代码。在Daniel的分享中，有一个核心要点的归纳，我们也会根据性能指导的变化保持对这篇文章的更新。</p>
+  <p>译自：<a href="https://www.html5rocks.com/en/tutorials/speed/v8/" target="_blank" rel="noopener">Performance Tips for JavaScript in V8</a></p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>关于如何巧妙提高V8 JavaScript性能的话题，Daniel Clifford在Google I/O上做了<a href="https://www.youtube.com/watch?v=UJPdhx5zTaw" target="_blank" rel="noopener">一次非常精彩的分享</a>。Daniel鼓励我们“追求更快”，认真的分析C++和JavaScript之间的性能差距，根据JavaScript的工作原理撰写代码。在Daniel的分享中，有一个核心要点的归纳，我们也会根据性能指导的变化保持对这篇文章的更新。</p>
 <h3 id="最重要的建议"><a href="#最重要的建议" class="headerlink" title="最重要的建议"></a>最重要的建议</h3><p>最重要的是要把任何性能建议放在特定的情境当中。性能建议是附加的东西，有时一开始就特别注意深层的建议反而会对我们造成干扰。你需要从一个综合的角度看待你的Web应用的性能——在关注这些性能建议之前，你应该找<a href="https://developers.google.com/speed/pagespeed/" target="_blank" rel="noopener">PageSpeed</a>之类的工具大概分析一下你的代码，也算是跑个分先。这会防止你过度优化。</p>
 <p>对Web应用的性能优化，几个原则性的建议是：</p>
 <ul>
@@ -121,22 +121,22 @@
     </a>
   </h2>
   
-  <p>翻译自：<a href="http://www.html5rocks.com/en/tutorials/speed/parallax/" target="_blank" rel="noopener">http://www.html5rocks.com/en/tutorials/speed/parallax/</a></p>
+  <p>翻译自：<a href="https://www.html5rocks.com/en/tutorials/speed/parallax/" target="_blank" rel="noopener">https://www.html5rocks.com/en/tutorials/speed/parallax/</a></p>
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>现在满大街都是视觉差(parallax)网站了，我们随便看几个：</p>
 <ul>
 <li><a href="http://www.rowtothepole.com/" target="_blank" rel="noopener">Old Pulteney Row to the Pole</a></li>
-<li><a href="http://www.adidas.com/com/apps/snowboarding/" target="_blank" rel="noopener">Adidas Snowboarding</a></li>
-<li><a href="http://www.bbc.co.uk/news/entertainment-arts-20026367" target="_blank" rel="noopener">BBC News - James Bond: Cars, catchphrases and kisses</a></li>
+<li><a href="https://www.adidas.com/com/apps/snowboarding/" target="_blank" rel="noopener">Adidas Snowboarding</a></li>
+<li><a href="https://www.bbc.co.uk/news/entertainment-arts-20026367" target="_blank" rel="noopener">BBC News - James Bond: Cars, catchphrases and kisses</a></li>
 </ul>
 <p>也许你对这玩意儿还不太熟，视觉差其实就是它的视觉结构会随着页面的滚动而变化。通常情况下页面里的元素会根据页面的滚动位置而缩放、旋转或移动。</p>
-<p><img src="http://www.html5rocks.com/static/demos/parallax/parallax.jpg" alt="一个视觉差页面的demo"><br>我们的视觉差demo的完整效果</p>
+<p><img src="https://www.html5rocks.com/static/demos/parallax/parallax.jpg" alt="一个视觉差页面的demo"><br>我们的视觉差demo的完整效果</p>
 <p>不管你喜不喜欢视觉差网站，有一件事毫无疑问，它是一个性能的黑洞。因为当页面滚动时，浏览器的优化都倾向于新内容随滚动而出现于屏幕的最上方或最下方的情况。一般来说，内容改变得越少浏览器性能越高。而对于一个视觉差网站来说，在页面滚动时，好多元素都在发生改变，大多数情况下整个页面的大块可视元素都在发生变化，所以浏览器不得不重绘整个页面。</p>
 <p>我们有理由这样归纳一个视觉差的网站：</p>
 <ul>
 <li>背景元素会在你向上或向下滚动页面时改变位置、旋转或缩放。</li>
 <li>页面内容，如文字或小的图片，在页面滚动时会按照传统的方式进行上下移动。</li>
 </ul>
-<p>建议大家先阅读我们之前介绍过的<a href="http://www.html5rocks.com/en/tutorials/speed/scrolling/" target="_blank" rel="noopener">滚动性能</a>来改进你的app的响应速度。本篇文章是基于那篇文章所写的。</p>
+<p>建议大家先阅读我们之前介绍过的<a href="https://www.html5rocks.com/en/tutorials/speed/scrolling/" target="_blank" rel="noopener">滚动性能</a>来改进你的app的响应速度。本篇文章是基于那篇文章所写的。</p>
 <p>所以文字是如果你在建立一个视觉差网站，那么你是否受困于高昂的重绘开销？有没有别的改进建议使得性能最大化？让我们看看这几个方案：</p>
   <p class="more">
     <a href="/blog/parallax/">
@@ -153,7 +153,7 @@
     </a>
   </h2>
   
-  <p>摘自：<a href="http://www.html5rocks.com/en/tutorials/developertools/revolutions2013/" target="_blank" rel="noopener">Chrome DevTools Revolutions 2013</a></p>
+  <p>摘自：<a href="https://www.html5rocks.com/en/tutorials/developertools/revolutions2013/" target="_blank" rel="noopener">Chrome DevTools Revolutions 2013</a></p>
 <p>本次开发者工具的改进中有几项新特性是针对性能的：</p>
 <ul>
 <li>持续绘制模式</li>
@@ -261,10 +261,10 @@
   </h2>
   
   <p><img src="http://sass-lang.com/images/sass.gif" alt="Sass"></p>
-<p>远远关注<a href="http://sass-lang.com" target="_blank" rel="noopener">Sass</a>很久了，今天终于鼓起勇气写了<a href="http://jiongks.sinaapp.com/usr/themes/iambig-3d/style.sass" target="_blank" rel="noopener">我的第一个Sass文件</a></p>
+<p>远远关注<a href="http://sass-lang.com" target="_blank" rel="noopener">Sass</a>很久了，今天终于鼓起勇气写了<a href="https://github.com/Jinjiang/jinjiang.github.io/blob/dev/data/themes/iambig-3d/style.sass" target="_blank" rel="noopener">我的第一个Sass文件</a></p>
 <h3 id="Sass简介"><a href="#Sass简介" class="headerlink" title="Sass简介"></a>Sass简介</h3><p>一种CSS的预处理程序，基于Ruby运行。安装过程和相关的准备工作非常简单：</p>
 <ol start="0">
-<li>当然首先要安装<a href="http://www.ruby-lang.org/" target="_blank" rel="noopener">Ruby</a></li>
+<li>当然首先要安装<a href="https://www.ruby-lang.org/" target="_blank" rel="noopener">Ruby</a></li>
 <li><code>gem install ruby</code>，必要的环境下需要在命令前加上<code>sudo</code></li>
 <li>进入我的博客主题文件夹，运行<code>sass-convert style.css style.sass</code>，把我的css文件先转换成sass文件</li>
 <li>运行<code>sass --watch style.sass:style.css</code>，使得程序自动把<code>style.sass</code>文件接下来的任何改动自动同步转换到<code>style.css</code></li>
@@ -287,7 +287,7 @@
     </a>
   </h2>
   
-  <p>以下内容大多译自<a href="http://www.senchalabs.org/connect/" target="_blank" rel="noopener">Connect官网</a> 2013-06-02</p>
+  <p>以下内容大多译自<a href="https://www.senchalabs.org/connect/" target="_blank" rel="noopener">Connect官网</a> 2013-06-02</p>
 <p>Connect是基于Node的中间件框架(middleware framework)，提供超过18种官方中间件以及更多的第三方中间件。</p>
 <p>示例：</p>
 <pre><code>var app = connect()
@@ -317,7 +317,7 @@
   
   <p>上周末在图灵的技术沙龙分享了自己Node.JS的一些项目实践心得。</p>
 <p>Node.JS这东西说起来也是3年前就听说的东西了，最近一段时间才真正拿它做东西。这种感觉既熟悉又陌生，熟悉在听大家谈过无数次，陌生在自己没怎么亲自动过手。这回的一些尝试和项目实践，让我更多的了解了这门技术，也更好的了解了我自己。</p>
-<p>分享的在线链接在此：<a href="http://t.cn/zHIafSq" target="_blank" rel="noopener">http://t.cn/zHIafSq</a>，这里就不重复其中的内容了。</p>
+<p>分享的在线链接在此：<a href="https://t.cn/zHIafSq" target="_blank" rel="noopener">https://t.cn/zHIafSq</a>，这里就不重复其中的内容了。</p>
 <p><img src="http://www.programmer.com.cn/wp-content/uploads/2013/02/QQ截图20130225140912-231x300.jpg" alt="《程序员》201303期封面"></p>
 <p>我想更多说的是，我们有幸在HTML5快速发展的时代，这里几乎每天都会有新的规范、新的工具、新的库、新的框架、新的理论。玲琅满目，目不暇接。也许我们每天走马灯似的看它们，都不一定看得过来。我感觉自己就长期处于这种状态。可是当这些东西都只是我们眼前的匆匆过客，来不及细细体验、品味其中的内涵，那和从来都没看过相比，有多少实质上的差别呢？</p>
 <p>我觉得这里有两件事情值得考虑：第一，要再多些时间在新技术的关注和尝试上；第二，有选择性的深入其中。</p>
